@@ -25,13 +25,6 @@ void DJIMoto_State_Init(DJIMotoStateTD *motostate,double k[6])
 
 	motostate->original_position = 0;
 	motostate->first_run = true;
-    
-    for(int i=0;i<6;i++)
-    {
-        motostate->k[i]=k[i];
-    }
-    
-    motostate->v_eat=1;
 }
 
 // 大疆电机给电流
@@ -80,10 +73,7 @@ void DJI_SaveMotoMsg(CAN_HandleTypeDef *hcan, uint32_t RxFifo,DJIMotoStateTD *mo
 		static uint8_t i = 0;
 		// get motor id
 		i = Rx_Msg.StdId - CAN_Motor1_ID; // 组内编号
-		if(i==0)
-			Update_MotoState(motostate,3591.0/187);//3508
-		if(i==1)
-			Update_MotoState(motostate,36.0);//2006
+		Update_MotoState(&motostate[i],36.0);//2006
 		break;
 	}
 	default:
@@ -129,39 +119,4 @@ void Update_MotoAngle(DJIMotoStateTD *MotoState,float ratio)
 		MotoState->turns -= 1;
 	MotoState->totol_encoder_angle = MotoState->turns * 8192 + MotoState->encoder_angle - MotoState->original_position;
 	MotoState->totol_float_angle=MotoState->totol_encoder_angle/8192.0*360.0/ratio;
-}
-
-
-void Update_Motopower(DJIMotoStateTD *MotoState)
-{
-    MotoState->pre_power=MotoState->k[0] + MotoState->k[1]*MotoState->current 
-                                    +MotoState->k[2]*MotoState->speed + MotoState->k[3]*MotoState->current*MotoState->speed 
-                                    + MotoState->k[4]*pow(MotoState->current,2) + MotoState->k[5]*pow(MotoState->speed,2);
-    MotoState->real_power=INA226_GetPower(DEV_ADDR);
-    if(fabs(MotoState->pre_power-MotoState->real_power)<5.0f)
-    {
-         double a=MotoState->k[5]*pow(MotoState->speed,2) ;
-         double b=MotoState->k[2]*MotoState->speed + MotoState->k[3]*MotoState->speed*MotoState->current;
-         double c=MotoState->k[0]+MotoState->k[1]*MotoState->current+ MotoState->k[4]*pow(MotoState->current,2)-MotoState->power_set+1;
-        if(MotoState->real_power>MotoState->power_set)
-        {
-            if((pow(b,2)-4*a*c)>0)
-            {
-                MotoState->v_eat=fabs((-b+sqrt(pow(b,2)-4*a*c))/(2*a));
-                if(MotoState->v_eat>1)
-                 MotoState->v_eat=1;
-                
-            }
-            else if((pow(b,2)-4*a*c)<0)
-            {
-                MotoState->v_eat=1;
-            }
-        }
-        else
-        {
-            MotoState->v_eat=1;
-        }
-
-    }
-    
 }

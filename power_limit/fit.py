@@ -6,7 +6,7 @@ def func_power(data,k0,k1,k2,k3,k4,k5):
     I,w = data
     return (k0 + k1*I + k2*w + k3*I*w + k4*I**2 + k5*w**2)
 
-array_data = pd.read_csv('motor11.csv').values
+array_data = pd.read_csv('m2006data.csv').values
 array_power_data = array_data[:,0]
 array_I_data = array_data[:,1]
 array_w_data = array_data[:,2]

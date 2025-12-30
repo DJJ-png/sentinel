@@ -7,7 +7,7 @@ Vofa_data_m_3 Vofa_data_3={.tail={0x00,0x00,0x80,0x7f}};
 Vofa_data_m_4 Vofa_data_4={.tail={0x00,0x00,0x80,0x7f}};
 Vofa_data_m_8 Vofa_data_8={.tail={0x00,0x00,0x80,0x7f}};
 
-#define VOFA_HUART huart6//huart6
+#define VOFA_HUART huart1//huart6
 
 void Vofa_Send_Data2(float data1, float data2)
 {

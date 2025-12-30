@@ -45,4 +45,4 @@ power_limit/motortask.o: motorTASK.c \
   ..\..\user\DJIMotoDriver.h ..\Core\Inc\can.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h ..\..\user\ina226.h \
-  ..\Core\Inc\i2c.h
+  ..\Core\Inc\i2c.h power_control.h

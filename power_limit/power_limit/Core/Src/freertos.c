@@ -151,8 +151,9 @@ __weak void VofaTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END VofaTask */
-} 
+}
 
 /* Private application code --------------------------------------------------*/
+/* USER CODE BEGIN Application */
 
 /* USER CODE END Application */

@@ -30,7 +30,7 @@ typedef struct
 	// 电机反馈数据(真实值)
 	int16_t speed;//(换算过减速比)
 	uint16_t encoder_angle;
-	int16_t current;//融入低通滤波，换算到成ma
+	fp32 current;//融入低通滤波，换算到成ma
 	int8_t temperature;//温度
 	// 上一次
 	int16_t speed_last;
@@ -49,12 +49,6 @@ typedef struct
 	int16_t original_position;
 	uint16_t encoder_angle_first;
 	bool first_run;
-    
-    //功率控制
-    double k[6];
-    float pre_power;//预测功率
-    float real_power;//真实功率
-    float v_eat;
 
 } DJIMotoStateTD;
 
@@ -67,5 +61,4 @@ void DJI_SaveMotoMsg(CAN_HandleTypeDef *hcan, uint32_t RxFifo,DJIMotoStateTD *mo
 
 void Update_MotoAngle(DJIMotoStateTD *MotoState,float ratio);
 void Update_MotoState(DJIMotoStateTD *MotoState,float ratio);
-void Update_Motopower(DJIMotoStateTD *MotoState);
 #endif

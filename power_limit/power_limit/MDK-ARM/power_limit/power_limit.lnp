@@ -45,6 +45,7 @@
 "power_limit\vofa_send.o"
 "power_limit\pid.o"
 "power_limit\djimotodriver.o"
+"power_limit\power_control.o"
 "power_limit\vofatask.o"
 "power_limit\motortask.o"
 --strict --scatter "power_limit\power_limit.sct"

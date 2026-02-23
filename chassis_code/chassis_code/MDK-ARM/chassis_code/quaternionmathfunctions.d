@@ -1,0 +1,22 @@
+chassis_code/quaternionmathfunctions.o: \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\QuaternionMathFunctions.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_quaternion_norm_f32.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
+  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  ..\Drivers\CMSIS\Include\cmsis_armclang.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\float.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\limits.h \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\none.h \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\utils.h \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_quaternion_inverse_f32.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_quaternion_conjugate_f32.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_quaternion_normalize_f32.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_quaternion_product_single_f32.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_quaternion_product_f32.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_quaternion2rotation_f32.c \
+  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\QuaternionMathFunctions\arm_rotation2quaternion_f32.c

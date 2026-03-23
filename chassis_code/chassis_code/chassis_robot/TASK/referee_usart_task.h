@@ -41,6 +41,7 @@ extern uint8_t Referee_FIFO_Buffer[REFEREE_FIFO_BUF_LENGTH];
 
 /* protocol解析包结构体 */
 extern unpack_data_t Referee_Unpack_OBJ;
+void USART6_IRQHandler_1();
 #ifdef __cplusplus
 }
 #endif

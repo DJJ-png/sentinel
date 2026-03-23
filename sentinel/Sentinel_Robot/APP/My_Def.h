@@ -37,7 +37,7 @@ extern RC_ctrl_t rc_ctrl_last;
 #define V_TO_RPM (60/(2*PI*65)*13.72)//mm-rmp
 
 /* 底盘轮所在圆半径 */
-#define RADIUS_CHASSIS 240.6f
+#define RADIUS_CHASSIS 237.5f
 
 
 
@@ -133,33 +133,33 @@ extern RC_ctrl_t rc_ctrl_last;
 
 /* ************************************* 枚举 ******************************************** */
 
-enum NUC_CONTROL_MODE{
-    NUC_CONTROL_CHASSIS_MOVE,
-    NUC_CONTROL_GIMBAL_MOVE,
-};
-enum MOTOR_MODE{
-    SPEED,
-    ANGLE,
-};
-enum GIMBAL_JOINT{
-    BASE_YAW,
-    PITCH,
-    ADVANCED_YAW,
-};
-enum GIMBAL_MOTOR{
-    BASE_YAW_5010,
-    PITCH_6015,
-    ADVANCED_YAW_6020,
-};
-enum SHOOT_MOTOR{
-    SHOOT_DIAL,
-};
-enum NUC_CONTROL_LIST_ROBT {
-    AUTO_AIM,
-};
-enum GIMBAL_MODE_CNOTROL {
-    BASE_YAW_MODE,
-		ADVANCED_YAW_MODE,
-		GIMBAL_TO_CHASSIS_MODE,
-};
+//enum NUC_CONTROL_MODE{
+//    NUC_CONTROL_CHASSIS_MOVE,
+//    NUC_CONTROL_GIMBAL_MOVE,
+//};
+//enum MOTOR_MODE{
+//    SPEED,
+//    ANGLE,
+//};
+//enum GIMBAL_JOINT{
+//    BASE_YAW,
+//    PITCH,
+//    ADVANCED_YAW,
+//};
+//enum GIMBAL_MOTOR{
+//    BASE_YAW_5010,
+//    PITCH_6015,
+//    ADVANCED_YAW_6020,
+//};
+//enum SHOOT_MOTOR{
+//    SHOOT_DIAL,
+//};
+//enum NUC_CONTROL_LIST_ROBT {
+//    AUTO_AIM,
+//};
+//enum GIMBAL_MODE_CNOTROL {
+//    BASE_YAW_MODE,
+//		ADVANCED_YAW_MODE,
+//		GIMBAL_TO_CHASSIS_MODE,
+//};
 #endif

@@ -7,13 +7,13 @@
 
 #define message_data __attribute__((packed))
 #define AIM_DATA_RECV_ID 							0x81
-#define CHASSIS_CONTROL_RECV_ID 				0x82
+#define CHASSIS_CONTROL_RECV_ID 				    0x82
 #define REFEREE_RECV_ID								0x83
 
-#define IMU_SEND_ID 										0x11
-#define TYRE_SPEED_SEND_ID 						0x12
+#define IMU_SEND_ID 							    0x11
+#define TYRE_SPEED_SEND_ID 						    0x12
 #define REFEREE_SEND_ID								0x13
-#define GIMBAL_AND_CONFIG_SEND_ID 			0x14
+#define GIMBAL_AND_CONFIG_SEND_ID 			        0x14
 
 //传输裁判系统数据id
 #define ENEMY_STATE_SEND_ID						0x15
@@ -66,19 +66,18 @@ typedef struct
 }enemy_state_data_t;
 
 typedef struct{
-	uint8_t 										is_fire;        //开火建议（同时适配上升沿打符）
-	float 											yaw;		    //yaw目标角度
-    float 											yaw_vel;		//yaw目标角速度  
-    float 											yaw_acc;		//yaw目标角加速度      
-	float 											pitch;		    //pitch目标角度
-    float 											pitch_vel;		//pitch目标角速度
-    float 											pitch_acc;		//pitch目标角加速度    
-	uint8_t 										success;        //是否自瞄成功
-	uint8_t											fire_mode;      //自瞄模式：打车/符
-	uint8_t											last_fire;      //上次开火建议（同时适配上升沿打符）
-    uint8_t                                         top_ampl;
+	uint8_t 										is_fire;
+	float 											yaw;						// ??
+	float 											pitch;					// ??
+	float										    distance;
+	uint8_t 										target_number;
+	uint8_t 										success;
+	uint8_t											fire_mode;
+	uint8_t											last_fire;
+	float											top_freq;
+	float											top_ampl;
+	float											jump_time;
 	uint16_t 										shoot_freq;
-    uint16_t                                        crc16;
 }aim_data_t;
 
 typedef struct{
@@ -111,15 +110,15 @@ typedef struct{
 }tyre_speed_data_t;
 
 typedef struct{
-    uint8_t                                         head[2];
+    uint8_t                                         head;
     uint8_t 										mode;
-	float 											quat[4];
+	float 											roll;
     float                                           yaw;
-    float                                           yaw_vel;
+    //float                                           yaw_vel;
     float                                           pitch;
-    float                                           pitch_vel;
+    //float                                           pitch_vel;
     float                                           bullet_speed;
-    uint16_t                                        bullet_count;
+    //uint16_t                                        bullet_count;
     uint16_t                                        crc16;
 }gimbal_and_config_data_t;
 

@@ -28,7 +28,8 @@ typedef struct
 	pid_type_def angle_pid;
 	
 	uint8_t control_mode;
-	
+	uint8_t lock_flag;
+    uint8_t last_lock_flag;
 	
 } gimbal_motor_t;
 
@@ -62,6 +63,6 @@ extern uint8_t last_aim_PID_flag_switch;
 extern void gimbal_vector_set(fp32 yaw_speed,fp32 pitch_speed,fp32 yaw_angle,fp32 pitch_angle,uint8_t yaw_mode,uint8_t pitch_mode,uint8_t gimbal_mode);
 extern void Gimbal_Spin(fp32 Pitch_max,fp32 Pitch_min,fp32*gimbal_spin_speed,uint8_t mode);
 extern void Gimbal_Motor_Control(gimbal_motor_t *Gimbal_Motor);
-extern void CAN_cmd_LK_Motor(uint8_t uid, int16_t current);
+extern void CAN_cmd_LK_Motor(CAN_HandleTypeDef* hcan,uint8_t uid, int16_t current);
 
 #endif

@@ -2,10 +2,9 @@
 #include "bsp_can.h"
 #include "Nmanifold_usart_task.h"
 #include "Shoot_task.h"
-
+ 
 //#define CAN_SEND_NX
 #define USB_SEND_NX
-
 
 void usb_task(void const * argument)
 {

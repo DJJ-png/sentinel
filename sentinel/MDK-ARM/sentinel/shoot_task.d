@@ -1,18 +1,15 @@
 sentinel/shoot_task.o: ..\Sentinel_Robot\Tasks\Shoot_Task.c \
   ..\Sentinel_Robot\Tasks\Shoot_Task.h ..\Sentinel_Robot\APP\pid.h \
-  ..\Sentinel_Robot\APP\struct_typedef.h ..\Sentinel_Robot\APP\referee.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  ..\Sentinel_Robot\APP\protocol.h ..\Sentinel_Robot\support\fifo.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
+  ..\Sentinel_Robot\APP\struct_typedef.h \
+  ..\Sentinel_Robot\APP\config_set.h ..\Sentinel_Robot\APP\Filter.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h \
   ..\Drivers\CMSIS\Include\core_cm4.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\Drivers\CMSIS\Include\cmsis_version.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
   ..\Drivers\CMSIS\Include\cmsis_armclang.h \
@@ -46,6 +43,12 @@ sentinel/shoot_task.o: ..\Sentinel_Robot\Tasks\Shoot_Task.c \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
+  ..\Sentinel_Robot\APP\referee.h ..\Sentinel_Robot\APP\protocol.h \
+  ..\Sentinel_Robot\support\fifo.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   ..\Sentinel_Robot\Tasks\referee_usart_task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \
@@ -61,12 +64,11 @@ sentinel/shoot_task.o: ..\Sentinel_Robot\Tasks\Shoot_Task.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h ..\Core\Inc\main.h \
+  ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h \
   ..\Sentinel_Robot\BSP\bsp_usart.h ..\Sentinel_Robot\Tasks\INS_task.h \
   ..\Sentinel_Robot\Drvs\bmi088driver.h \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\float.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\limits.h \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \
@@ -98,6 +100,5 @@ sentinel/shoot_task.o: ..\Sentinel_Robot\Tasks\Shoot_Task.c \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Sentinel_Robot\APP\Vofa_send.h ..\Sentinel_Robot\BSP\bsp_can.h \
   ..\Core\Inc\can.h ..\Sentinel_Robot\Tasks\Switch_Task.h \
-  ..\Sentinel_Robot\APP\config_set.h \
   ..\Sentinel_Robot\APP\remote_control.h ..\Sentinel_Robot\BSP\bsp_rc.h \
   ..\Sentinel_Robot\BSP\bsp_math.h

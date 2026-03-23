@@ -54,6 +54,8 @@ sentinel/switch_task.o: ..\Sentinel_Robot\Tasks\Switch_Task.c \
   ..\Sentinel_Robot\APP\My_Def.h ..\Sentinel_Robot\APP\remote_control.h \
   ..\Sentinel_Robot\BSP\bsp_rc.h ..\Core\Inc\tim.h \
   ..\Sentinel_Robot\Tasks\Shoot_Task.h \
+  ..\Sentinel_Robot\APP\config_set.h ..\Sentinel_Robot\APP\Filter.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
   ..\Sentinel_Robot\Tasks\Gimbal_Task.h ..\Sentinel_Robot\BSP\bsp_can.h \
   ..\Core\Inc\can.h ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
@@ -66,7 +68,6 @@ sentinel/switch_task.o: ..\Sentinel_Robot\Tasks\Switch_Task.c \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\float.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\limits.h \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \

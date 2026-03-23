@@ -245,6 +245,14 @@ typedef struct __attribute__((packed))
 	}action;
 	
 } nuc_control_t;
+
+typedef struct 					__attribute__((packed))
+{
+    uint16_t data_cmd_id;     // 数据/命令标识
+    uint16_t sender_id;       // 发送方ID
+    uint16_t receiver_id;     // 接收方ID
+    uint32_t decision;      // nuc发来的决策数据
+} Sentry_Decision_0x0120_t;			//哨兵自主决策
 /*******************************************END**********************************************/
 
 

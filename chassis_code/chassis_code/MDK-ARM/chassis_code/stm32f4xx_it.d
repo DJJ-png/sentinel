@@ -40,4 +40,26 @@ chassis_code/stm32f4xx_it.o: ..\Core\Src\stm32f4xx_it.c \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h \
-  ..\chassis_robot\APP\struct_typedef.h ..\Core\Inc\stm32f4xx_it.h
+  ..\chassis_robot\APP\struct_typedef.h ..\Core\Inc\stm32f4xx_it.h \
+  ..\chassis_robot\TASK\referee_usart_task.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
+  ..\Core\Inc\FreeRTOSConfig.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\chassis_robot\support\fifo.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
+  ..\chassis_robot\APP\protocol.h ..\chassis_robot\APP\referee.h \
+  ..\chassis_robot\APP\robot_send_referee.h \
+  ..\chassis_robot\support\CRCs.h

@@ -89,17 +89,15 @@ sentinel/nmanifold_usart_task.o: \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   ..\Sentinel_Robot\Tasks\Shoot_Task.h ..\Sentinel_Robot\APP\pid.h \
+  ..\Sentinel_Robot\APP\config_set.h ..\Sentinel_Robot\APP\Filter.h \
   ..\Sentinel_Robot\Tasks\Gimbal_Task.h ..\Sentinel_Robot\BSP\bsp_can.h \
   ..\Core\Inc\can.h ..\Sentinel_Robot\APP\Vofa_send.h \
-  ..\Sentinel_Robot\support\CRCs.h \
-  ..\Sentinel_Robot\APP\robot_send_referee.h \
-  ..\Sentinel_Robot\APP\robot_message.h ..\Sentinel_Robot\BSP\bsp_usb.h \
-  ..\USB_DEVICE\App\usb_device.h \
+  ..\Sentinel_Robot\support\CRCs.h ..\Sentinel_Robot\APP\robot_message.h \
+  ..\Sentinel_Robot\BSP\bsp_usb.h ..\USB_DEVICE\App\usb_device.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
   ..\USB_DEVICE\Target\usbd_conf.h ..\USB_DEVICE\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Sentinel_Robot\Tasks\referee_upboard_task.h \
-  ..\Sentinel_Robot\APP\config_set.h
+  ..\Sentinel_Robot\Tasks\referee_upboard_task.h

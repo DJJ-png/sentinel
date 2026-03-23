@@ -64,7 +64,8 @@ sentinel/referee_usart_task.o: \
   ..\Core\Inc\main.h ..\Sentinel_Robot\support\crcs.h \
   ..\Sentinel_Robot\APP\referee.h ..\Sentinel_Robot\Tasks\shoot_task.h \
   ..\Sentinel_Robot\APP\pid.h ..\Sentinel_Robot\APP\struct_typedef.h \
+  ..\Sentinel_Robot\APP\config_set.h ..\Sentinel_Robot\APP\Filter.h \
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
   ..\Sentinel_Robot\Tasks\Gimbal_Task.h ..\Sentinel_Robot\BSP\bsp_can.h \
   ..\Core\Inc\can.h ..\Sentinel_Robot\APP\remote_control.h \
-  ..\Sentinel_Robot\BSP\bsp_rc.h \
-  ..\Sentinel_Robot\APP\robot_send_referee.h
+  ..\Sentinel_Robot\BSP\bsp_rc.h

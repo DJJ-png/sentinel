@@ -6,7 +6,7 @@
 #include "bsp_can.h"
 #include "referee.h"
 #include "robot_message.h"
-
+#include "config_set.h"
 uint16_t position_cnt_send = 0;
 uint16_t Frequency_Control = 1;
 
@@ -269,7 +269,7 @@ void refree_to_upboard_enemy_state(void)
 {	
 	for(uint8_t enemy_state_cnt = 0;enemy_state_cnt <6;enemy_state_cnt ++)
 	{
-		CAN_CMD_BASE(&hcan1,ENEMT_STATE_ID,(uint16_t)(enemy_state_cnt <<8 | 0x0000),enemy_state_data[enemy_state_cnt].x,enemy_state_data[enemy_state_cnt].y,enemy_state_data[enemy_state_cnt].hp);
+		CAN_CMD_BASE(&hcan1,CAN_ID_ENEMT_STATE,(uint16_t)(enemy_state_cnt <<8 | 0x0000),enemy_state_data[enemy_state_cnt].x,enemy_state_data[enemy_state_cnt].y,enemy_state_data[enemy_state_cnt].hp);
 		if(enemy_state_cnt%2 == 0) vTaskDelay(1);
 	}
 }
@@ -278,8 +278,8 @@ void refree_to_upboard_Robot_Pos(void)
 {
 	/* 0x0203 */
 	vTaskDelay(1);
-	CAN_CMD_f32(&hcan1,MY_POSITION1_ID,Robot_Pos.x,Robot_Pos.y);
-	CAN_CMD_f32(&hcan1,MY_POSITION2_ID,Robot_Pos.angle,0);
+	CAN_CMD_f32(&hcan1,CAN_ID_MY_POSITION1,Robot_Pos.x,Robot_Pos.y);
+	CAN_CMD_f32(&hcan1,CAN_ID_MY_POSITION2,Robot_Pos.angle,0);
 
 }
 
@@ -295,7 +295,7 @@ void referee_upboard_task(void const * argument)
 			Robot_Interaction_User_Data.enemy[i].y = enemy_state_data[i].y;
 		}
    		//CAN_CMD_BASE_Referee_32bit(&hcan1,UP_TO_DOWN_ID1,0,0,Sentry_Decision_0x0120.decision);
-		vTaskDelay(1);
+		vTaskDelay(100);
 	}
-}
+ }
 

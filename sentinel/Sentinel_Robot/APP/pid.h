@@ -26,6 +26,7 @@ enum PID_MODE
 typedef struct
 {
     uint8_t mode;
+    uint16_t cnt;
     //PID 三参数
     fp32 Kp;
     fp32 Ki;
@@ -34,6 +35,7 @@ typedef struct
     fp32 max_out;  //最大输出
     fp32 max_iout; //最大积分输出
 
+	fp32 last_set;
     fp32 set;
     fp32 fdb;
 
@@ -94,5 +96,5 @@ extern fp32 PID_calc(pid_type_def *pid, fp32 ref, fp32 set);
   * @retval         none
   */
 extern void PID_clear(pid_type_def *pid);
-
+//extern fp32 SHOOT_PID_calc(pid_type_def *pid, Shoot_Motor_t* fric_ctrl,fp32 id);
 #endif

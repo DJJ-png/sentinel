@@ -11,13 +11,13 @@
 uint8_t Referee_Buffer[2][REFEREE_USART_RX_BUF_LENGHT];
 
 // 裁判系统FIFO缓存：缓存裁判系统接收数据
-fifo_s_t       referee_FIFO;
+fifo_s_t       Referee_FIFO;
 
 // 裁判串口双缓冲区
-uint8_t        referee_buffer[2][REFEREE_USART_RX_BUF_LENGHT];
+uint8_t        Referee_buffer[2][REFEREE_USART_RX_BUF_LENGHT];
 
 // 裁判FIFO缓存数组
-uint8_t        referee_FIFO_Buffer[REFEREE_FIFO_BUF_LENGTH];
+uint8_t        Referee_FIFO_Buffer[REFEREE_FIFO_BUF_LENGTH];
 
 // 0x0308数据接收标志：标记是否开始接收该类型裁判数据
 uint8_t        receive_0x0308_begin_flag = 0;

@@ -15,20 +15,16 @@ void  Can_Getmeasure_Chmotor(CAN_RxHeaderTypeDef rx_header,uint8_t rx_data[8])
 		{
              //根据实际情况修改编号情况
 			case CAN_ID_WHEEL_MOT_FL:
-               detect_hook(CH_WHEEL_MOT1_TOE);
+            {detect_hook(CH_WHEEL_MOT1_TOE);get_djimotor_measure(&wheel_motor[1].motor_data_raw, rx_data);break;}
 			case CAN_ID_WHEEL_MOT_FR:
-               detect_hook(CH_WHEEL_MOT2_TOE);
+            {detect_hook(CH_WHEEL_MOT2_TOE);get_djimotor_measure(&wheel_motor[0].motor_data_raw, rx_data);break;}
 			case CAN_ID_WHEEL_MOT_BL:
-               detect_hook(CH_WHEEL_MOT3_TOE);
+            {detect_hook(CH_WHEEL_MOT3_TOE);get_djimotor_measure(&wheel_motor[2].motor_data_raw, rx_data);break;}
 			case CAN_ID_WHEEL_MOT_BR:
 			{
-               detect_hook(CH_WHEEL_MOT4_TOE);
+               detect_hook(CH_WHEEL_MOT4_TOE);get_djimotor_measure(&wheel_motor[3].motor_data_raw, rx_data);break;
 				static uint8_t i = 0;
 				i = rx_header.StdId - CAN_ID_WHEEL_MOT_FL;
-                #ifdef CH_CFG_WHEEL_MOT_DJI_3508
-				get_djimotor_measure(&wheel_motor[i].motor_data_raw, rx_data);
-                #endif 
-                
                 #ifdef CH_CFG_WHEEL_MOT_LK_6015
 				motor_measure_LK(&wheel_motor[i].motor_data_raw, rx_data);
                 #endif 
@@ -91,33 +87,33 @@ void Pid_Init_motor(pid_type_def *pid, uint8_t mode, fp32 kp, fp32 ki, fp32 kd, 
   */
 void CH_Solve_motor()
 {
-    steer_motor[0].ecd_offset_rad=580;
-    steer_motor[1].ecd_offset_rad=800;
-    steer_motor[2].ecd_offset_rad=4862;
-    steer_motor[3].ecd_offset_rad=4600;
+    steer_motor[0].ecd_offset_rad=530;
+    steer_motor[1].ecd_offset_rad=4900;
+    steer_motor[2].ecd_offset_rad=560;//4868;
+    steer_motor[3].ecd_offset_rad=4920;//4600;
     //0:4683
     //1:880
     //2:4862
     //3:486
     float vx = chassis_control.ch_vx_set;
-    float vy = chassis_control.ch_vy_set;
+    float vy = -chassis_control.ch_vy_set;
     float wz = chassis_control.ch_wz_set;
     
     // 轮0 (右前) 分量
-    float v0_x = vx - wz * sin_40_15;
-    float v0_y = vy + wz * cos_40_15;
+    float v0_x = vx + wz * sin_40_15;
+    float v0_y = vy - wz * cos_40_15;
     
     // 轮1 (左前) 分量
-    float v1_x = vx + wz * sin_40_15;
-    float v1_y = vy + wz * cos_40_15;
+    float v1_x = vx - wz * sin_40_15;
+    float v1_y = vy - wz * cos_40_15;
     
     // 轮2 (左后) 分量
-    float v2_x = vx + wz * sin_40_15;
-    float v2_y = vy - wz * cos_40_15;
+    float v2_x = vx - wz * sin_40_15;
+    float v2_y = vy + wz * cos_40_15;
     
     // 轮3 (右后) 分量
-    float v3_x = vx - wz * sin_40_15;
-    float v3_y = vy - wz * cos_40_15;
+    float v3_x = vx +  wz * sin_40_15;
+    float v3_y = vy + wz * cos_40_15;
 
     // 2. 轮速解算 (速度幅值)
     wheel_motor[0].speed_set = sqrt(pow(v0_x, 2.0f) + pow(v0_y, 2.0f));
@@ -131,6 +127,15 @@ void CH_Solve_motor()
     arm_atan2_f32(v2_y, v2_x, &steer_motor[2].angle_set); // 对应轮2左后
     arm_atan2_f32(v3_y, v3_x, &steer_motor[3].angle_set); // 对应轮3右后
 
+        //steer_motor[0].angle_set *=-1;//取反,反装修正
+        //steer_motor[1].angle_set *=-1;
+        //steer_motor[2].angle_set *=-1;//取反,反装修正
+        //steer_moto r[3].angle_set *=-1;
+    
+        //wheel_motor[0].speed_set *=-1;
+        //wheel_motor[3].speed_set *=-1;
+        //wheel_motor[1].speed_set *=-1;
+        //wheel_motor[2].speed_set *=-1;
     // 4. 零点/静止状态处理
     if(vx == 0 && vy == 0) 
     {  
@@ -141,33 +146,8 @@ void CH_Solve_motor()
         steer_motor[2].angle_set = 0;  // 轮2
         steer_motor[3].angle_set = 0;   // 轮3
         }
-        
-        else
-        {
-        steer_motor[0].angle_set = 50/57.3f;   // 轮0
-        steer_motor[1].angle_set = -50/57.3f;  // 轮1
-        steer_motor[2].angle_set = -50/57.3f;  // 轮2
-        steer_motor[3].angle_set = 50/57.3f;   // 轮3
-        
-        }
-        
-        /*由电机实际装车正方向决定*/
-        wheel_motor[0].speed_set = wz;
-        wheel_motor[1].speed_set = -wz;
-        wheel_motor[2].speed_set = wz;
-        wheel_motor[3].speed_set = -wz;
-        
-        steer_motor[0].angle_set *=-1;//取反,反装修正
-        steer_motor[1].angle_set *=-1;
-        steer_motor[2].angle_set *=-1;//取反,反装修正
-        steer_motor[3].angle_set *=-1;
-    
-        //wheel_motor[0].speed_set *=-1;
-        wheel_motor[3].speed_set *=-1;
-        wheel_motor[1].speed_set *=-1;
-        //wheel_motor[2].speed_set *=-1;
-        
-        for(int i=0;i<4;i++)
+    }
+    for(int i=0;i<4;i++)
         {
             //找两头离设定角最近的一头
             fp32 angle_err1=limit_pi((steer_motor[i].motor_data_raw.ecd - steer_motor[i].ecd_offset_rad) / SCALE_6020ECD_TO_RAD - steer_motor[i].angle_set);
@@ -178,11 +158,10 @@ void CH_Solve_motor()
                 wheel_motor[i].speed_set*=-1;
             }
         }
-    }
 }
 
 
-/**
+/**434
   * @brief          底盘PID控制计算
   * @param[out]     steer_motor: 更新舵机PID输出
   * @param[out]     wheel_motor: 更新轮电机PID输出
@@ -212,10 +191,10 @@ void Ch_Calc_Motorpid()
   */
 void Can_Tansmit_Chmotor_current()
 {
-	CAN_CMD_BASE(&CAN_CHMOTOR_MESSAGE,CAN_ID_WHEEL_MOT_ALL,wheel_motor[0].wheel_speed_pid.out , wheel_motor[1].wheel_speed_pid.out , wheel_motor[2].wheel_speed_pid.out , wheel_motor[3].wheel_speed_pid.out);
+	CAN_CMD_BASE(&CAN_CHMOTOR_MESSAGE,CAN_ID_WHEEL_MOT_ALL,wheel_motor[0].wheel_speed_pid.out , wheel_motor[1].wheel_speed_pid.out , wheel_motor[3].wheel_speed_pid.out , wheel_motor[2].wheel_speed_pid.out);
 	vTaskDelay(1);
     #ifdef CH_CFG_TYPE_SWERVE
-    CAN_CMD_BASE(&CAN_CHMOTOR_MESSAGE,CAN_ID_STEER_MOT_ALL,steer_motor[2].steer_speed_pid.out , steer_motor[1].steer_speed_pid.out , steer_motor[0].steer_speed_pid.out , steer_motor[3].steer_speed_pid.out);
+    CAN_CMD_BASE(&CAN_CHMOTOR_MESSAGE,CAN_ID_STEER_MOT_ALL,steer_motor[3].steer_speed_pid.out , steer_motor[1].steer_speed_pid.out , steer_motor[0].steer_speed_pid.out , steer_motor[2].steer_speed_pid.out);
     vTaskDelay(1);
     #endif
 }

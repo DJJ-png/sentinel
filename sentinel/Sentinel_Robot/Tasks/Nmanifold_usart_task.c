@@ -8,10 +8,8 @@
 #include "Gimbal_Task.h"
 #include "Vofa_send.h"
 #include "CRCs.h"
-#include "robot_send_referee.h"
 #include "robot_message.h"
 #include "bsp_can.h"
-#include "robot_send_referee.h"
 #include "referee_upboard_task.h"
 #include "config_set.h"
 
@@ -41,13 +39,14 @@ uint8_t Switch_Data;
 
 extern uint16_t attack_detection_cnt;
 
-custom_info_t custom_info_0x0308;
+extern custom_info_t custom_info_0x0308;
+Sentry_Decision_0x0120_t Sentry_Decision_0x0120;
 
 NUC_Used_Message_200Hz_0606_t 	NUC_Used_Message_200Hz_0606;	//28+1+4+4+8=45byte
 NUC_Used_Message_1Hz_0607_t 	NUC_Used_Message_1Hz_0607;		//3+4+2+12+2+32+6+9+26=96byte
 uint8_t Custom_info_CAN_send_flag=0;
 ext_hurt_data_t	    Last_Hurt_Data; 
-
+//nuc决策需要的数据
 void USART_Send_referee_Init(void)
 {
 	NUC_Used_Message_1Hz_0607.NUC_Game_Status_0001.game_progress = Game_Status.game_progress;
@@ -68,8 +67,8 @@ void USART_Send_referee_Init(void)
 	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_base_HP = Game_Robot_HP.red_base_HP;
 	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_outpost_HP = Game_Robot_HP.red_outpost_HP;
     
-		NUC_Used_Message_200Hz_0606.Hurt_Data.armor_id = Hurt_Data.armor_id;
-		NUC_Used_Message_200Hz_0606.Hurt_Data.HP_deduction_reason = Hurt_Data.HP_deduction_reason;
+	NUC_Used_Message_200Hz_0606.Hurt_Data.armor_id = Hurt_Data.armor_id;
+	NUC_Used_Message_200Hz_0606.Hurt_Data.HP_deduction_reason = Hurt_Data.HP_deduction_reason;
 		
 	NUC_Used_Message_1Hz_0607.Event_Data_0101 = Event_Data;	
 	NUC_Used_Message_1Hz_0607.dart_info_0105.dart_info = Dart_Information.dart_info;	
@@ -100,8 +99,8 @@ void USART_Send_referee_Init(void)
 	NUC_Used_Message_1Hz_0607.Robot_Interaction_User_Data_0301.radar_data.radar_enhance = (Robot_Interaction_User_Data.radar_enhance & 0x80);
 	for(uint8_t i=0;i<4;i++)
 	{
-		NUC_Used_Message_1Hz_0607.Robot_Interaction_User_Data_0301.radar_data.robot_x[i] = Robot_Interaction_User_Data.enemy[i].x;
-		NUC_Used_Message_1Hz_0607.Robot_Interaction_User_Data_0301.radar_data.robot_y[i] = Robot_Interaction_User_Data.enemy[i].y;
+		NUC_Used_Message_1Hz_0607.Robot_Interaction_User_Data_0301.radar_data.robot_x[i] = enemy_state_data[i].x;
+		NUC_Used_Message_1Hz_0607.Robot_Interaction_User_Data_0301.radar_data.robot_y[i] = enemy_state_data[i].y;
 		NUC_Used_Message_1Hz_0607.Robot_Interaction_User_Data_0301.radar_data.robot_z[i] = Robot_Interaction_User_Data.enemy[i].z;
 	}
 	NUC_Used_Message_1Hz_0607.Robot_Interaction_User_Data_0301.radar_data.robot_x[4] = Robot_Interaction_User_Data.enemy[5].x;
@@ -116,76 +115,34 @@ void USART_Send_referee_Init(void)
 	NUC_Used_Message_200Hz_0606.NUC_Parameter_Of_Car_0601.advanced_yaw_angle = gimbal_motor[ADVANCED_YAW_6020].INS_angle + gimbal_motor[ADVANCED_YAW_6020].ENC_angle;
 	
 	if(NUC_Used_Message_1Hz_0607.NUC_Game_Status_0001.game_progress != 4)
-	{
+	{ 
 		NUC_Used_Message_1Hz_0607.map_command_0303.cmd_keyboard = 0;
 		NUC_Used_Message_1Hz_0607.map_command_0303.target_position_x = 0;
 		NUC_Used_Message_1Hz_0607.map_command_0303.target_position_y = 0;
 	}
 }
-
-void Custom_info_CAN_send()
-{
-	CAN_CMD_f8_7(&hcan1,UP_TO_DOWN_ID2,1,custom_info_0x0308.sender_id>>8,custom_info_0x0308.sender_id,custom_info_0x0308.receiver_id>>8,custom_info_0x0308.receiver_id,custom_info_0x0308.user_data[0],custom_info_0x0308.user_data[1],custom_info_0x0308.user_data[2]);
-	vTaskDelay(2);
-	CAN_CMD_f8_7(&hcan1,UP_TO_DOWN_ID2,2,	custom_info_0x0308.user_data[3],
-																custom_info_0x0308.user_data[4],
-																custom_info_0x0308.user_data[5],
-																custom_info_0x0308.user_data[6],
-																custom_info_0x0308.user_data[7],
-																custom_info_0x0308.user_data[8],
-																custom_info_0x0308.user_data[9]);
-	vTaskDelay(2);
-	CAN_CMD_f8_7(&hcan1,UP_TO_DOWN_ID2,3,	custom_info_0x0308.user_data[10],
-																custom_info_0x0308.user_data[11],
-																custom_info_0x0308.user_data[12],
-																custom_info_0x0308.user_data[13],
-																custom_info_0x0308.user_data[14],
-																custom_info_0x0308.user_data[15],
-																custom_info_0x0308.user_data[16]);
-	vTaskDelay(2);
-	CAN_CMD_f8_7(&hcan1,UP_TO_DOWN_ID2,4,	custom_info_0x0308.user_data[17],
-																custom_info_0x0308.user_data[18],
-																custom_info_0x0308.user_data[19],
-																custom_info_0x0308.user_data[20],
-																custom_info_0x0308.user_data[21],
-																custom_info_0x0308.user_data[22],
-																custom_info_0x0308.user_data[23]);
-	vTaskDelay(2);
-	CAN_CMD_f8_7(&hcan1,UP_TO_DOWN_ID2,5,	custom_info_0x0308.user_data[24],
-																custom_info_0x0308.user_data[25],
-																custom_info_0x0308.user_data[26],
-																custom_info_0x0308.user_data[27],
-																custom_info_0x0308.user_data[28],
-																custom_info_0x0308.user_data[29],
-																0);
-	vTaskDelay(2);
-}
-
-
+uint8_t test=0;
 void manifold_usart_task(void)
 	{	
 	memset(&Last_Hurt_Data, 0x00, 1);
 	memset(NUC_USART_RxBuf, 0x00, USART_RX_BUF_LENGHT);
 	usart1_init(Usart1_Buf[0], Usart1_Buf[1], USART_RX_BUF_LENGHT);
+    test=1;
 	vTaskDelay(200);	
 	while(1){		
 		USART_Send_referee_Init();
 		if(Frequency_Control_cnt == 3000) Frequency_Control_cnt = 0;
-		if(Frequency_Control_cnt % 200 == 0){
+		if(Frequency_Control_cnt % 1000 == 0){
 			/*1HZ发送数据*/
-			Frequency_Control_cnt+=1;
 			NUC_Usart_Tx_1Hz();
-		}else
+		} 
+        if(Frequency_Control_cnt % 5 == 0)
 		{
 			/*200HZ发送数据*/
-			Frequency_Control_cnt+=1;
 			NUC_Usart_Tx_200Hz();
 		}
-		if (Custom_info_CAN_send_flag==1)
-		{
-			Custom_info_CAN_send();
-			Custom_info_CAN_send_flag = 0;
-		}
+        Frequency_Control_cnt+=1;
+        vTaskDelay(10);
 	}
 }
 
@@ -230,7 +187,7 @@ uint8_t NUC_Data_Unpack()
 	//循环解包
 	//输入解包检测地址,下一数据指针地址(直接传指针并不能拿出数据),用来存储数据长度的变量的地址,储存指令变量的地址
 	while(data_unpack(p_unpack,&p_wait,&lenth,&cmid))
-	{
+	{ 
 		switch(cmid)
 		{//  #define NUC_DATA &p_unpack[7]   数据转录 ,检测地址后移 (好像用break会打断循环来着(之前改的忘了))
 			case  0x0501 : memcpy(&nuc_control.chassis_v,NUC_DATA,12);										p_unpack=p_wait;nuc_work[0]=1;nuc_off_wait[0]=5000;break;
@@ -243,7 +200,7 @@ uint8_t NUC_Data_Unpack()
 //			HAL_UART_Transmit_DMA(&huart6,data_send , 5+2+lenth+2);         
 			break;	
 		}		
-		if(cmid == 0x0301){CAN_CMD_BASE_Referee_32bit(&hcan1,UP_TO_DOWN_ID1,0,0,Sentry_Decision_0x0120.decision);}
+		if(cmid == 0x0301){Custom_info_CAN_send_flag = 2;}//发送0102
 		if(cmid == 0x0308){Custom_info_CAN_send_flag=1;}//小端发送
 		p_unpack=p_wait;
 	}
@@ -270,13 +227,11 @@ uint8_t data_unpack(uint8_t* data_in,uint8_t** data_out,uint16_t* lenth,uint16_t
 void NUC_Usart_Tx_200Hz(){
 	referee_copy(0x0606,45,(uint8_t *)&NUC_Used_Message_200Hz_0606,Usart1_Dma_Txbuf);//决策要求的裁判系统格式(真想摆了)
 	HAL_UART_Transmit_DMA(&huart1, Usart1_Dma_Txbuf, 5+2+45+2);
-	vTaskDelay(5);
 }
 
 void NUC_Usart_Tx_1Hz(){
 	referee_copy(0x0607,96,(uint8_t *)&NUC_Used_Message_1Hz_0607,Usart1_Dma_Txbuf);
 	HAL_UART_Transmit_DMA(&huart1, Usart1_Dma_Txbuf, 5+2+96+2);
-	vTaskDelay(10);
 }
 /*数据转载成裁判系统格式*/
 void referee_copy(uint16_t cmid,uint16_t length,uint8_t * data,uint8_t* uart_send)

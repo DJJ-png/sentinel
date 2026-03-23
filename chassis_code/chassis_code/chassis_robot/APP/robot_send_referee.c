@@ -2,7 +2,7 @@
 #include "usart.h"
 #include "referee.h"
 
-Sentry_Decision_0x0120_t Sentry_Decision_0x0120;
+Sentry_Decision_0x0120_t Sentry_Decision_0x0120 ;
 custom_info_t custom_info_0x0308;
 
 uint8_t Usart6_Dma_Txbuf[64];

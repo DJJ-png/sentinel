@@ -16,13 +16,14 @@
 #include "remote_control.h"
 #include "config_set.h"
 #include "bsp_math.h"
+
 /*--define--begin--*/
 #define DIAL_SPEED_BASE (5400) //(5400/36/60)*8//5400是20HZ//270是1HZ
 #define DIAL_SPEED_FAST  (16*270)
 #define FRIC_SPEED   5500
 #define BARREL_POWER  2500
 ///**/   /* RPM*/    /*减速比*/
-#define SHOOT_MOTOR_SPEED_PID_KP 3.75//3.75//3.0f
+#define SHOOT_MOTOR_SPEED_PID_KP 5.75//3.75//3.0f
 #define SHOOT_MOTOR_SPEED_PID_KI 0.01//0.01f
 #define SHOOT_MOTOR_SPEED_PID_KD 0.2f
 #define SHOOT_MOTOR_SPEED_PID_MAX_OUT 6000.0f
@@ -41,11 +42,15 @@
 #define FRIC_MOTOR_SPEED_PID_MAX_OUT 4000.0f
 #define FRIC_MOTOR_SPEED_PID_MAX_IOUT 2000.0f
 
-#define FRIC_MOTOR_1 	shoot_m2006[2]
-#define FRIC_MOTOR_2 	shoot_m2006[3]
+//电机控制变量
+Dial_Motor_t dial_motor;
+Shoot_Motor_t shoot_motor[2];
+#define FRIC_MOTOR_1 	 shoot_motor[0]
+#define FRIC_MOTOR_2 	 shoot_motor[1]
+#define DIAL_MOTOR 		dial_motor
 
 /*热量保护*/
-#define BARREL_HEAT_LIMIT  400.0f
+#define BARREL_HEAT_LIMIT   400.0f
 #define BARREL_HEAT_COOLING 1000//80.0f
 #define BULLET_17MM_HEAT    10.0f
 
@@ -54,18 +59,17 @@
 #define COOLING   (BARREL_HEAT_COOLING/CONTRONL_HZ)
 #define ADD       (BULLET_17MM_HEAT/CONTRONL_HZ)
 #define SHOOT_HZ(X)  ((fp32)(X))*(20.0f/((fp32)DIAL_SPEED_BASE))
-
-//电机控制变量
-#define DIAL_MOTOR 		shoot_m2006[0]  
-shoot_motor_t shoot_m2006[4];
+#define FAST 1.5;
+uint16_t  max_cnt = 500;
 
 //功能控制变量
 barrel_control_t barrel_control;
 shoot_control_t shoot_control;
 RC_ctrl_t last_rc_control;
-
+extern Dial_State_e Dial_State;
 extern aim_control_t aim_control;
 
+uint8_t shoot_test_freg=10;
 //热量保护
 
 void CAN_cmd_AMMO(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
@@ -73,227 +77,214 @@ void CAN_cmd_AMMO(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4
 	 CAN_CMD_BASE(&hcan2,0x200 ,  0,  0,  motor3,  motor4);
 	 CAN_CMD_BASE(&hcan1,0x200 ,  motor1,  0,  0,  0);
 }
+
+
 /*--初始化函数--*/
-void Shoot_Motor_Init(void)
+void Dial_Motor_Init(void)
 {
 	const static fp32 shoot_motor_speed_pid[3] = {SHOOT_MOTOR_SPEED_PID_KP, SHOOT_MOTOR_SPEED_PID_KI, SHOOT_MOTOR_SPEED_PID_KD};
 	const static fp32 shoot_motor_angle_pid[3] = {SHOOT_MOTOR_ANGLE_PID_KP, SHOOT_MOTOR_ANGLE_PID_KI, SHOOT_MOTOR_ANGLE_PID_KD};
-	memset((uint8_t*)&shoot_m2006[0],0,sizeof(shoot_motor_t));
-	PID_init(&shoot_m2006[0].speed_pid,PID_POSITION,shoot_motor_speed_pid,SHOOT_MOTOR_SPEED_PID_MAX_OUT,SHOOT_MOTOR_SPEED_PID_MAX_IOUT);
-	PID_init(&shoot_m2006[0].angle_pid,PID_POSITION,shoot_motor_angle_pid,SHOOT_MOTOR_ANGLE_PID_MAX_OUT,SHOOT_MOTOR_ANGLE_PID_MAX_IOUT);
+	memset((uint8_t*)&DIAL_MOTOR,0,sizeof(Dial_Motor_t));
+	PID_init(&DIAL_MOTOR.speed_pid,PID_POSITION,shoot_motor_speed_pid,SHOOT_MOTOR_SPEED_PID_MAX_OUT,SHOOT_MOTOR_SPEED_PID_MAX_IOUT);
+	PID_init(&DIAL_MOTOR.angle_pid,PID_POSITION,shoot_motor_angle_pid,SHOOT_MOTOR_ANGLE_PID_MAX_OUT,SHOOT_MOTOR_ANGLE_PID_MAX_IOUT);
 }
 
-void FRIC_Motor_Init(void)
+void Shoot_Motor_Init()
 {
-	const static fp32 fric_motor_speed_pid[3] = {FRIC_MOTOR_SPEED_PID_KP, FRIC_MOTOR_SPEED_PID_KI, FRIC_MOTOR_SPEED_PID_KD};
-	memset((uint8_t*)&FRIC_MOTOR_1,0,sizeof(shoot_motor_t));
-	memset((uint8_t*)&FRIC_MOTOR_2,0,sizeof(shoot_motor_t));
-	PID_init(&FRIC_MOTOR_1.speed_pid,PID_POSITION,fric_motor_speed_pid,FRIC_MOTOR_SPEED_PID_MAX_OUT,FRIC_MOTOR_SPEED_PID_MAX_IOUT);
-	PID_init(&FRIC_MOTOR_2.speed_pid,PID_POSITION,fric_motor_speed_pid,FRIC_MOTOR_SPEED_PID_MAX_OUT,FRIC_MOTOR_SPEED_PID_MAX_IOUT);
-}
+	uint8_t i;
+	PID_clear(&shoot_motor[0].pid_speed);
+	PID_clear(&shoot_motor[1].pid_speed);
 
+
+	for(i=0;i<2;i++){
+		fp32 motor_speed_pid[3]={8.0,0.050000007,0.0f};
+			PID_init(&shoot_motor[i].pid_speed,PID_POSITION,motor_speed_pid,12000,1200);
+        weighted_filter_init(&shoot_motor[i].fric_filter,0.2,5);
+	}
+    
+}
 /*--数据更新--*/
 void Shoot_Motor_Data_Update(void)
 {
 	/**/
-	shoot_m2006[0].speed					=	motor_measure_shoot[0].speed_rpm;
-	shoot_m2006[0].give_current		=	motor_measure_shoot[0].given_current;
-	shoot_m2006[0].angle					=	dial_angle;
+	DIAL_MOTOR.speed					=	motor_measure_shoot[0].speed_rpm;
+	DIAL_MOTOR.give_current		=	motor_measure_shoot[0].given_current;
+	DIAL_MOTOR.angle					=	dial_angle;
 	/**/
-	FRIC_MOTOR_1.speed				=	motor_measure_shoot[2].speed_rpm;
-	FRIC_MOTOR_1.give_current	=	motor_measure_shoot[2].given_current;
+    ewma_filter_update(&FRIC_MOTOR_1.fric_filter,motor_measure_shoot[2].speed_rpm);
 	/**/
-	FRIC_MOTOR_2.speed				=	motor_measure_shoot[3].speed_rpm;
-	FRIC_MOTOR_2.give_current	=	motor_measure_shoot[3].given_current;
+	ewma_filter_update(&FRIC_MOTOR_2.fric_filter,motor_measure_shoot[3].speed_rpm);
 }
 
 
-/*--摩擦轮控制--*/
-void Fric_Motor_Control(void)
+/**
+ * @brief 拨弹盘电机 PID 计算算子
+ * @param motor 电机结构体指针
+ * @note  这个函数不处理业务逻辑，只负责数学计算
+ */
+static void Dial_Motor_Operator(Dial_Motor_t *motor) 
 {
-   if(shoot_control.fric_state==1)
-	{
-			FRIC_MOTOR_1.speed_set=FRIC_SPEED;
-			FRIC_MOTOR_2.speed_set=-FRIC_SPEED;
+    if (motor->mode == SPEED) 
+    {
+        // 单速度环
+        PID_calc(&motor->speed_pid, motor->speed, motor->speed_set);
+        motor->set_current = motor->speed_pid.out;
+    } 
+    else if (motor->mode == ANGLE) 
+    {
+        //角度环计算
+        PID_calc(&motor->angle_pid, -LIMIT_TO_SET(motor->angle - motor->angle_set,4096), 0);
+        fp32 target_speed =  motor->angle_pid.out;
+        
+        // 速度环计算
+        PID_calc(&motor->speed_pid, motor->speed, target_speed);
+        motor->set_current = motor->speed_pid.out;
+    }
+    CAN_CMD_BASE(&hcan1,0x200 ,motor->set_current,  0,  0,  0);
+}
+void Dial_Close_Control()
+{
+    DIAL_MOTOR.speed_set=0;
+    DIAL_MOTOR.mode=SPEED;
+    Dial_Motor_Operator(&DIAL_MOTOR);
+    DIAL_MOTOR.set_current=0;
 
-		PID_calc(&FRIC_MOTOR_1.speed_pid,FRIC_MOTOR_1.speed,FRIC_MOTOR_1.speed_set);
-		PID_calc(&FRIC_MOTOR_2.speed_pid,FRIC_MOTOR_2.speed,FRIC_MOTOR_2.speed_set);
-		FRIC_MOTOR_1.set_current=FRIC_MOTOR_1.speed_pid.out;
-		FRIC_MOTOR_2.set_current=FRIC_MOTOR_2.speed_pid.out;
-	}
-	else    if(shoot_control.fric_state==0)
-	{
-//				FRIC_MOTOR_1.speed_set=0;
-//				FRIC_MOTOR_2.speed_set=0;
-				FRIC_MOTOR_1.set_current=0;
-				FRIC_MOTOR_2.set_current=0;
-	}
+}
+void Shoot_Test_Control()
+{
+    DIAL_MOTOR.speed_set=shoot_test_freg*36*60/8;
+    DIAL_MOTOR.mode=SPEED;//电机设置为speed模式
+    Dial_Motor_Operator(&DIAL_MOTOR);
+     
+}
+void Rapid_Fire_Control()
+{
+    if(nuc_receive_data.aim_data_received.is_fire!=0 && nuc_receive_data.aim_data_received.is_fire == 1)
+    {
+        if(Power_Heat_Data.shooter_17mm_1_barrel_heat < Robot_Status.shooter_barrel_heat_limit*0.75f)
+            DIAL_MOTOR.speed_set= nuc_receive_data.aim_data_received.shoot_freq*36*60/8;//DIAL_SPEED_BASE
+    }
+    else
+    {
+        DIAL_MOTOR.speed_set=0;
+    }
+     DIAL_MOTOR.mode=SPEED;//电机设置为speed模式
+     Dial_Motor_Operator(&DIAL_MOTOR);
 }
 
-
-/*--拨弹盘控制--*/
-void Dial_Motor_Control(void)
+void Single_Fire_Control()
 {
-	if(nuc_receive_data.aim_data_received.shoot_freq == 0)
-	{
-			nuc_receive_data.aim_data_received.shoot_freq = 25;
-	}
+     if(nuc_receive_data.aim_data_received.is_fire!=0 && nuc_receive_data.aim_data_received.is_fire == 1)
+    {
+        if(Power_Heat_Data.shooter_17mm_1_barrel_heat < Robot_Status.shooter_barrel_heat_limit*0.85f)
+            DIAL_MOTOR.angle_set= DIAL_MOTOR.angle-8192*45/360;
+             DIAL_MOTOR.mode=ANGLE;//电机设置为angle模式
+             Dial_Motor_Operator(&DIAL_MOTOR);
+    }
+
+}
+void Dial_FSM(void)
+{
+    switch(Dial_State)
+    {
+        case CLOSE:          {Dial_Close_Control();break;}
+        case SINGLE_FIRE:    {Single_Fire_Control();break;}
+        case RAPID_FIRE:     {Rapid_Fire_Control();break;}
+        case SHOOT_TEST:     {Shoot_Test_Control();break;}
+    
+    }
+        
+
+}
+
+fp32 SHOOT_PID_calc(pid_type_def *pid, Shoot_Motor_t* fric_ctrl,fp32 id)
+{
+
 	
-	/* 导航控制是否进行打符 */
-	if(nuc_transmit_data.robot_gimbal_data_send.mode == 2 || nuc_transmit_data.robot_gimbal_data_send.mode == 3)
-	{
-		shoot_control.dial_mode = 1;
-	}
-	else
-	{
-		shoot_control.dial_mode = 0;
-	}
+    if (pid == NULL)
+    {
+        return 0.0f;
+    }
 	
-	if(fifo_s_isempty(&Referee_FIFO)!=0||Robot_Status.power_management_shooter_output==0x01)
+		fric_ctrl->fric_sp.reference[2] = fric_ctrl->fric_sp.reference[1];
+    fric_ctrl->fric_sp.reference[1] = fric_ctrl->fric_sp.reference[0];
+		fric_ctrl->fric_sp.reference[0] = fric_ctrl->fric_filter.ewma_value;
+		pid->fdb = (fric_ctrl->fric_sp.reference[0] + fric_ctrl->fric_sp.reference[1] + fric_ctrl->fric_sp.reference[2]) / 3.0f;
+	
+		if(pid->last_set != fric_ctrl->rpm_set)
 		{
-		if(shoot_control.fric_state==1)
+			fric_ctrl->fric_sp.start_flag =1;
+			pid->last_set = fric_ctrl->rpm_set;
+		}
+		if(fric_ctrl->fric_sp.start_flag)
 		{
-			/* 自瞄模式且自瞄控制连发模式 */
-			if(nuc_receive_data.aim_data_received.fire_mode == 0  && shoot_control.dial_mode==0)
-			{
-				/* 自瞄开启 and 导航模式 and 摩擦轮开关在中间 */
-				if(	nuc_receive_data.aim_data_received.success==1 && nuc_receive_data.aim_data_received.is_fire == 1
-					&&(((Switch_Left	==	RC_SW_UP)||(Switch_Left	==	RC_SW_MID))&&nuc_control.action.robot_aim!=0)
-				)//&&nuc_receive_data.aim_data_received.target_rate!=0)
-					shoot_control.dial_speed
-					=	nuc_receive_data.aim_data_received.shoot_freq*36*60/8;//DIAL_SPEED_BASE
-				/* 1.摩擦轮开关至上 2.调试自瞄模式 and 摩擦轮开关至上 */
-				else if((Switch_Right	==	RC_SW_UP&&aim_control.aim_debug_flag!=1)||
-					(Switch_Right	==	RC_SW_UP&&(nuc_receive_data.aim_data_received.is_fire==1&&nuc_receive_data.aim_data_received.success==1)&&aim_control.aim_debug_flag==1))
-					shoot_control.dial_speed
-					=	nuc_receive_data.aim_data_received.shoot_freq*36*60/8;//DIAL_SPEED_BASE
-				else shoot_control.dial_speed=0;
-				//控制传给电机
-				shoot_m2006[0].speed_set=shoot_control.dial_speed;
-				shoot_m2006[0].angle_set=shoot_m2006[0].angle;
+			if(pid->cnt > max_cnt){
+				pid->cnt = 0;
+				fric_ctrl->fric_sp.start_flag = 0;
 			}
-			/* 打符 */
-			else if(shoot_control.dial_mode == 1)//单发
-			{
-					/*控 单发脉冲*/
-					if(!(last_rc_control.rc.s[0]==RC_SW_UP)&&(rc_ctrl.rc.s[0]==RC_SW_UP)
-						&&nuc_receive_data.aim_data_received.success!=1)
-					{
-						if(shoot_control.if_single_hit==0)
-						{
-							shoot_control.if_single_hit=1;
-							shoot_m2006[0].angle_set=shoot_m2006[0].angle-8192*45/360;//按拨弹盘改
-						}
-					}
-					else if(((Switch_Left	==	RC_SW_UP && Switch_Right	==	RC_SW_MID) 
-						||(Switch_Right	==	RC_SW_UP && aim_control.aim_debug_flag==1))
-						&& nuc_receive_data.aim_data_received.fire_mode == 1
-						&& nuc_receive_data.aim_data_received.success==1)
-					{		
-						if(shoot_control.if_single_hit==0)
-						{
-							shoot_control.if_single_hit=1;
-							shoot_m2006[0].angle_set=shoot_m2006[0].angle-8192*45/360;//按拨弹盘改
-							nuc_receive_data.aim_data_received.fire_mode = 0;
-						}
-					}
-						/*信号执行*/
-						if(shoot_control.if_single_hit==1)
-						{
-							shoot_control.dial_single_cnt++;							
-							PID_calc(&shoot_m2006[0].angle_pid,-LIMIT_TO_SET(shoot_m2006[0].angle-shoot_m2006[0].angle_set,4096),0);
-							shoot_m2006[0].speed_set=shoot_m2006[0].angle_pid.out;
-							if(shoot_control.dial_single_cnt>100)
-							{
-								shoot_control.if_single_hit=0;
-								shoot_control.dial_single_cnt=0;
-								shoot_m2006[0].speed_set=0;
-							}
-						}
-															
-			}
-			else if((((Switch_Left	==	RC_SW_UP) && nuc_control.action.robot_aim!=0)
-				||(Switch_Right	==	RC_SW_UP && aim_control.aim_debug_flag==1))
-				&& shoot_control.dial_mode == 0 && nuc_receive_data.aim_data_received.fire_mode == 1
-				&& nuc_receive_data.aim_data_received.success==1)
-			{		
-				if(shoot_control.if_single_hit==0)
-				{
-					shoot_control.if_single_hit=1;
-					shoot_m2006[0].angle_set=shoot_m2006[0].angle-8192*45/360;//按拨弹盘改
-				}
-				/*信号执行*/
-				if(shoot_control.if_single_hit==1)
-				{
-					shoot_control.dial_single_cnt++;
-					if(shoot_control.dial_single_cnt>100)
-					{
-						shoot_control.if_single_hit=0;
-						shoot_control.dial_single_cnt=0;
-						nuc_receive_data.aim_data_received.fire_mode = 0;
-					}
-				}
-					
-				PID_calc(&shoot_m2006[0].angle_pid,-LIMIT_TO_SET(shoot_m2006[0].angle-shoot_m2006[0].angle_set,4096),0);
-				shoot_m2006[0].speed_set=shoot_m2006[0].angle_pid.out;
-			}
-			/* 双发模式 */
-			else if((((Switch_Left	==	RC_SW_UP || Switch_Left	==	RC_SW_MID) && nuc_control.action.robot_aim!=0)
-				||(Switch_Right	==	RC_SW_UP && aim_control.aim_debug_flag==1))
-				&& shoot_control.dial_mode == 0 && nuc_receive_data.aim_data_received.fire_mode == 2
-				&& nuc_receive_data.aim_data_received.success==1)
-			{		
-				if(shoot_control.if_single_hit==0)
-				{
-					shoot_control.if_single_hit=1;
-					shoot_m2006[0].angle_set=shoot_m2006[0].angle-8192*90/360;//按拨弹盘改
-				}
-				/*信号执行*/
-				if(shoot_control.if_single_hit==1)
-				{
-					shoot_control.dial_single_cnt++;
-					if(shoot_control.dial_single_cnt>300)
-					{
-						shoot_control.if_single_hit=0;
-						shoot_control.dial_single_cnt=0;
-						nuc_receive_data.aim_data_received.fire_mode = 0;
-					}
-				}
-					
-				PID_calc(&shoot_m2006[0].angle_pid,-LIMIT_TO_SET(shoot_m2006[0].angle-shoot_m2006[0].angle_set,4096),0);
-				shoot_m2006[0].speed_set=shoot_m2006[0].angle_pid.out;
-			}
-		}/*--end--fric_on*/
+			else
+				pid->cnt++;
+				pid->fdb = fric_ctrl->fric_filter.buffer[fric_ctrl->fric_filter.index-1] ;
+		}
+		else{
+		if(fabs(fric_ctrl->rpm_set - fric_ctrl->fric_filter.buffer[fric_ctrl->fric_filter.index-1] )> 65 && pid->cnt == 0&& pid->last_set!=0){
+			fric_ctrl->fric_sp.k= 0;
+			pid->cnt ++;
+		}
+		else if(fric_ctrl->fric_sp.k != 1 && pid->cnt < max_cnt/50 && id > 2 )
+			pid->cnt ++;
+
+		else if(fric_ctrl->fric_sp.k != 1 && pid->cnt < max_cnt/25)
+		{
+			pid->cnt ++;			fric_ctrl->fric_sp.k= FAST;
+			
+		}
 		else 
-		{
-			shoot_m2006[0].speed_set=0;
+			{
+			fric_ctrl->fric_sp.k= 1;
+			pid->cnt = 0;
 		}
-	}
-/**/
+		}
+    pid->error[2] = pid->error[1];
+    pid->error[1] = pid->error[0];
+    pid->set = fric_ctrl->rpm_set;
 		
+//    pid->fdb = ref;
+//    pid->error[0] = set - ref;
 
-	PID_calc(&shoot_m2006[0].speed_pid	,shoot_m2006[0].speed	,shoot_m2006[0].speed_set);
-	shoot_m2006[0].set_current=shoot_m2006[0].speed_pid.out;
-	/*卡弹保护*/
-		if(abs(shoot_m2006[0].give_current)>5000&&fabs(shoot_m2006[0].speed)<100&&shoot_control.dial_stop_cnt<=250)
-		{
-			shoot_control.dial_stop_cnt++;	
-		}
-		if(shoot_control.dial_stop_cnt>=250)
-		{
-				if(shoot_control.wait_time<=250)
-				{
-					shoot_m2006[0].set_current=-4000;
-				}
-				shoot_control.wait_time++;
-				if(shoot_control.wait_time>=250)
-				{
-					shoot_control.dial_stop_cnt=0;
-					shoot_control.wait_time=0;
-				}
-				shoot_m2006[0].angle_set=dial_angle;
-		}
+    pid->error[0] = fric_ctrl->rpm_set - pid->fdb;
+		
+    if (pid->mode == PID_POSITION)
+    {
+				pid->Dbuf[0] = (pid->error[0] - pid->error[1]);
+//				if(fabs(pid->Dbuf[0]) >= 800)
+//					pid->error[0] = pid->error[1];
+				pid->Iout += pid->Ki * pid->error[0]*(fric_ctrl->fric_sp.start_flag == 1?1:0);;//		
+			
+        pid->Pout = pid->Kp *fric_ctrl->fric_sp.k* pid->error[0];
+
+        pid->Dbuf[2] = pid->Dbuf[1];
+        pid->Dbuf[1] = pid->Dbuf[0];
+        	
+        pid->Dout = pid->Kd * pid->Dbuf[0];
+        LimitMax(pid->Iout, pid->max_iout);
+				pid->out = fric_ctrl->fric_sp.k == 0?0:(pid->Pout + pid->Iout + pid->Dout);
+        LimitMax(pid->out, pid->max_out);
+    }
+    else if (pid->mode == PID_DELTA)
+    {
+        pid->Pout = pid->Kp * (pid->error[0] - pid->error[1]);
+        pid->Iout = pid->Ki * pid->error[0];
+        pid->Dbuf[2] = pid->Dbuf[1];
+        pid->Dbuf[1] = pid->Dbuf[0];
+        pid->Dbuf[0] = (pid->error[0] - 2.0f * pid->error[1] + pid->error[2]);
+        pid->Dout = pid->Kd * pid->Dbuf[0];
+        pid->out += pid->Pout + pid->Iout + pid->Dout;
+        LimitMax(pid->out, pid->max_out);
+    }
+    return pid->out;
 }
+
 
 void shoot_Control()
 {
@@ -302,16 +293,16 @@ void shoot_Control()
 		if(Power_Heat_Data.shooter_17mm_1_barrel_heat >= Robot_Status.shooter_barrel_heat_limit*0.75f)
 		{
 			shoot_control.dial_speed=0;
-			shoot_m2006[0].set_current=0;
-			shoot_m2006[0].speed_pid.Iout=0;
+			DIAL_MOTOR.set_current=0;
+			DIAL_MOTOR.speed_pid.Iout=0;
 			barrel_control.barrel_wait_flag=1;
 		}
 	}
 	if(barrel_control.barrel_wait_flag==1)
 	{
-				shoot_control.dial_speed=0;
-				shoot_m2006[0].set_current=-500; 
-				shoot_m2006[0].speed_pid.Iout=0;
+				shoot_control.dial_speed=0; 
+				DIAL_MOTOR.set_current=-500; 
+				DIAL_MOTOR.speed_pid.Iout=0;
 
 				barrel_control.barrel_wait_cnt++;
 
@@ -319,14 +310,22 @@ void shoot_Control()
 		{
 			barrel_control.barrel_wait_cnt=0;
 			barrel_control.barrel_wait_flag=0;
-		}
+		} 
 	}
+    if(shoot_control.fric_state==1)
+    {
+        FRIC_MOTOR_1.rpm_set=5450;
+        FRIC_MOTOR_2.rpm_set=-5450;
+         SHOOT_PID_calc(&FRIC_MOTOR_1.pid_speed,&FRIC_MOTOR_1,3);
+         SHOOT_PID_calc(&FRIC_MOTOR_2.pid_speed,&FRIC_MOTOR_2,4);
+        CAN_CMD_BASE(&hcan2,0x200 ,  0,  0,  FRIC_MOTOR_1.pid_speed.out,  FRIC_MOTOR_2.pid_speed.out);
+    }
 }
 
 void heat_cooling()
 {
 	
-	barrel_control.barrel_heat[0]+=ADD*SHOOT_HZ(shoot_m2006[0].speed);		
+	barrel_control.barrel_heat[0]+=ADD*SHOOT_HZ(DIAL_MOTOR.speed);		
 	barrel_control.barrel_heat[0]-=COOLING;
 	if(barrel_control.barrel_heat[0]<=0.0f)
 		barrel_control.barrel_heat[0]=0.0f;
@@ -335,46 +334,18 @@ void heat_cooling()
 
 }
 
-/*--Task--*/
-#if defined  Broad_Gimbal
 void Shoot_Task(void const * argument)
 {	 
-
+    Dial_Motor_Init();
 	Shoot_Motor_Init();
-	FRIC_Motor_Init();
-	
-	vTaskDelay(200);
+	vTaskDelay(200); 
 	while(1)
 	{
-		
 		Shoot_Motor_Data_Update();
-		   Fric_Motor_Control();
-		   Dial_Motor_Control();
-			 heat_cooling();
-			 shoot_Control();
-		if(Switch_Right==RC_SW_MID||Switch_Right==RC_SW_UP)
-		{
-				CAN_cmd_AMMO(shoot_m2006[0].set_current, 0 ,FRIC_MOTOR_1.set_current,FRIC_MOTOR_2.set_current);
-		}
-		else
-		{
-			CAN_cmd_AMMO(0,0,0,0);
-			shoot_m2006[0].speed_pid.Iout=0;
-		}
-		
-		last_rc_control = rc_ctrl;
-		
-		vTaskDelay(1);
+    	heat_cooling();
+	    shoot_Control();
+        Dial_FSM();
+		vTaskDelay(5);
 	}
 }
-#else
-void Shoot_Task(void const * argument)
-{
-  for(;;)
-  {
-    osDelay(1);
-  }
-}
-
-#endif
 /*--function--end*/

@@ -53,6 +53,9 @@ osThreadId INS_TASKHandle;
 osThreadId Shoot_TASKHandle;
 osThreadId maniflod_usartHandle;
 osThreadId usbHandle;
+osThreadId detectHandle;
+osThreadId uptodownHandle;
+osThreadId WIT_DATA_TASKHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -65,6 +68,9 @@ void INS_Task(void const * argument);
 void Shoot_Task(void const * argument);
 void manifold_usart_task(void const * argument);
 void usb_task(void const * argument);
+void detect_task(void const * argument);
+void uptodown_task(void const * argument);
+void WIT_data_task(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -137,7 +143,7 @@ void MX_FREERTOS_Init(void) {
   Gimbal_TASKHandle = osThreadCreate(osThread(Gimbal_TASK), NULL);
 
   /* definition and creation of INS_TASK */
-  osThreadDef(INS_TASK, INS_Task, osPriorityIdle, 0, 128);
+  osThreadDef(INS_TASK, INS_Task, osPriorityRealtime, 0, 128);
   INS_TASKHandle = osThreadCreate(osThread(INS_TASK), NULL);
 
   /* definition and creation of Shoot_TASK */
@@ -151,6 +157,18 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of usb */
   osThreadDef(usb, usb_task, osPriorityIdle, 0, 128);
   usbHandle = osThreadCreate(osThread(usb), NULL);
+
+  /* definition and creation of detect */
+  osThreadDef(detect, detect_task, osPriorityLow, 0, 128);
+  detectHandle = osThreadCreate(osThread(detect), NULL);
+
+  /* definition and creation of uptodown */
+  osThreadDef(uptodown, uptodown_task, osPriorityNormal, 0, 128);
+  uptodownHandle = osThreadCreate(osThread(uptodown), NULL);
+
+  /* definition and creation of WIT_DATA_TASK */
+  osThreadDef(WIT_DATA_TASK, WIT_data_task, osPriorityHigh, 0, 128);
+  WIT_DATA_TASKHandle = osThreadCreate(osThread(WIT_DATA_TASK), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -266,6 +284,60 @@ __weak void usb_task(void const * argument)
     osDelay(1);
   }
   /* USER CODE END usb_task */
+}
+
+/* USER CODE BEGIN Header_detect_task */
+/**
+* @brief Function implementing the detect thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_detect_task */
+__weak void detect_task(void const * argument)
+{
+  /* USER CODE BEGIN detect_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END detect_task */
+}
+
+/* USER CODE BEGIN Header_uptodown_task */
+/**
+* @brief Function implementing the uptodown thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_uptodown_task */
+__weak void uptodown_task(void const * argument)
+{
+  /* USER CODE BEGIN uptodown_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END uptodown_task */
+}
+
+/* USER CODE BEGIN Header_WIT_data_task */
+/**
+* @brief Function implementing the WIT_DATA_TASK thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_WIT_data_task */
+__weak void WIT_data_task(void const * argument)
+{
+  /* USER CODE BEGIN WIT_data_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END WIT_data_task */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -55,7 +55,6 @@ sentinel/bsp_can.o: ..\Sentinel_Robot\BSP\bsp_can.c \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
-  ..\Sentinel_Robot\APP\robot_send_referee.h \
   ..\Sentinel_Robot\APP\dm_imu.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \

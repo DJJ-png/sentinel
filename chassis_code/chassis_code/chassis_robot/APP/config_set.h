@@ -35,10 +35,10 @@
     
     //电机通讯参数
     #define CAN_ID_WHEEL_MOT_ALL              0x200
-    #define CAN_ID_WHEEL_MOT_FL               0x201   // Front Left
-    #define CAN_ID_WHEEL_MOT_FR               0x202   // Front Right
-    #define CAN_ID_WHEEL_MOT_BL               0x203   // Back Left
-    #define CAN_ID_WHEEL_MOT_BR               0x204   // Back Right
+    #define CAN_ID_WHEEL_MOT_FL               0x202   // Front Left
+    #define CAN_ID_WHEEL_MOT_FR               0x201   // Front Right
+    #define CAN_ID_WHEEL_MOT_BL               0x204   // Back Left
+    #define CAN_ID_WHEEL_MOT_BR               0x203   // Back Right
     
 // 舵电机 (Steering Motors - 仅在 SWERVE 模式有效)
 #ifdef CH_CFG_TYPE_SWERVE
@@ -52,8 +52,8 @@
     #define CAN_ID_STEER_MOT_ALL              0x1ff
     #define CAN_ID_STEER_MOT_FL               0x206   // Front Left
     #define CAN_ID_STEER_MOT_FR               0x207   // Front Right
-    #define CAN_ID_STEER_MOT_BL               0x205   // Back Left
-    #define CAN_ID_STEER_MOT_BR               0x208  // Back Right
+    #define CAN_ID_STEER_MOT_BL               0x208   // Back Left
+    #define CAN_ID_STEER_MOT_BR               0x205  // Back Right
 #endif
 
 /* =================================================================================

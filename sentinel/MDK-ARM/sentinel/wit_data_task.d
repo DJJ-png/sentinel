@@ -57,9 +57,9 @@ sentinel/wit_data_task.o: ..\Sentinel_Robot\Tasks\WIT_data_task.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Sentinel_Robot\BSP\bsp_usart.h \
   ..\Sentinel_Robot\APP\struct_typedef.h ..\Sentinel_Robot\APP\hwt901b.h \
-  ..\Core\Inc\usart.h ..\Sentinel_Robot\APP\robot_send_referee.h \
-  ..\Sentinel_Robot\APP\dm_imu.h ..\Sentinel_Robot\APP\Referee.h \
-  ..\Sentinel_Robot\APP\protocol.h ..\Sentinel_Robot\support\fifo.h \
+  ..\Core\Inc\usart.h ..\Sentinel_Robot\APP\dm_imu.h \
+  ..\Sentinel_Robot\APP\Referee.h ..\Sentinel_Robot\APP\protocol.h \
+  ..\Sentinel_Robot\support\fifo.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h

@@ -32,6 +32,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "bsp_can.h"
+#include "remote_control.h"
+#include "bsp_delay.h"
+#include "referee.h"
+#include "referee_usart_task.h"
+#include "bsp_usb.h"
+#include "dm_imu.h"
 
 /* USER CODE END Includes */
 
@@ -73,7 +80,7 @@ void MX_FREERTOS_Init(void);
   * @retval int
   */
 int main(void)
-{
+                   { 
 
   /* USER CODE BEGIN 1 */
 
@@ -112,7 +119,17 @@ int main(void)
   MX_USART6_UART_Init();
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
-
+    HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_3);
+    remote_control_init();
+    can_filter_init();
+    delay_init();
+	HAL_TIM_PWM_Start(&htim10,TIM_CHANNEL_1);
+	
+	usb_init();
+	
+	imu.imu_reset_flag = 1;
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

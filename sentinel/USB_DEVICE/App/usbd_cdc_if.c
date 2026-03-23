@@ -22,7 +22,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "bsp_usb.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -261,8 +261,10 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+  USBD_CDC_SetRxBuffer(&hUsbDeviceFS,&usb_cdc_data.usb_cdc_rx_buf[0]);
+	USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+	usb_cdc_data.usb_cdc_rx_len =*Len;
+	usb_cdc_data.usb_cdc_rx_flag=1;
   return (USBD_OK);
   /* USER CODE END 6 */
 }

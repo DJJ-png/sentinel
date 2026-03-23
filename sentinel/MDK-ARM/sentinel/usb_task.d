@@ -98,4 +98,5 @@ sentinel/usb_task.o: ..\Sentinel_Robot\Tasks\Usb_Task.c \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h \
   ..\Sentinel_Robot\APP\referee.h ..\Sentinel_Robot\APP\protocol.h \
   ..\Sentinel_Robot\support\fifo.h ..\Sentinel_Robot\Tasks\Shoot_task.h \
-  ..\Sentinel_Robot\APP\pid.h
+  ..\Sentinel_Robot\APP\pid.h ..\Sentinel_Robot\APP\config_set.h \
+  ..\Sentinel_Robot\APP\Filter.h

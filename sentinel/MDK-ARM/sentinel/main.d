@@ -61,4 +61,15 @@ sentinel/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\USB_DEVICE\Target\usbd_conf.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h ..\Core\Inc\gpio.h
+  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h ..\Core\Inc\gpio.h \
+  ..\Sentinel_Robot\BSP\bsp_can.h ..\Sentinel_Robot\APP\struct_typedef.h \
+  ..\Sentinel_Robot\APP\remote_control.h ..\Sentinel_Robot\BSP\bsp_rc.h \
+  ..\Sentinel_Robot\BSP\bsp_delay.h ..\Sentinel_Robot\APP\referee.h \
+  ..\Sentinel_Robot\APP\protocol.h ..\Sentinel_Robot\support\fifo.h \
+  ..\Sentinel_Robot\Tasks\referee_usart_task.h \
+  ..\Sentinel_Robot\BSP\bsp_usb.h ..\USB_DEVICE\App\usbd_cdc_if.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
+  ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
+  ..\Sentinel_Robot\APP\dm_imu.h

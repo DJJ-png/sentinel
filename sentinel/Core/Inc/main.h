@@ -53,7 +53,7 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-/* IST8310´ÅÁ¦¼Æ BMI088ÍÓÂÝÒÇ Òý½Å³õÊ¼»¯ */ 
+/* IST8310ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BMI088ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½Ê¼ï¿½ï¿½ */ 
 #define RSTN_IST8310_Pin GPIO_PIN_6
 #define RSTN_IST8310_GPIO_Port GPIOG
 #define DRDY_IST8310_Pin GPIO_PIN_3

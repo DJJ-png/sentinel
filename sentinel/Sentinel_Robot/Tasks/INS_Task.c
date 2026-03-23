@@ -174,7 +174,7 @@ static fp32 INS_mag[3] = {0.0f, 0.0f, 0.0f};
 fp32 INS_quat[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 fp32 INS_angle[3] = {0.0f, 0.0f, 0.0f};      //euler angle, unit rad.欧拉角 单位 rad
 fp32 INS_angle_deg[3] = {0.0f, 0.0f, 0.0f};
-
+uint8_t cnt=0;
 
 
 
@@ -240,10 +240,13 @@ void INS_Task(void const *pvParameters)
     
     while (1)
     {
+        if(cnt==0)
+            cnt=100;
         //wait spi DMA tansmit done
         //等待SPI DMA传输
         while (ulTaskNotifyTake(pdTRUE, portMAX_DELAY)!= pdPASS)
         {
+            cnt++;
         }
 
 

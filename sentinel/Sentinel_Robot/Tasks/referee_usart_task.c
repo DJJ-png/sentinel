@@ -7,7 +7,6 @@
 #include "shoot_task.h"
 #include "Gimbal_Task.h"
 #include "remote_control.h"
-#include "robot_send_referee.h"
 
 /* Private define ------------------------------------------------------------*/
 

@@ -160,8 +160,6 @@ void Nuc_data_unpacked()
 				memcpy(&nuc_receive_data.aim_data_received.jump_time,&usb_cdc_data.usb_cdc_rx_buf[24],4);
 				nuc_receive_data.aim_data_received.shoot_freq=usb_cdc_data.usb_cdc_rx_buf[28];
 				nuc_receive_data.aim_data_received.target_number=usb_cdc_data.usb_cdc_rx_buf[29];
-				if(nuc_receive_data.aim_data_received.jump_time >= 1) 
-					nuc_receive_data.aim_data_received.top_ampl = 1;
             }
 }
 

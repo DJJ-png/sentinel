@@ -14,23 +14,23 @@
 #include "Chassis_Task.h"
 #include "detect_task.h"
 //电机参数(调参地方)
-#define CH_PARAM_WHEEL_SPEED_PID_KP             20.0f
-#define CH_PARAM_WHEEL_SPEED_PID_KI             0.5f
+#define CH_PARAM_WHEEL_SPEED_PID_KP             15.0f
+#define CH_PARAM_WHEEL_SPEED_PID_KI             0.1f
 #define CH_PARAM_WHEEL_SPEED_PID_KD             0.0f
 #define CH_PARAM_WHEEL_SPEED_PID_MAXOUT         16000.0f
 #define CH_PARAM_WHEEL_SPEED_PID_MAXIOUT        800.0f
  
 #ifdef CH_CFG_TYPE_SWERVE
 
-#define CH_PARAM_STEER_SPEED_PID_KP             170.0f
-#define CH_PARAM_STEER_SPEED_PID_KI             0.5f
-#define CH_PARAM_STEER_SPEED_PID_KD             0.0f
+#define CH_PARAM_STEER_SPEED_PID_KP             100.0f
+#define CH_PARAM_STEER_SPEED_PID_KI             0.2f
+#define CH_PARAM_STEER_SPEED_PID_KD             100.0f
 #define CH_PARAM_STEER_SPEED_PID_MAXOUT         16000.0f
 #define CH_PARAM_STEER_SPEED_PID_MAXIOUT        800.0f
 
-#define CH_PARAM_STEER_ANGLE_PID_KP             100.0f
+#define CH_PARAM_STEER_ANGLE_PID_KP             70.0f
 #define CH_PARAM_STEER_ANGLE_PID_KI             0.0f
-#define CH_PARAM_STEER_ANGLE_PID_KD             40.0f
+#define CH_PARAM_STEER_ANGLE_PID_KD             100.0f
 #define CH_PARAM_STEER_ANGLE_PID_MAXOUT         400.0f
 #define CH_PARAM_STEER_ANGLE_PID_MAXIOUT        0.0f
 

@@ -146,35 +146,21 @@ void Can1_Manage(uint32_t Get_Id)
 					position_cnt_receive =((int16_t)rx_data[0]<<8)|((int16_t)rx_data[1]<<0);
 					switch (position_cnt_receive)
 					{
-						case  CMD_602_HP_BLUE_123:
+						case  CMD_602_HP_ALLY_123:
 						{
-							Game_Robot_HP.blue_1_robot_HP = ((int16_t)rx_data[2]<<8)|((int16_t)rx_data[3]<<0);
-							Game_Robot_HP.blue_2_robot_HP = ((int16_t)rx_data[4]<<8)|((int16_t)rx_data[5]<<0);
-							Game_Robot_HP.blue_3_robot_HP = ((int16_t)rx_data[6]<<8)|((int16_t)rx_data[7]<<0);
+							Game_Robot_HP.red_1_robot_HP = ((int16_t)rx_data[2]<<8)|((int16_t)rx_data[3]<<0);
+							Game_Robot_HP.red_2_robot_HP = ((int16_t)rx_data[4]<<8)|((int16_t)rx_data[5]<<0);
+							Game_Robot_HP.red_3_robot_HP = ((int16_t)rx_data[6]<<8)|((int16_t)rx_data[7]<<0);
 							break;
 						}
-						case CMD_602_HP_BLUE_47_BASE:
+						case CMD_602_HP_ALLY_47_BASE:
 						{
-							Game_Robot_HP.blue_4_robot_HP = ((int16_t)rx_data[2]<<8)|((int16_t)rx_data[3]<<0);
-							Game_Robot_HP.blue_7_robot_HP = ((int16_t)rx_data[4]<<8)|((int16_t)rx_data[5]<<0);
-							Game_Robot_HP.blue_base_HP = ((int16_t)rx_data[6]<<8)|((int16_t)rx_data[7]<<0);						
+							Game_Robot_HP.red_4_robot_HP = ((int16_t)rx_data[2]<<8)|((int16_t)rx_data[3]<<0);
+							Game_Robot_HP.red_7_robot_HP = ((int16_t)rx_data[4]<<8)|((int16_t)rx_data[5]<<0);
+							Game_Robot_HP.red_base_HP = ((int16_t)rx_data[6]<<8)|((int16_t)rx_data[7]<<0);						
 							break;
 						}
-						case CMD_602_HP_B_OUT_R_12:
-						{
-							Game_Robot_HP.blue_outpost_HP = ((int16_t)rx_data[2]<<8)|((int16_t)rx_data[3]<<0);
-							Game_Robot_HP.red_1_robot_HP = ((int16_t)rx_data[4]<<8)|((int16_t)rx_data[5]<<0);
-							Game_Robot_HP.red_2_robot_HP = ((int16_t)rx_data[6]<<8)|((int16_t)rx_data[7]<<0);						
-							break;
-						}
-						case CMD_602_HP_RED_347 :
-						{
-							Game_Robot_HP.red_3_robot_HP = ((int16_t)rx_data[2]<<8)|((int16_t)rx_data[3]<<0);
-							Game_Robot_HP.red_4_robot_HP = ((int16_t)rx_data[4]<<8)|((int16_t)rx_data[5]<<0);
-							Game_Robot_HP.red_7_robot_HP = ((int16_t)rx_data[6]<<8)|((int16_t)rx_data[7]<<0);						
-							break;
-						}
-						case CMD_602_HP_RED_BASE_OUT :
+						case CMD_602_HP_ALLY_BASE_OUT :
 						{
 							Game_Robot_HP.red_base_HP = ((int16_t)rx_data[2]<<8)|((int16_t)rx_data[3]<<0);
 							Game_Robot_HP.red_outpost_HP = ((int16_t)rx_data[4]<<8)|((int16_t)rx_data[5]<<0);
@@ -283,8 +269,8 @@ void Can1_Manage(uint32_t Get_Id)
 }
  
 
-
-//Can2
+float adv_yaw,adv_pitch;
+float adv_yaw_speed,adv_pitch_speed;
 void Can2_Manage(uint32_t Get_Id)
 {
 		switch (rx_header.StdId)
@@ -300,13 +286,6 @@ void Can2_Manage(uint32_t Get_Id)
 				{
 					get_motor_measure(&motor_measure_shoot[3], rx_data);							break;
 				}
-				
-				/*接收达妙IMU数据*/
-				case DM_IMU_ID:
-				{
-					IMU_UpdateData(rx_data);												break;
-				}
-
 				case CAN_ADVANCED_YAW_ID://207
 				{
 					get_motor_measure(&motor_measure_gimbal[ADVANCED_YAW], rx_data);		break;
@@ -316,6 +295,15 @@ void Can2_Manage(uint32_t Get_Id)
 				{
   					motor_measure_LK(&motor_measure_gimbal[PITCH],rx_data);			break;
 				}
-				
+				case CAN_IMU_ID1:
+                {
+                   adv_yaw = *(float*)(&rx_data[0]);                                     
+                   adv_pitch= *(float*)(&rx_data[4]);     break;
+                }
+                case CAN_IMU_ID2:
+                {
+                   adv_yaw_speed = *(float*)(&rx_data[0]); 
+                   adv_pitch_speed= *(float*)(&rx_data[4]);     break;
+                }
 		}
 }

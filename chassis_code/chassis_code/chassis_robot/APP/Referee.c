@@ -283,7 +283,7 @@ void Referee_SolveFifoData(uint8_t *frame)
 /* 0x00XX */
 		case GAME_STATUS_CMD_ID:									memcpy(&Game_Status,									frame + index, sizeof(ext_game_status_t));									break;
 		//case GAME_RESULT_CMD_ID:									memcpy(&Game_Result,									frame + index, sizeof(ext_game_result_t));									break;
-		case GAME_ROBOT_HP_CMD_ID:								memcpy(&Game_Robot_HP,								frame + index, sizeof(ext_game_robot_HP_t));								break;
+		case GAME_ROBOT_HP_CMD_ID:								memcpy(&Game_Robot_HP,								        frame + index, sizeof(ext_game_robot_HP_t));								break;
 
 /* 0x01XX */
     case EVENT_DATA_CMD_ID:										memcpy(&Event_Data,										frame + index, sizeof(ext_event_data_t));										break;

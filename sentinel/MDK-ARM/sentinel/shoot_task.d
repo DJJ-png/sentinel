@@ -49,7 +49,8 @@ sentinel/shoot_task.o: ..\Sentinel_Robot\Tasks\Shoot_Task.c \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\Sentinel_Robot\Tasks\referee_usart_task.h \
+  ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
@@ -59,12 +60,10 @@ sentinel/shoot_task.o: ..\Sentinel_Robot\Tasks\Shoot_Task.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h \
   ..\Sentinel_Robot\BSP\bsp_usart.h ..\Sentinel_Robot\Tasks\INS_task.h \
   ..\Sentinel_Robot\Drvs\bmi088driver.h \
   D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h \

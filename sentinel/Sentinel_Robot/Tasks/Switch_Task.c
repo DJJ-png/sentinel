@@ -28,6 +28,8 @@ uint8_t nuc_lose_spin_flag = 0;
 uint8_t have_aim_target_flag = 0;//控云台的时候如果开自瞄，就和省赛差不多，要打人就停下来打（的标志位）
 chassis_control_t chassis_control;
 
+ 
+
 uint8_t aim_debug=0;
 void chassis_solve()
 {
@@ -59,7 +61,9 @@ void chassis_solve()
         if(fabs(ang_err)<0.05) ang_err=0;
 		PID_calc(&chassis_control.chassis_psi,ang_err,0);
 		DEADBAND(chassis_control.chassis_psi.out,50);
-		wz = chassis_control.chassis_psi.out;			
+           
+		wz = chassis_control.chassis_psi.out;
+        			
 	}
 	else
 	{
@@ -106,10 +110,13 @@ void chassis_vector_set(fp32 vx,fp32 vy,fp32 wz,fp32 ang_err,uint8_t flag)
 }
 
 
-
+fp32 rc_pitch_speed;
+fp32 rc_yaw_spped;
 void Remote_Control_Gimbal()
 {
-	gimbal_vector_set(-rc_ctrl.rc.ch[0]*Sw_Wz,rc_ctrl.rc.ch[1]*Sw_Pc,-rc_ctrl.rc.ch[0]*0.0002,0,SPEED,SPEED,BASE_YAW_MODE);//ADVANCED_YAW_MODE,BASE_YAW_MODE,ANGLE
+    rc_pitch_speed=0.8*rc_pitch_speed+0.2*rc_ctrl.rc.ch[0];
+    rc_yaw_spped=0.8*rc_yaw_spped+0.2*rc_ctrl.rc.ch[1];
+	gimbal_vector_set(-rc_pitch_speed*Sw_Wz, rc_yaw_spped*Sw_Pc,0,0,SPEED,SPEED,BASE_YAW_MODE);//ADVANCED_YAW_MODE,BASE_YAW_MODE,ANGLE
 }
 
 void Gimbal_Follow_Chassis() 
@@ -117,16 +124,18 @@ void Gimbal_Follow_Chassis()
 		gimbal_vector_set(0,rc_ctrl.rc.ch[1]*Sw_Pc,0,0,SPEED,SPEED,GIMBAL_TO_CHASSIS_MODE);
 }
 fp32 yaw_test=10.0f;
+fp32 pitch_test=0.0;
 float yaw_speed=0.0;
 uint16_t debug_cnt=0;
-fp32 debug_yaw_max=10.0f;
+fp32 debug_yaw_max=6.5f;
 void Aim_Control_Gimbal()
 {
-	/* 输出锯齿波进行调试 1000是周期 20是峰值*/
+	/* 输出锯齿波进行调试 62是周期 6.5是峰值*/
 	debug_cnt++;
-	debug_cnt %=100;
-	yaw_test = debug_yaw_max * debug_cnt / 100.0f;
-	//nuc_receive_data.aim_data_received.yaw = 20.0f * sinf((PID_text++) * 2.0 * 0.005f);
+debug_cnt %= 600;
+
+// 360为一个周期，幅值为 6.5 的正弦波
+yaw_test = 6.5f * sinf((float)debug_cnt * 2.0f * 3.14159265f / 600.0f);
     
 	/*--keep_wait--*/
 //	if(nuc_receive_data.aim_data_received.is_fire!=0)
@@ -147,11 +156,13 @@ void Aim_Control_Gimbal()
 //	}
 
   	gimbal_vector_set(
+        //0,0,
         nuc_receive_data.aim_data_received.top_ampl, 
         nuc_receive_data.aim_data_received.top_freq,   
         //yaw_test,
-        +nuc_receive_data.aim_data_received.yaw,       
-        nuc_receive_data.aim_data_received.pitch, 
+        nuc_receive_data.aim_data_received.yaw,
+        //pitch_test,
+        nuc_receive_data.aim_data_received.pitch,  
         ANGLE, ANGLE,                                 
         ADVANCED_YAW_MODE
     );
@@ -171,7 +182,7 @@ void Nuc_Control_Chassis(){/*导航底盘控制*/
         }
 				else
 				{
-					chassis_vector_set(nuc_control.chassis_v.vx*1000.0f,nuc_control.chassis_v.vy*1000.0f,nuc_control.chassis_v.wz*RADIUS_CHASSIS, gimbal_control.angle_error_rad, FOLLOW_CHASSIS_DIRECTION | CHASSIS_ENABLE);
+					chassis_vector_set(nuc_control.chassis_v.vx*1000.0f, nuc_control.chassis_v.vy*1000.0f,nuc_control.chassis_v.wz*RADIUS_CHASSIS, gimbal_control.angle_error_rad, FOLLOW_CHASSIS_DIRECTION | CHASSIS_ENABLE);
 				} 
 		}
     else if (nuc_control.action.mode==NUC_CONTROL_GIMBAL_MOVE)//nuc控制云台底盘跟头
@@ -205,12 +216,12 @@ void Update_System_Event(void) {
         case GIMBAL_RELAX:
             aim_control.aim_PID=0;
             if      (Switch_Left == RC_SW_MID)      gimbal_state = GIMBAL_RC_CTRL;//拨杆中间默认
-            else if (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_NUC_CTRL;
+            else if (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_RELAX;//GIMBAL_NUC_CTRL;
             break;
 
         case GIMBAL_RC_CTRL:
             aim_control.aim_PID=0;
-            if      (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_NUC_CTRL;
+            if      (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_RELAX;//GIMBAL_NUC_CTRL;
             else if (RollWheel < -10)               gimbal_state = GIMBAL_AUTO_AIM; // 手动切自瞄调试 
             break;
 
@@ -221,7 +232,7 @@ void Update_System_Event(void) {
                 gimbal_state = GIMBAL_RC_CTRL;//拨杆切换
             else if ((nuc_receive_data.aim_data_received.is_fire == 0 && aim_control.aim_keep == 0)||nuc_control.action.robot_aim==0) {
                 // 目标丢失后的回退路径
-                if((Switch_Left == RC_SW_MID && RollWheel <= -10)||aim_debug==1)
+                if((Switch_Left == RC_SW_MID && RollWheel <= -10)||nuc_receive_data.aim_data_received.is_fire==1)
                     gimbal_state =GIMBAL_AUTO_AIM;
                 else
                     gimbal_state = (Switch_Left == RC_SW_UP) ? GIMBAL_PATROL : GIMBAL_RC_CTRL;
@@ -256,11 +267,11 @@ void Update_System_Event(void) {
     switch (chassis_state) {
         case CHASSIS_RELAX:
             if      (Switch_Left == RC_SW_MID)     chassis_state = CHASSIS_RC_CTRL;
-            else if (Switch_Left == RC_SW_UP)      chassis_state = CHASSIS_NUC_CTRL;
+            else if (Switch_Left == RC_SW_UP)      chassis_state =  CHASSIS_RELAX;//CHASSIS_NUC_CTRL;
             break;
 
         case CHASSIS_RC_CTRL:
-            if (Switch_Left == RC_SW_UP)           chassis_state = CHASSIS_NUC_CTRL;
+            if (Switch_Left == RC_SW_UP)           chassis_state =  CHASSIS_RELAX;
             break;
 
         case CHASSIS_NUC_CTRL:
@@ -318,19 +329,22 @@ void Step_Chassis_FSM(void) {
         case CHASSIS_RC_CTRL:
             // 手动控制移动 + 滚轮控制小陀螺
             if (RollWheel > 10) rc_spin = Rotor_speed * (RollWheel / 660.0f);
-            chassis_vector_set(RockingBar_Left_V * Sw_CV, 
-                               -RockingBar_Left_H * Sw_CV, 
-                               rc_spin, 
-                               gimbal_control.angle_error_rad, 
-                               CHASSIS_ENABLE | (rc_spin == 0 ? CHASSIS_FLOWE_GIMBAL : 0));
             if(gimbal_state==GIMBAL_AUTO_AIM)
             {
                  chassis_vector_set(0, 
                                0, 
                                0, 
                                0, 
-                               CHASSIS_ENABLE | (rc_spin == 0 ? CHASSIS_FLOWE_GIMBAL : 0));
+                               0);
             
+            }
+            else
+            {
+                chassis_vector_set(RockingBar_Left_V * Sw_CV, 
+                               -RockingBar_Left_H * Sw_CV, 
+                               rc_spin, 
+                               gimbal_control.angle_error_rad, 
+                               CHASSIS_ENABLE | (rc_spin == 0 ? CHASSIS_FLOWE_GIMBAL : 0));
             }
             break;
 
@@ -421,7 +435,7 @@ static void Robot_Protect_FSM()
 }
 void Switch_Task(void const * argument) 
 {
-    float chassis_psi_pid[3]={3000,0,100};
+    float chassis_psi_pid[3]={2000,0,1000};
     PID_init(&chassis_control.chassis_psi,0,chassis_psi_pid,1000,0);
     while(1) 
     {
@@ -440,6 +454,6 @@ void Switch_Task(void const * argument)
         Update_Shoot_Event();  //摩擦轮状态转移
         
         Robot_Protect_FSM();
-        vTaskDelay(10);
+        vTaskDelay(1);
     }
 }

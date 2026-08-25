@@ -1,7 +1,7 @@
 Dependencies for Project 'sentinel', Target 'sentinel': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (startup_stm32f407xx.s)(0x69AAD999)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -I ../Drivers/CMSIS/Include-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32F407xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o sentinel/startup_stm32f407xx.o)
-F (../Core/Src/main.c)(0x69BF9DFA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/main.o -MD)
+F (startup_stm32f407xx.s)(0x69F9EE61)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -I ../Drivers/CMSIS/Include-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32F407xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o sentinel/startup_stm32f407xx.o)
+F (../Core/Src/main.c)(0x6A0C21B3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/main.o -MD)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
 I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x69994E95)
@@ -64,7 +64,7 @@ I (..\Core\Inc\crc.h)(0x69994E94)
 I (..\Core\Inc\dma.h)(0x69994E94)
 I (..\Core\Inc\i2c.h)(0x69994E94)
 I (..\Core\Inc\spi.h)(0x69994E94)
-I (..\Core\Inc\tim.h)(0x69994E94)
+I (..\Core\Inc\tim.h)(0x69CCACDC)
 I (..\Core\Inc\usart.h)(0x69994E94)
 I (..\USB_DEVICE\App\usb_device.h)(0x699961E7)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h)(0x691C414C)
@@ -78,7 +78,7 @@ I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\APP\remote_control.h)(0x69AADEC4)
 I (..\Sentinel_Robot\BSP\bsp_rc.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\BSP\bsp_delay.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Tasks\referee_usart_task.h)(0x68FCC4A1)
@@ -133,7 +133,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
-F (../Core/Src/freertos.c)(0x69AAD995)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/freertos.o -MD)
+F (../Core/Src/freertos.c)(0x69CCACDB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/freertos.o -MD)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x691C4038)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stddef.h)(0x63884908)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdint.h)(0x63884908)
@@ -454,8 +454,8 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
-F (../Core/Src/tim.c)(0x69994E94)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/tim.o -MD)
-I (..\Core\Inc\tim.h)(0x69994E94)
+F (../Core/Src/tim.c)(0x69CCACDC)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/tim.o -MD)
+I (..\Core\Inc\tim.h)(0x69CCACDC)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
 I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x69994E95)
@@ -542,7 +542,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
-F (../Core/Src/stm32f4xx_it.c)(0x69AAD997)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/stm32f4xx_it.o -MD)
+F (../Core/Src/stm32f4xx_it.c)(0x69EA2B89)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/stm32f4xx_it.o -MD)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
 I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x69994E95)
@@ -585,7 +585,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
-I (..\Core\Inc\stm32f4xx_it.h)(0x69B0357C)
+I (..\Core\Inc\stm32f4xx_it.h)(0x69CCACDD)
 I (..\Sentinel_Robot\Tasks\WIT_data_task.h)(0x68FCC4A1)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x691C4038)
@@ -2384,7 +2384,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h)(0x691C414C)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h)(0x691C414C)
-F (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)()
+F (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)()
 F (..\Sentinel_Robot\APP\dm_imu.c)(0x68FCC4A1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/dm_imu.o -MD)
 I (..\Sentinel_Robot\APP\dm_imu.h)(0x68FCC4A1)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
@@ -2430,8 +2430,8 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 I (..\Core\Inc\can.h)(0x69994E93)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
-F (..\Sentinel_Robot\APP\pid.c)(0x69B08873)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/pid.o -MD)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
+F (..\Sentinel_Robot\APP\pid.c)(0x6A4221F5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/pid.o -MD)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
@@ -2475,9 +2475,10 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
+I (D:\MCU\stm32\ARM\ARMCLANG\include\math.h)(0x63884908)
 F (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)()
 F (..\Sentinel_Robot\APP\Referee.c)(0x698EE257)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/referee.o -MD)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdint.h)(0x63884908)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
@@ -2576,7 +2577,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (..\Sentinel_Robot\Tasks\detect_task.h)(0x68FCC4A1)
-F (..\Sentinel_Robot\APP\robot_message.c)(0x69C0B0F3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/robot_message.o -MD)
+F (..\Sentinel_Robot\APP\robot_message.c)(0x69C193F9)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/robot_message.o -MD)
 I (..\Sentinel_Robot\APP\robot_message.h)(0x69B84C8C)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\BSP\bsp_usb.h)(0x68FCC4A1)
@@ -2633,12 +2634,12 @@ I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x691C41
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x691C414C)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h)(0x691C414C)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h)(0x691C414C)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
-I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x69B2BFCB)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
+I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x6A0D93BF)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
 I (..\Sentinel_Robot\BSP\bsp_can.h)(0x69B074B5)
 I (..\Core\Inc\can.h)(0x69994E93)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Tasks\INS_Task.h)(0x695A2FC0)
@@ -2646,7 +2647,7 @@ I (..\Sentinel_Robot\Drvs\bmi088driver.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Tasks\Switch_Task.h)(0x699AACDB)
 I (..\Sentinel_Robot\APP\dm_imu.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\APP\SelfCheck_Task.h)(0x68FCC4A1)
-I (..\Core\Inc\tim.h)(0x69994E94)
+I (..\Core\Inc\tim.h)(0x69CCACDC)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\math.h)(0x63884908)
@@ -2689,7 +2690,7 @@ I (..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h)(0x691C4038
 I (..\Sentinel_Robot\BSP\bsp_usart.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\CRCs.h)(0x68FCC4A1)
 F (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)()
-F (..\Sentinel_Robot\APP\Vofa_send.c)(0x69B81C0D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/vofa_send.o -MD)
+F (..\Sentinel_Robot\APP\Vofa_send.c)(0x6A03117F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/vofa_send.o -MD)
 I (..\Sentinel_Robot\APP\Vofa_send.h)(0x68FCC4A1)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
@@ -2741,7 +2742,7 @@ I (D:\MCU\stm32\ARM\ARMCLANG\include\stdint.h)(0x63884908)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (..\Sentinel_Robot\APP\REG.h)(0x68FCC4A1)
-F (.\can_recive.c)(0x69B662B6)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/can_recive.o -MD)
+F (.\can_recive.c)(0x6A098AB4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/can_recive.o -MD)
 I (..\Sentinel_Robot\BSP\bsp_can.h)(0x69B074B5)
 I (..\Core\Inc\can.h)(0x69994E93)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
@@ -2788,7 +2789,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\BSP\bsp_cap.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\Referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\Referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -2848,7 +2849,7 @@ I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\BSP\bsp_math.h)(0x699AB09A)
 F (..\Sentinel_Robot\APP\Filter.c)(0x69A977A2)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/filter.o -MD)
 I (..\Sentinel_Robot\APP\Filter.h)(0x69A977A1)
@@ -3034,7 +3035,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\BSP\bsp_cap.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\Referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\Referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -3093,7 +3094,7 @@ I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\BSP\bsp_math.h)(0x699AB09A)
 F (..\Sentinel_Robot\BSP\bsp_cap.c)(0x68FCC4A1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/bsp_cap.o -MD)
 I (..\Sentinel_Robot\BSP\bsp_cap.h)(0x68FCC4A1)
@@ -3966,7 +3967,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 F (..\Sentinel_Robot\algorithm\AHRS.lib)(0x68FCC4A1)()
 F (..\Sentinel_Robot\algorithm\AHRS_middleware.h)(0x68FCC4A1)()
 F (..\Sentinel_Robot\algorithm\arm_cortexM4lf_math.lib)(0x68FCC4A1)()
-F (..\Sentinel_Robot\Tasks\detect_task.c)(0x68FCC4A1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/detect_task.o -MD)
+F (..\Sentinel_Robot\Tasks\detect_task.c)(0x6A0AF7D4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/detect_task.o -MD)
 I (..\Sentinel_Robot\Tasks\detect_task.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x691C4038)
@@ -3985,9 +3986,9 @@ I (..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h)(0x691C4038)
-F (..\Sentinel_Robot\Tasks\Gimbal_Task.c)(0x69BFA737)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/gimbal_task.o -MD)
-I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x69B2BFCB)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
+F (..\Sentinel_Robot\Tasks\Gimbal_Task.c)(0x6A54F5C0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/gimbal_task.o -MD)
+I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x6A0D93BF)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\BSP\bsp_can.h)(0x69B074B5)
 I (..\Core\Inc\can.h)(0x69994E93)
@@ -4084,12 +4085,12 @@ I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x691C41
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x691C414C)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h)(0x691C414C)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h)(0x691C414C)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\algorithm\AHRS_middleware.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\APP\remote_control.h)(0x69AADEC4)
 I (..\Sentinel_Robot\BSP\bsp_rc.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\BSP\bsp_math.h)(0x699AB09A)
-F (..\Sentinel_Robot\Tasks\INS_Task.c)(0x69A3BF78)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/ins_task.o -MD)
+F (..\Sentinel_Robot\Tasks\INS_Task.c)(0x6A4222FB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/ins_task.o -MD)
 I (..\Sentinel_Robot\Tasks\INS_Task.h)(0x695A2FC0)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Drvs\bmi088driver.h)(0x68FCC4A1)
@@ -4152,12 +4153,12 @@ I (..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h)(0x691C4038
 I (..\Sentinel_Robot\BSP\bsp_imu_pwm.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\BSP\bsp_spi.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Drvs\ist8310driver.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
 I (..\Sentinel_Robot\algorithm\ahrs.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\algorithm\AHRS_MiddleWare.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Tasks\detect_task.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
-F (..\Sentinel_Robot\Tasks\Nmanifold_usart_task.c)(0x69B05944)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/nmanifold_usart_task.o -MD)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
+F (..\Sentinel_Robot\Tasks\Nmanifold_usart_task.c)(0x69C73C57)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/nmanifold_usart_task.o -MD)
 I (..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h)(0x69A6D3F2)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
@@ -4244,16 +4245,16 @@ I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\Sentinel_Robot\Tasks\Shoot_Task.h)(0x69B0882A)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\APP\Filter.h)(0x69A977A1)
-I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x69B2BFCB)
+I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x6A0D93BF)
 I (..\Sentinel_Robot\BSP\bsp_can.h)(0x69B074B5)
 I (..\Core\Inc\can.h)(0x69994E93)
 I (..\Sentinel_Robot\APP\Vofa_send.h)(0x68FCC4A1)
@@ -4269,11 +4270,11 @@ I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x691C414C)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h)(0x691C414C)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h)(0x691C414C)
 I (..\Sentinel_Robot\Tasks\referee_upboard_task.h)(0x699AA39E)
-F (..\Sentinel_Robot\Tasks\Shoot_Task.c)(0x69C0B0F3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/shoot_task.o -MD)
+F (..\Sentinel_Robot\Tasks\Shoot_Task.c)(0x6A192D14)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/shoot_task.o -MD)
 I (..\Sentinel_Robot\Tasks\Shoot_Task.h)(0x69B0882A)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\APP\Filter.h)(0x69A977A1)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
@@ -4318,13 +4319,14 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
-I (..\Sentinel_Robot\Tasks\referee_usart_task.h)(0x68FCC4A1)
+I (..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h)(0x69A6D3F2)
+I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x691C4038)
 I (..\Core\Inc\FreeRTOSConfig.h)(0x699961E5)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x691C4038)
@@ -4334,12 +4336,10 @@ I (..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h)(0x691C4038)
-I (..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h)(0x691C4038)
-I (..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h)(0x69A6D3F2)
 I (..\Sentinel_Robot\BSP\bsp_usart.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Tasks\INS_task.h)(0x695A2FC0)
 I (..\Sentinel_Robot\Drvs\bmi088driver.h)(0x68FCC4A1)
@@ -4485,14 +4485,14 @@ I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\Tasks\Shoot_task.h)(0x69B0882A)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\APP\Filter.h)(0x69A977A1)
-F (..\Sentinel_Robot\Tasks\Switch_Task.c)(0x69C0B0F3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/switch_task.o -MD)
+F (..\Sentinel_Robot\Tasks\Switch_Task.c)(0x6A54F492)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Sentinel_Robot -I ../Sentinel_Robot/algorithm -I ../Sentinel_Robot/APP -I ../Sentinel_Robot/BSP -I ../Sentinel_Robot/Drvs -I ../Sentinel_Robot/support -I ../Sentinel_Robot/Tasks-I./RTE/_sentinel-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Include-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS-DSP/1.15.0/PrivateInclude-ID:/MCU/stm32/ARM/PACK/ARM/CMSIS/6.2.0/CMSIS/Core/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o sentinel/switch_task.o -MD)
 I (..\Sentinel_Robot\Tasks\Switch_Task.h)(0x699AACDB)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x691C414F)
@@ -4537,7 +4537,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h)(0x691C414F)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h)(0x691C414F)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x691C4038)
 I (..\Core\Inc\FreeRTOSConfig.h)(0x699961E5)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x691C4038)
@@ -4547,15 +4547,15 @@ I (..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h)(0x691C4038)
 I (..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h)(0x691C4038)
-I (..\Sentinel_Robot\APP\My_Def.h)(0x69B30A7D)
+I (..\Sentinel_Robot\APP\My_Def.h)(0x69EA2B88)
 I (..\Sentinel_Robot\APP\remote_control.h)(0x69AADEC4)
 I (..\Sentinel_Robot\BSP\bsp_rc.h)(0x68FCC4A1)
-I (..\Core\Inc\tim.h)(0x69994E94)
+I (..\Core\Inc\tim.h)(0x69CCACDC)
 I (..\Sentinel_Robot\Tasks\Shoot_Task.h)(0x69B0882A)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\APP\Filter.h)(0x69A977A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x69B2BFCB)
+I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x6A0D93BF)
 I (..\Sentinel_Robot\BSP\bsp_can.h)(0x69B074B5)
 I (..\Core\Inc\can.h)(0x69994E93)
 I (..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h)(0x69A6D3F2)
@@ -4591,7 +4591,7 @@ I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -4671,7 +4671,7 @@ I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\APP\hwt901b.h)(0x68FCC4A1)
 I (..\Core\Inc\usart.h)(0x69994E94)
 I (..\Sentinel_Robot\APP\dm_imu.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\Referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\Referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)
@@ -4742,14 +4742,14 @@ I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Core\Inc\usart.h)(0x69994E94)
 I (..\Core\Inc\main.h)(0x69A3A7AC)
 I (..\Sentinel_Robot\support\crcs.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\Tasks\shoot_task.h)(0x69B0882A)
-I (..\Sentinel_Robot\APP\pid.h)(0x69B0884C)
+I (..\Sentinel_Robot\APP\pid.h)(0x6A1A9589)
 I (..\Sentinel_Robot\APP\struct_typedef.h)(0x68FCC4A1)
-I (..\Sentinel_Robot\APP\config_set.h)(0x69C0BFF3)
+I (..\Sentinel_Robot\APP\config_set.h)(0x6A421EB4)
 I (..\Sentinel_Robot\APP\Filter.h)(0x69A977A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x69B2BFCB)
+I (..\Sentinel_Robot\Tasks\Gimbal_Task.h)(0x6A0D93BF)
 I (..\Sentinel_Robot\BSP\bsp_can.h)(0x69B074B5)
 I (..\Core\Inc\can.h)(0x69994E93)
 I (..\Sentinel_Robot\APP\remote_control.h)(0x69AADEC4)
@@ -4843,7 +4843,7 @@ I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\transform_functions.h)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\filtering_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\quaternion_math_functions.h)(0x64E2E2DE)
 I (D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\window_functions.h)(0x64E2E2DE)
-I (..\Sentinel_Robot\APP\referee.h)(0x68FF6DF4)
+I (..\Sentinel_Robot\APP\referee.h)(0x69C6645B)
 I (..\Sentinel_Robot\APP\protocol.h)(0x68FCC4A1)
 I (..\Sentinel_Robot\support\fifo.h)(0x68FCC4A1)
 I (D:\MCU\stm32\ARM\ARMCLANG\include\stdio.h)(0x63884908)

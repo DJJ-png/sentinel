@@ -89,8 +89,8 @@ void CH_Solve_motor()
 {
     steer_motor[0].ecd_offset_rad=530;
     steer_motor[1].ecd_offset_rad=4900;
-    steer_motor[2].ecd_offset_rad=560;//4868;
-    steer_motor[3].ecd_offset_rad=4920;//4600;
+    steer_motor[2].ecd_offset_rad=610;//4868;
+    steer_motor[3].ecd_offset_rad=5010;//4600;
     //0:4683
     //1:880
     //2:4862
@@ -127,15 +127,6 @@ void CH_Solve_motor()
     arm_atan2_f32(v2_y, v2_x, &steer_motor[2].angle_set); // 对应轮2左后
     arm_atan2_f32(v3_y, v3_x, &steer_motor[3].angle_set); // 对应轮3右后
 
-        //steer_motor[0].angle_set *=-1;//取反,反装修正
-        //steer_motor[1].angle_set *=-1;
-        //steer_motor[2].angle_set *=-1;//取反,反装修正
-        //steer_moto r[3].angle_set *=-1;
-    
-        //wheel_motor[0].speed_set *=-1;
-        //wheel_motor[3].speed_set *=-1;
-        //wheel_motor[1].speed_set *=-1;
-        //wheel_motor[2].speed_set *=-1;
     // 4. 零点/静止状态处理
     if(vx == 0 && vy == 0) 
     {  

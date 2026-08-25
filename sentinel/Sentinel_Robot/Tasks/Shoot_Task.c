@@ -1,6 +1,6 @@
 #include "Shoot_Task.h"
 #include "referee.h"
-#include "referee_usart_task.h"
+//#include "referee_usart_task.h"
 #include "Nmanifold_usart_task.h"
 #include "robot_message.h"
 #include "FreeRTOS.h"
@@ -51,7 +51,7 @@ Shoot_Motor_t shoot_motor[2];
 
 /*热量保护*/
 #define BARREL_HEAT_LIMIT   400.0f
-#define BARREL_HEAT_COOLING 1000//80.0f
+#define BARREL_HEAT_COOLING 130.0f//80.0f
 #define BULLET_17MM_HEAT    10.0f
 
 #define CONTRONL_HZ   1000.0f
@@ -140,7 +140,7 @@ static void Dial_Motor_Operator(Dial_Motor_t *motor)
         PID_calc(&motor->speed_pid, motor->speed, target_speed);
         motor->set_current = motor->speed_pid.out;
     }
-    CAN_CMD_BASE(&hcan1,0x200 ,motor->set_current,  0,  0,  0);
+    
 }
 void Dial_Close_Control()
 {
@@ -301,7 +301,7 @@ void shoot_Control()
 	if(barrel_control.barrel_wait_flag==1)
 	{
 				shoot_control.dial_speed=0; 
-				DIAL_MOTOR.set_current=-500; 
+				DIAL_MOTOR.set_current=0; 
 				DIAL_MOTOR.speed_pid.Iout=0;
 
 				barrel_control.barrel_wait_cnt++;
@@ -314,8 +314,8 @@ void shoot_Control()
 	}
     if(shoot_control.fric_state==1)
     {
-        FRIC_MOTOR_1.rpm_set=5450;
-        FRIC_MOTOR_2.rpm_set=-5450;
+        FRIC_MOTOR_1.rpm_set=-5450;
+        FRIC_MOTOR_2.rpm_set=5450;
          SHOOT_PID_calc(&FRIC_MOTOR_1.pid_speed,&FRIC_MOTOR_1,3);
          SHOOT_PID_calc(&FRIC_MOTOR_2.pid_speed,&FRIC_MOTOR_2,4);
         CAN_CMD_BASE(&hcan2,0x200 ,  0,  0,  FRIC_MOTOR_1.pid_speed.out,  FRIC_MOTOR_2.pid_speed.out);
@@ -325,8 +325,8 @@ void shoot_Control()
 void heat_cooling()
 {
 	
-	barrel_control.barrel_heat[0]+=ADD*SHOOT_HZ(DIAL_MOTOR.speed);		
-	barrel_control.barrel_heat[0]-=COOLING;
+	barrel_control.barrel_heat[0]+=(fp32)ADD*SHOOT_HZ(DIAL_MOTOR.speed);		
+	barrel_control.barrel_heat[0]-=(fp32)COOLING;
 	if(barrel_control.barrel_heat[0]<=0.0f)
 		barrel_control.barrel_heat[0]=0.0f;
 	Power_Heat_Data.shooter_17mm_1_barrel_heat=barrel_control.barrel_heat[0];
@@ -342,10 +342,11 @@ void Shoot_Task(void const * argument)
 	while(1)
 	{
 		Shoot_Motor_Data_Update();
-    	heat_cooling();
-	    shoot_Control();
         Dial_FSM();
-		vTaskDelay(5);
+        heat_cooling();
+        shoot_Control();
+        CAN_CMD_BASE(&hcan1,0x200 ,DIAL_MOTOR.set_current,  0,  0,  0);
+		vTaskDelay(1);
 	}
 }
 /*--function--end*/

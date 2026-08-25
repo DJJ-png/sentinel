@@ -44,7 +44,7 @@
             {n,n,n}, //XX_TOE
         };
     3.如果有data_is_error_fun ,solve_lost_fun,solve_data_error_fun函数，赋值到函数指针
-    4.在XXX_TOE设备数据来的时候, 添加函数detect_hook(XXX_TOE).
+    4.在XXX_TOE设备数据来的时候, 添加函数 (XXX_TOE).
   ==============================================================================
   @endverbatim
   ****************************(C) COPYRIGHT 2019 DJI****************************

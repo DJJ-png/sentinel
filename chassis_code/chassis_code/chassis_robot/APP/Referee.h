@@ -123,22 +123,14 @@ typedef struct __attribute__((packed))  //0x0002 ±ÈÈü½á¹ûÊı¾İ£¨·şÎñÆ÷¡úÈ«Ìå»úÆ÷È
 
 typedef struct __attribute__((packed))  //*0x0003 »úÆ÷ÈËÑªÁ¿Êı¾İ£¨·şÎñÆ÷¡úÈ«Ìå»úÆ÷ÈË£¬³£¹æÁ´Â·£©
 {
-	uint16_t red_1_robot_HP;
-	uint16_t red_2_robot_HP;
-	uint16_t red_3_robot_HP;
-	uint16_t red_4_robot_HP;
+	uint16_t ally_1_robot_HP;
+	uint16_t ally_2_robot_HP;
+	uint16_t ally_3_robot_HP;
+	uint16_t ally_4_robot_HP;
 	uint16_t reserved_1;
-	uint16_t red_7_robot_HP;
-	uint16_t red_outpost_HP;
-	uint16_t red_base_HP;
-	uint16_t blue_1_robot_HP;
-	uint16_t blue_2_robot_HP;
-	uint16_t blue_3_robot_HP;
-	uint16_t blue_4_robot_HP;
-	uint16_t reserved_2;
-	uint16_t blue_7_robot_HP;
-	uint16_t blue_outpost_HP;
-	uint16_t blue_base_HP;
+	uint16_t ally_7_robot_HP;
+	uint16_t ally_outpost_HP;
+	uint16_t ally_base_HP;
 } ext_game_robot_HP_t;
 
 /* 0x01XX --------------------------------------------------------------------*/

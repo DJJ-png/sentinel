@@ -36,3 +36,5 @@ void Vofa_Send_Data8(float data1, float data2,float data3, float data4,float dat
 	Vofa_data_8.ch_data[7] = data8;
 	HAL_UART_Transmit_DMA(&VOFA_HUART, (uint8_t *)&Vofa_data_8, sizeof(Vofa_data_8));   
 }
+
+

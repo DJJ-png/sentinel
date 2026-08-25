@@ -50,7 +50,7 @@ void referee_usart_task(void const * argument)
 	while(1)
 	{
 		/* 解析裁判系统数据 */
-		vTaskDelay(10);
+		vTaskDelay(1);
 		Referee_UnpackFifoData(&Referee_Unpack_OBJ, &Referee_FIFO);
         if(receive_0x0308_begin_flag == 1)
 		{

@@ -67,6 +67,11 @@
 #define CH_LIMIT_MAX_MOTOR_CURR     16000   // 电机控制最大原始电流值
 #define CH_LIMIT_OFFLINE_MS         100     // 判定电机离线的超时时间 (ms)
 
+//功率控制相关
+#define NO_JUDGE_TOTAL_CURRENT_LIMIT    64000.0f//无功率控制下功率控制的电流限制
+#define POWER_TOTAL_CURRENT_LIMIT       22000.0f//功率控制下功率控制的电流限制
+#define WARNING_POWER_BUFF  60.0f
+#define POWER_HELM_CURRENT_LIMIT       8000.0f
 
 #endif 
 

@@ -17,7 +17,7 @@
 
 #include "pid.h"
 #include "main.h"
-
+#include "math.h"
 
 
 
@@ -69,6 +69,21 @@ void PID_init(pid_type_def *pid, uint8_t mode, const fp32 PID[3], fp32 max_out, 
     pid->error[0] = pid->error[1] = pid->error[2] = pid->Pout = pid->Iout = pid->Dout = pid->out = 0.0f;
 }
 
+void PID_change(pid_type_def *pid,fp32 kp_change,fp32 ki_change,fp32 kd_change)
+{
+    if (pid == NULL)
+    {
+        return;
+    }
+    if(pid->Ki!=ki_change)
+    {
+        pid->Iout = 0.0f; 
+    }
+    pid->Kp = kp_change;
+    pid->Ki = ki_change;
+    pid->Kd = kd_change;
+}
+  
 /**
   * @brief          pid calculate 
   * @param[out]     pid: PID struct data point
@@ -122,6 +137,60 @@ fp32 PID_calc(pid_type_def *pid, fp32 ref, fp32 set)
 }
 
 
+/**
+  * @brief          aim_pid calculate 
+  * @param[out]     pid: PID struct data point
+  * @param[in]      ref: feedback data 
+  * @param[in]      set: set point
+  * @retval         pid out
+  */
+/**
+  * @brief          自瞄pid计算（积分项只有在误差小于一定范围内才启动）
+  * @param[out]     pid: PID结构数据指针
+  * @param[in]      ref: 反馈数据
+  * @param[in]      set: 设定值
+  * @retval         pid输出
+  */
+fp32 PID_aim_calc(pid_type_def *pid, fp32 ref, fp32 set)
+{
+    if (pid == NULL)
+    {
+        return 0.0f;
+    }
+
+    pid->error[2] = pid->error[1];
+    pid->error[1] = pid->error[0];
+    pid->set = set;
+    pid->fdb = ref;
+    pid->error[0] = set - ref;
+    if (pid->mode == PID_POSITION)
+    {
+        pid->Pout = pid->Kp * pid->error[0];
+        if(fabs(pid->fdb-pid->set)<2.5)
+            pid->Iout += pid->Ki * pid->error[0];
+        else
+             pid->Iout +=0;
+        pid->Dbuf[2] = pid->Dbuf[1];
+        pid->Dbuf[1] = pid->Dbuf[0];
+        pid->Dbuf[0] = 0.005f*(pid->error[0] - pid->error[1])+(1.0f-0.005f)*pid->Dbuf[1];
+        pid->Dout = pid->Kd * pid->Dbuf[0];
+        LimitMax(pid->Iout, pid->max_iout);
+        pid->out = pid->Pout + pid->Iout + pid->Dout; 
+        LimitMax(pid->out, pid->max_out);
+    }
+    else if (pid->mode == PID_DELTA)
+    {
+        pid->Pout = pid->Kp * (pid->error[0] - pid->error[1]);
+        pid->Iout = pid->Ki * pid->error[0];
+        pid->Dbuf[2] = pid->Dbuf[1];
+        pid->Dbuf[1] = pid->Dbuf[0];
+        pid->Dbuf[0] = (pid->error[0] - 2.0f * pid->error[1] + pid->error[2]);
+        pid->Dout = pid->Kd * pid->Dbuf[0];
+        pid->out += pid->Pout + pid->Iout + pid->Dout;
+        LimitMax(pid->out, pid->max_out);
+    }
+    return pid->out;
+}
 /**
   * @brief          pid out clear
   * @param[out]     pid: PID struct data point

@@ -60,15 +60,15 @@ extern RC_ctrl_t rc_ctrl_last;
 #define ABS(n)											((n)>=0 ? (n) : -(n))
 #define DATA_LIMIT(n,min,max)				((n)>(max) ? (max) : ((n)<(min) ? (min) : (n)))
 #define DEADBAND(n,db)							(ABS(n) >= ABS(db) ? (n) : 0)
-#define RAMP_CTRL(ref,set,acc)	((ref) + DATA_LIMIT((acc),0,1) * ((set) - (ref)))
+#define RAMP_CTRL(ref,set,acc)	(( ref) + DATA_LIMIT((acc),0,1) * ((set) - (ref)))
 #define LIMIT_TO_SET(data,set)  	(((data)>(set))?((data)-(set)*2):(((data)<-(set))?((data)+(set)*2):(data)))
 
 /* ************************************* RM遥控器 ******************************************** */
 
 /* 3000 表示机器人最大行驶速度，单位是 mm/s */
-#define Sw_CV (3000.0f/660.0f)
-#define Sw_Wz ( 320.0f/660.0f)
-#define Sw_Pc (  90.0f/660.0f)
+#define Sw_CV (1000.0f/660.0f)
+#define Sw_Wz ( 150.0f/660.0f)
+#define Sw_Pc (  45.0f/660.0f)
 #define Rotor_speed (660*2.8f*1.5)//2.8
 
 #define RollWheel							rc_ctrl.rc.ch[4]			//遥控器左侧滚轮，左→右：660→-660

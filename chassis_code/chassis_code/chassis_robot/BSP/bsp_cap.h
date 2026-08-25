@@ -19,7 +19,7 @@ uint8_t cap_recieve_flag;
 }cap_measure_t;
 
 extern cap_measure_t cap_data;
-extern  void CAN_Send_Cap(uint16_t cap_limt ,uint16_t power ,uint16_t power_buffer);
+extern  void CAN_Send_Cap(uint16_t cap_limt,uint16_t power_buffer);
 extern void update_cap(uint8_t * data);
 
 #endif

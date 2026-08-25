@@ -62,4 +62,5 @@ chassis_code/stm32f4xx_it.o: ..\Core\Src\stm32f4xx_it.c \
   D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   ..\chassis_robot\APP\protocol.h ..\chassis_robot\APP\referee.h \
   ..\chassis_robot\APP\robot_send_referee.h \
-  ..\chassis_robot\support\CRCs.h
+  ..\chassis_robot\support\CRCs.h ..\chassis_robot\TASK\INS_Task.h \
+  ..\chassis_robot\Drvs\bmi088driver.h

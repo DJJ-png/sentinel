@@ -64,5 +64,7 @@ extern void gimbal_vector_set(fp32 yaw_speed,fp32 pitch_speed,fp32 yaw_angle,fp3
 extern void Gimbal_Spin(fp32 Pitch_max,fp32 Pitch_min,fp32*gimbal_spin_speed,uint8_t mode);
 extern void Gimbal_Motor_Control(gimbal_motor_t *Gimbal_Motor);
 extern void CAN_cmd_LK_Motor(CAN_HandleTypeDef* hcan,uint8_t uid, int16_t current);
+extern void Normal_Gimbal_Pid_Init();
+extern void Aim_Gimbal_Pid_Init();
 
 #endif

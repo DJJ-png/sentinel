@@ -49,24 +49,48 @@ ext_hurt_data_t	    Last_Hurt_Data;
 //nuc决策需要的数据
 void USART_Send_referee_Init(void)
 {
+    if(Robot_Status.robot_id==107)//蓝色
+    {
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_1_robot_HP = Game_Robot_HP.red_1_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_2_robot_HP = Game_Robot_HP.red_2_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_3_robot_HP = Game_Robot_HP.red_3_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_4_robot_HP = Game_Robot_HP.red_4_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_7_robot_HP = Game_Robot_HP.red_7_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_base_HP = Game_Robot_HP.red_base_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_outpost_HP = Game_Robot_HP.red_outpost_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_1_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_2_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_3_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_4_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_7_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_base_HP    = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_outpost_HP = 0xffff;
+    
+    
+    }
+    else
+    {
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_1_robot_HP = Game_Robot_HP.red_1_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_2_robot_HP = Game_Robot_HP.red_2_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_3_robot_HP = Game_Robot_HP.red_3_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_4_robot_HP = Game_Robot_HP.red_4_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_7_robot_HP = Game_Robot_HP.red_7_robot_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_base_HP = Game_Robot_HP.red_base_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_outpost_HP = Game_Robot_HP.red_outpost_HP;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_1_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_2_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_3_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_4_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_7_robot_HP = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_base_HP    = 0xffff;
+        NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_outpost_HP = 0xffff;
+    
+    
+    }
 	NUC_Used_Message_1Hz_0607.NUC_Game_Status_0001.game_progress = Game_Status.game_progress;
 	NUC_Used_Message_1Hz_0607.NUC_Game_Status_0001.stage_remain_time = Game_Status.stage_remain_time;
 	
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_1_robot_HP = Game_Robot_HP.blue_1_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_2_robot_HP = Game_Robot_HP.blue_2_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_3_robot_HP = Game_Robot_HP.blue_3_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_4_robot_HP = Game_Robot_HP.blue_4_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_7_robot_HP = Game_Robot_HP.blue_7_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_base_HP = Game_Robot_HP.blue_base_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.blue_outpost_HP = Game_Robot_HP.blue_outpost_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_1_robot_HP = Game_Robot_HP.red_1_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_2_robot_HP = Game_Robot_HP.red_2_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_3_robot_HP = Game_Robot_HP.red_3_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_4_robot_HP = Game_Robot_HP.red_4_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_7_robot_HP = Game_Robot_HP.red_7_robot_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_base_HP = Game_Robot_HP.red_base_HP;
-	NUC_Used_Message_200Hz_0606.NUC_Game_Robot_HP_0003.red_outpost_HP = Game_Robot_HP.red_outpost_HP;
-    
+	
 	NUC_Used_Message_200Hz_0606.Hurt_Data.armor_id = Hurt_Data.armor_id;
 	NUC_Used_Message_200Hz_0606.Hurt_Data.HP_deduction_reason = Hurt_Data.HP_deduction_reason;
 		
@@ -121,18 +145,16 @@ void USART_Send_referee_Init(void)
 		NUC_Used_Message_1Hz_0607.map_command_0303.target_position_y = 0;
 	}
 }
-uint8_t test=0;
 void manifold_usart_task(void)
 	{	
 	memset(&Last_Hurt_Data, 0x00, 1);
 	memset(NUC_USART_RxBuf, 0x00, USART_RX_BUF_LENGHT);
 	usart1_init(Usart1_Buf[0], Usart1_Buf[1], USART_RX_BUF_LENGHT);
-    test=1;
 	vTaskDelay(200);	
 	while(1){		
 		USART_Send_referee_Init();
 		if(Frequency_Control_cnt == 3000) Frequency_Control_cnt = 0;
-		if(Frequency_Control_cnt % 1000 == 0){
+		if(Frequency_Control_cnt % 101  == 0){
 			/*1HZ发送数据*/
 			NUC_Usart_Tx_1Hz();
 		} 

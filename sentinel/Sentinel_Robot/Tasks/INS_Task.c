@@ -213,9 +213,9 @@ void INS_Task(void const *pvParameters)
     PID_init(&imu_temp_pid, PID_POSITION, imu_temp_PID, TEMPERATURE_PID_MAX_OUT, TEMPERATURE_PID_MAX_IOUT);
     AHRS_init(INS_quat, INS_accel, INS_mag);
 
-//    accel_fliter_1[0] = accel_fliter_2[0] = accel_fliter_3[0] = INS_accel[0];
-//    accel_fliter_1[1] = accel_fliter_2[1] = accel_fliter_3[1] = INS_accel[1];
-//    accel_fliter_1[2] = accel_fliter_2[2] = accel_fliter_3[2] = INS_accel[2];
+    accel_fliter_1[0] = accel_fliter_2[0] = accel_fliter_3[0] = INS_accel[0];
+    accel_fliter_1[1] = accel_fliter_2[1] = accel_fliter_3[1] = INS_accel[1];
+    accel_fliter_1[2] = accel_fliter_2[2] = accel_fliter_3[2] = INS_accel[2];
     //get the handle of task
     //获取当前任务的任务句柄，
     INS_Task_local_handler = xTaskGetHandle(pcTaskGetName(NULL));
@@ -233,10 +233,10 @@ void INS_Task(void const *pvParameters)
 
     imu_start_dma_flag = 1;
 		
-		bmi088_offset_data.gyro[0] =-0.00437698932;// -0.00488316454;
-		bmi088_offset_data.gyro[1] =-0.00136612193;//-0.00137732935;
-		bmi088_offset_data.gyro[2] =0.0024629645;//0.00239972677;
-//		mpu_offset_clc();
+		bmi088_offset_data.gyro[0] =-0.00035228621;// -0.00488316454;
+		bmi088_offset_data.gyro[1] =0.000342914864;//-0.00137732935;
+		bmi088_offset_data.gyro[2] =0.00279037352;//0.00239972677;
+		//mpu_offset_clc();
     
     while (1)
     {

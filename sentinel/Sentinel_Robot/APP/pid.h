@@ -97,4 +97,7 @@ extern fp32 PID_calc(pid_type_def *pid, fp32 ref, fp32 set);
   */
 extern void PID_clear(pid_type_def *pid);
 //extern fp32 SHOOT_PID_calc(pid_type_def *pid, Shoot_Motor_t* fric_ctrl,fp32 id);
+
+
+extern fp32 PID_aim_calc(pid_type_def *pid, fp32 ref, fp32 set);
 #endif

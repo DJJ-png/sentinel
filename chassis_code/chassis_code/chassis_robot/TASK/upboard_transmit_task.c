@@ -261,19 +261,17 @@ void refree_to_upboard_3fenzhi1HZ(void)
 {
 	/* 0x0003 */
 	position_cnt_send = 3;
-	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.blue_1_robot_HP,Game_Robot_HP.blue_2_robot_HP,Game_Robot_HP.blue_3_robot_HP);
+	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.ally_1_robot_HP,Game_Robot_HP.ally_2_robot_HP,Game_Robot_HP.ally_3_robot_HP);
 	position_cnt_send = 4;
-	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.blue_4_robot_HP,Game_Robot_HP.blue_7_robot_HP,Game_Robot_HP.blue_base_HP);
+	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.ally_4_robot_HP,Game_Robot_HP.ally_7_robot_HP,Game_Robot_HP.ally_base_HP);
 	vTaskDelay(1);
 	
+//	position_cnt_send = 5;
+//	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.ally_outpost_HP,Game_Robot_HP.ally_1_robot_HP,Game_Robot_HP.ally_2_robot_HP);
+//	position_cnt_send = 6;
+//	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.red_3_robot_HP,Game_Robot_HP.red_4_robot_HP,Game_Robot_HP.red_7_robot_HP);
 	position_cnt_send = 5;
-	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.blue_outpost_HP,Game_Robot_HP.red_1_robot_HP,Game_Robot_HP.red_2_robot_HP);
-	position_cnt_send = 6;
-	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.red_3_robot_HP,Game_Robot_HP.red_4_robot_HP,Game_Robot_HP.red_7_robot_HP);
-	position_cnt_send = 7;
-	vTaskDelay(1);
-	
-	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.red_base_HP,Game_Robot_HP.red_outpost_HP,0);
+	CAN_CMD_BASE_Referee_16bit(&hcan1,0x602,position_cnt_send,Game_Robot_HP.ally_base_HP,Game_Robot_HP.ally_outpost_HP,0);
 	/* 0x0209 */
 	position_cnt_send = 209;
 	CAN_CMD_BASE_Referee_32bit(&hcan1,0x602,position_cnt_send,0,RFID_Status.rfid_status);
@@ -330,21 +328,21 @@ void enemy_state_data_update()
 	enemy_state_data[5].id = Robot_ID_Red_Sentry;   enemy_state_data[5].x = Robot_Interaction_User_Data.enemy[5].x;    enemy_state_data[5].y = Robot_Interaction_User_Data.enemy[5].y;    
 	if(Robot_Status.robot_id>100)   //大于100是蓝方
 	{
-		enemy_state_data[0].hp = Game_Robot_HP.red_1_robot_HP;
-		enemy_state_data[1].hp = Game_Robot_HP.red_2_robot_HP;
-		enemy_state_data[2].hp = Game_Robot_HP.red_3_robot_HP;
-		enemy_state_data[3].hp = Game_Robot_HP.red_4_robot_HP;
+		enemy_state_data[0].hp = Game_Robot_HP.ally_1_robot_HP;
+		enemy_state_data[1].hp = Game_Robot_HP.ally_2_robot_HP;
+		enemy_state_data[2].hp = Game_Robot_HP.ally_3_robot_HP;
+		enemy_state_data[3].hp = Game_Robot_HP.ally_4_robot_HP;
 		enemy_state_data[4].hp = 0;
-		enemy_state_data[5].hp = Game_Robot_HP.red_7_robot_HP;
+		enemy_state_data[5].hp = Game_Robot_HP.ally_7_robot_HP;
 	}
 	else
 	{
-		enemy_state_data[0].hp = Game_Robot_HP.blue_1_robot_HP;
-		enemy_state_data[1].hp = Game_Robot_HP.blue_2_robot_HP;
-		enemy_state_data[2].hp = Game_Robot_HP.blue_3_robot_HP;
-		enemy_state_data[3].hp = Game_Robot_HP.blue_4_robot_HP;
+		enemy_state_data[0].hp = Game_Robot_HP.ally_1_robot_HP;
+		enemy_state_data[1].hp = Game_Robot_HP.ally_2_robot_HP;
+		enemy_state_data[2].hp = Game_Robot_HP.ally_3_robot_HP;
+		enemy_state_data[3].hp = Game_Robot_HP.ally_4_robot_HP;
 		enemy_state_data[4].hp = 0;
-		enemy_state_data[5].hp = Game_Robot_HP.blue_7_robot_HP;
+		enemy_state_data[5].hp = Game_Robot_HP.ally_7_robot_HP;
 	}
 }
 

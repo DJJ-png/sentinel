@@ -24,6 +24,11 @@ typedef struct
     uint8_t ch_enable_flag;//底盘使能标志位
     uint8_t ch_follow_gimbal_flag;//底盘跟头标志位
 	uint8_t ch_orient_flag;//头跟底盘模式
+    
+    //功率控制相关
+    fp32 chassis_power_buffer;
+    fp32 chassis_power_limit;
+    fp32 power_limit_deceive;
 	
 }chassis_control_t;
 	

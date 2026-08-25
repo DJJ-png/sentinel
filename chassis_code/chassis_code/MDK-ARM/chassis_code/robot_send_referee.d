@@ -4,8 +4,6 @@ chassis_code/robot_send_referee.o: \
   ..\chassis_robot\APP\struct_typedef.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\Core\Inc\FreeRTOSConfig.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
@@ -26,10 +24,6 @@ chassis_code/robot_send_referee.o: \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h \
   ..\Drivers\CMSIS\Include\core_cm4.h \
-  ..\Drivers\CMSIS\Include\cmsis_version.h \
-  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
-  ..\Drivers\CMSIS\Include\cmsis_armclang.h \
-  ..\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h \
@@ -59,7 +53,4 @@ chassis_code/robot_send_referee.o: \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usb.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pcd_ex.h \
   ..\chassis_robot\APP\referee.h ..\chassis_robot\APP\protocol.h \
-  ..\chassis_robot\support\fifo.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h
+  ..\chassis_robot\support\fifo.h

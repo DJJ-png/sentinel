@@ -119,6 +119,7 @@
 "chassis_code\supportfunctionsf16.o"
 "chassis_code\transformfunctions.o"
 "chassis_code\transformfunctionsf16.o"
+"chassis_code\windowfunctions.o"
 --strict --scatter "chassis_code\chassis_code.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

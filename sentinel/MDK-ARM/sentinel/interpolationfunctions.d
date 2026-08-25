@@ -1,24 +1,19 @@
 sentinel/interpolationfunctions.o: \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\InterpolationFunctions.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_bilinear_interp_f32.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\interpolation_functions.h \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\InterpolationFunctions.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_bilinear_interp_f32.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Include\dsp\interpolation_functions.h \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Include\arm_math_types.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\Drivers\CMSIS\Include\cmsis_armclang.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\float.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\limits.h \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\none.h \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp\utils.h \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_bilinear_interp_q15.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_bilinear_interp_q31.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_bilinear_interp_q7.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_linear_interp_f32.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_linear_interp_q15.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_linear_interp_q31.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_linear_interp_q7.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_spline_interp_f32.c \
-  D:\MCU\stm32\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Source\InterpolationFunctions\arm_spline_interp_init_f32.c
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Include\arm_math_memory.h \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Include\dsp\none.h \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Include\dsp\utils.h \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_bilinear_interp_q15.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_bilinear_interp_q31.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_bilinear_interp_q7.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_linear_interp_f32.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_linear_interp_q15.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_linear_interp_q31.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_linear_interp_q7.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_spline_interp_f32.c \
+  D:\akeil\ARM\CMSIS-DSP\1.16.2\Source\InterpolationFunctions\arm_spline_interp_init_f32.c

@@ -130,6 +130,7 @@
 "sentinel\supportfunctionsf16.o"
 "sentinel\transformfunctions.o"
 "sentinel\transformfunctionsf16.o"
+"sentinel\windowfunctions.o"
 --strict --scatter "sentinel\sentinel.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -233,10 +233,10 @@ void INS_Task(void const *pvParameters)
 
     imu_start_dma_flag = 1;
 		
-		bmi088_offset_data.gyro[0] =-0.00035228621;// -0.00488316454;
-		bmi088_offset_data.gyro[1] =0.000342914864;//-0.00137732935;
-		bmi088_offset_data.gyro[2] =0.00279037352;//0.00239972677;
-		//mpu_offset_clc();
+//		bmi088_offset_data.gyro[0] =-0.00035228621;// -0.00488316454;
+//		bmi088_offset_data.gyro[1] =0.000342914864;//-0.00137732935;
+//		bmi088_offset_data.gyro[2] =0.00279037352;//0.00239972677;
+		mpu_offset_clc();
     
     while (1)
     {

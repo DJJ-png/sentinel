@@ -6,14 +6,8 @@ sentinel/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h \
   ..\Drivers\CMSIS\Include\core_cm4.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  ..\Drivers\CMSIS\Include\cmsis_version.h \
-  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
-  ..\Drivers\CMSIS\Include\cmsis_armclang.h \
-  ..\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h \
@@ -58,10 +52,7 @@ sentinel/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Core\Inc\dma.h ..\Core\Inc\i2c.h ..\Core\Inc\spi.h \
   ..\Core\Inc\tim.h ..\Core\Inc\usart.h ..\USB_DEVICE\App\usb_device.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
-  ..\USB_DEVICE\Target\usbd_conf.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h ..\Core\Inc\gpio.h \
+  ..\USB_DEVICE\Target\usbd_conf.h ..\Core\Inc\gpio.h \
   ..\Sentinel_Robot\BSP\bsp_can.h ..\Sentinel_Robot\APP\struct_typedef.h \
   ..\Sentinel_Robot\APP\remote_control.h ..\Sentinel_Robot\BSP\bsp_rc.h \
   ..\Sentinel_Robot\BSP\bsp_delay.h ..\Sentinel_Robot\APP\referee.h \

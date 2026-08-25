@@ -3,8 +3,6 @@ sentinel/detect_task.o: ..\Sentinel_Robot\Tasks\detect_task.c \
   ..\Sentinel_Robot\APP\struct_typedef.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\Core\Inc\FreeRTOSConfig.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \

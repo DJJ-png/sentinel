@@ -27,7 +27,6 @@ aim_control_t aim_control;
 uint8_t nuc_lose_spin_flag = 0;
 uint8_t have_aim_target_flag = 0;//控云台的时候如果开自瞄，就和省赛差不多，要打人就停下来打（的标志位）
 chassis_control_t chassis_control;
-
  
 
 uint8_t aim_debug=0;
@@ -58,7 +57,7 @@ void chassis_solve()
 		for(uint8_t i=0;i<4;i++)
 			if(fabs(ang_err_all[i])<fabs(ang_err))
 				ang_err=ang_err_all[i];
-        if(fabs(ang_err)<0.05) ang_err=0;
+        if(fabs(ang_err)<0.01) ang_err=0;
 		PID_calc(&chassis_control.chassis_psi,ang_err,0);
 		DEADBAND(chassis_control.chassis_psi.out,50);
            
@@ -435,7 +434,7 @@ static void Robot_Protect_FSM()
 }
 void Switch_Task(void const * argument) 
 {
-    float chassis_psi_pid[3]={2000,0,1000};
+    float chassis_psi_pid[3]={2500,30,1000};
     PID_init(&chassis_control.chassis_psi,0,chassis_psi_pid,1000,0);
     while(1) 
     {

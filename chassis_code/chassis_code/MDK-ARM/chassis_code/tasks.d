@@ -1,9 +1,5 @@
 chassis_code/tasks.o: ..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\Core\Inc\FreeRTOSConfig.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
@@ -13,5 +9,4 @@ chassis_code/tasks.o: ..\Middlewares\Third_Party\FreeRTOS\Source\tasks.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\stack_macros.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\stack_macros.h

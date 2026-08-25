@@ -2,8 +2,6 @@ sentinel/referee_usart_task.o: \
   ..\Sentinel_Robot\Tasks\referee_usart_task.c \
   ..\Sentinel_Robot\Tasks\referee_usart_task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\Core\Inc\FreeRTOSConfig.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
@@ -18,9 +16,6 @@ sentinel/referee_usart_task.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
   ..\Sentinel_Robot\support\fifo.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\string.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
@@ -28,10 +23,6 @@ sentinel/referee_usart_task.o: \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h \
   ..\Drivers\CMSIS\Include\core_cm4.h \
-  ..\Drivers\CMSIS\Include\cmsis_version.h \
-  ..\Drivers\CMSIS\Include\cmsis_compiler.h \
-  ..\Drivers\CMSIS\Include\cmsis_armclang.h \
-  ..\Drivers\CMSIS\Include\mpu_armv7.h \
   ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h \
@@ -65,7 +56,6 @@ sentinel/referee_usart_task.o: \
   ..\Sentinel_Robot\APP\referee.h ..\Sentinel_Robot\Tasks\shoot_task.h \
   ..\Sentinel_Robot\APP\pid.h ..\Sentinel_Robot\APP\struct_typedef.h \
   ..\Sentinel_Robot\APP\config_set.h ..\Sentinel_Robot\APP\Filter.h \
-  D:\MCU\stm32\ARM\ARMCLANG\Bin\..\include\math.h \
   ..\Sentinel_Robot\Tasks\Gimbal_Task.h ..\Sentinel_Robot\BSP\bsp_can.h \
   ..\Core\Inc\can.h ..\Sentinel_Robot\APP\remote_control.h \
   ..\Sentinel_Robot\BSP\bsp_rc.h

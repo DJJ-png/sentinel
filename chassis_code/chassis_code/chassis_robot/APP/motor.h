@@ -28,7 +28,7 @@
 #define CH_PARAM_STEER_SPEED_PID_MAXOUT         16000.0f
 #define CH_PARAM_STEER_SPEED_PID_MAXIOUT        800.0f
 
-#define CH_PARAM_STEER_ANGLE_PID_KP             70.0f
+#define CH_PARAM_STEER_ANGLE_PID_KP             150.0f
 #define CH_PARAM_STEER_ANGLE_PID_KI             0.0f
 #define CH_PARAM_STEER_ANGLE_PID_KD             100.0f
 #define CH_PARAM_STEER_ANGLE_PID_MAXOUT         400.0f

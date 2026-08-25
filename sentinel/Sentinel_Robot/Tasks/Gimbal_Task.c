@@ -13,6 +13,7 @@
 #include "AHRS_middleware.h"
 #include "remote_control.h"
 #include "bsp_math.h"
+#include "bsp_can.h"
 #define SPIN_PITCH    66
 #define SPIN_YAW      90
 
@@ -46,6 +47,8 @@ extern fp32 yaw_test;
 extern float adv_yaw,adv_pitch;
 extern float adv_yaw_speed,adv_pitch_speed;
 fp32 k1=1,k2=1;
+
+uint16_t aaa=0;
 /*外部控制接口*/
 /*基础yaw_pitch控制*/
 void gimbal_vector_set(fp32 yaw_speed, fp32 pitch_speed, fp32 yaw_angle, fp32 pitch_angle, uint8_t yaw_mode, uint8_t pitch_mode, uint8_t gimbal_mode)
@@ -312,7 +315,7 @@ static void Gimbal_AdvYaw_Motor_Operator(gimbal_motor_t *motor)
         motor->set_current = motor->speed_pid.out;
     } 
     else if (motor->control_mode == ANGLE) 
-    {
+    {			
         //角度环计算
         PID_aim_calc(&motor->angle_pid, motor->INS_angle_err, 0);
         fp32 target_speed = k1*-motor->angle_pid.out + k2*-motor->INS_speed_feedforward ; 
@@ -373,9 +376,9 @@ void Gimbal_Yaw_Calculate(gimbal_motor_t *base_yaw,gimbal_motor_t *adv_yaw)
         if(base_yaw->INS_speed_set<0.5f&&base_yaw->INS_speed_set>-0.5f)
         {
             base_yaw->INS_angle_set=base_yaw->INS_angle;
-			base_yaw->INS_speed_set = 0.0f; 
-			base_yaw->control_mode=ANGLE;//停止
-		}
+						base_yaw->INS_speed_set = 0.0f; 
+						base_yaw->control_mode=ANGLE;//停止
+				}
          if (base_yaw->control_mode == ANGLE) 
         {
             base_yaw->INS_angle_err = LIMIT_TO_SET(base_yaw->INS_angle_set - base_yaw->INS_angle, 180);
@@ -449,6 +452,8 @@ void Gimbal_Pitch_Calculate(gimbal_motor_t *pitch_motor)
         }
     if (pitch_motor->control_mode == ANGLE) 
     {
+			aaa++;
+			
         if (pitch_motor->INS_angle_set >  PITCH_ANGLE_MAX)  pitch_motor->INS_angle_set =  PITCH_ANGLE_MAX;
         if (pitch_motor->INS_angle_set <  PITCH_ANGLE_MIN) pitch_motor->INS_angle_set =  PITCH_ANGLE_MIN;
         
@@ -616,8 +621,9 @@ void Gimbal_Task(void const * argument)
         }
 
         /* 5. 统一的系统延时 */
-        Vofa_Send_Data4(gimbal_motor[ADVANCED_YAW_6020].INS_speed, gimbal_motor[ADVANCED_YAW_6020].speed_pid.set,gimbal_motor[ADVANCED_YAW_6020].INS_angle,gimbal_motor[ADVANCED_YAW_6020].INS_angle_set);
+        //Vofa_Send_Data4(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set);
         //Vofa_Send_Data4(gimbal_motor[BASE_YAW_5010].speed_pid.fdb, gimbal_motor[BASE_YAW_5010].speed_pid.set,gimbal_motor[BASE_YAW_5010].INS_angle,gimbal_motor[BASE_YAW_5010].INS_angle_set);
-        vTaskDelay(1);
+				Vofa_Send_Data4(gimbal_motor[ADVANCED_YAW_6020].INS_speed , gimbal_motor[ADVANCED_YAW_6020].INS_speed_set , gimbal_motor[ADVANCED_YAW_6020].INS_angle , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set);
+				vTaskDelay(1);
     }
 }

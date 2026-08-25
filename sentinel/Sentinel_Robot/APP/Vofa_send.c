@@ -1,17 +1,22 @@
 #include "Vofa_send.h"
 #include "string.h"
 #include "usart.h"
+#include "bsp_can.h"
+#include "Gimbal_Task.h"
 
 Vofa_data_m_2 Vofa_data_2={.tail={0x00,0x00,0x80,0x7f}};
 Vofa_data_m_4 Vofa_data_4={.tail={0x00,0x00,0x80,0x7f}};
 Vofa_data_m_8 Vofa_data_8={.tail={0x00,0x00,0x80,0x7f}};
 
+extern motor_measure_t motor_measure_gimbal[3];
+extern gimbal_motor_t gimbal_motor[3];
+
 #define VOFA_HUART huart6//huart6
 
 void Vofa_Send_Data2(float data1, float data2)
 {
-	Vofa_data_2.ch_data[0] = data1;
-	Vofa_data_2.ch_data[1] = data2;
+	Vofa_data_2.ch_data[0] = motor_measure_gimbal[1].speed_rpm;
+	Vofa_data_2.ch_data[1] = gimbal_motor[1].speed_pid.set;
 	HAL_UART_Transmit_DMA(&VOFA_HUART, (uint8_t *)&Vofa_data_2, sizeof(Vofa_data_2));   
 }
 

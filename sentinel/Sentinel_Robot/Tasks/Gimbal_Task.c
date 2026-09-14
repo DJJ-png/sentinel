@@ -262,7 +262,7 @@ void Gimbal_Motor_Data_Update(void)
 
 	
 	/* 修改低通滤波，可抑制pitch轴抖  */
-	gimbal_motor[PITCH_6015].INS_speed			=		0.25*adv_pitch_speed+0.75*gimbal_motor[PITCH_6015].INS_speed;
+	gimbal_motor[PITCH_6015].INS_speed			=		adv_pitch_speed;
 	gimbal_motor[PITCH_6015].give_current		=		motor_measure_gimbal[PITCH].given_current;
 	gimbal_motor[PITCH_6015].ENC_angle = LIMIT_TO_SET((PITCH_ANGLE_ZERO - motor_measure_gimbal[PITCH].ecd)/((fp32)GIMBAL_MOTOR_PITCH_ECD_RANGE)*2*180,180);
 	/* 平行四连杆结合电机编码器解算pitch轴角度 */
@@ -600,9 +600,10 @@ void Gimbal_Task(void const * argument)
             // 正常输出模式
             Gimbal_Send_Current(
                 gimbal_motor[BASE_YAW_5010].set_current,
-                gimbal_motor[ADVANCED_YAW_6020].set_current,
-//              gimbal_motor[PITCH_6015].set_current
-			0
+//                gimbal_motor[ADVANCED_YAW_6020].set_current,
+			0,
+             gimbal_motor[PITCH_6015].set_current
+//			0
             );
         }
         else
@@ -634,6 +635,7 @@ void Gimbal_Task(void const * argument)
 //				Vofa_Send_Data4(gimbal_motor[ADVANCED_YAW_6020].INS_speed , gimbal_motor[ADVANCED_YAW_6020].INS_speed_set , gimbal_motor[ADVANCED_YAW_6020].INS_angle , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set);
 				Vofa_Send_Data8(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set,gimbal_motor[PITCH_6015].set_current,gimbal_motor[PITCH_6015].speed_pid.out,gimbal_motor[PITCH_6015].angle_pid.out,gimbal_motor[PITCH_6015].INS_angle);
 //		Vofa_Send_Data8(gimbal_motor[BASE_YAW_5010].INS_speed  , gimbal_motor[BASE_YAW_5010].speed_pid.set , gimbal_motor[BASE_YAW_5010].INS_angle_err , gimbal_motor[BASE_YAW_5010].INS_angle_set,gimbal_motor[BASE_YAW_5010].set_current,gimbal_motor[BASE_YAW_5010].speed_pid.out,gimbal_motor[BASE_YAW_5010].angle_pid.out,gimbal_motor[BASE_YAW_5010].give_current);
+//		Vofa_Send_Data8(gimbal_motor[ADVANCED_YAW_6020].INS_speed  , gimbal_motor[ADVANCED_YAW_6020].speed_pid.set , gimbal_motor[ADVANCED_YAW_6020].INS_angle_err , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set,gimbal_motor[ADVANCED_YAW_6020].set_current,gimbal_motor[ADVANCED_YAW_6020].speed_pid.out,gimbal_motor[ADVANCED_YAW_6020].angle_pid.out,gimbal_motor[ADVANCED_YAW_6020].INS_angle);
 				vTaskDelay(1);
     }
 }

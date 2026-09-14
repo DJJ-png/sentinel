@@ -233,7 +233,7 @@ void Update_System_Event(void) {
     switch (gimbal_state) {
         case GIMBAL_RELAX:
             aim_control.aim_PID=0;
-            if      (Switch_Left == RC_SW_MID)      gimbal_state = GIMBAL_RC_CTRL;//GIMBAL_AUTO_AIM;// GIMBAL_RC_CTRL;//v//GIMBAL_RC_CTRL;//拨杆中间默认
+            if      (Switch_Left == RC_SW_MID)      gimbal_state = GIMBAL_AUTO_AIM;// GIMBAL_RC_CTRL;//v//GIMBAL_RC_CTRL;//拨杆中间默认
             else if (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_RELAX;//GIMBAL_NUC_CTRL;
             break;
 

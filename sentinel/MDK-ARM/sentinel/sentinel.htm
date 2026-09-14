@@ -3,7 +3,7 @@
 <title>Static Call Graph - [sentinel\sentinel.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image sentinel\sentinel.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sat Sep 12 18:41:55 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Mon Sep 14 17:46:28 2026
 <BR><P>
 <H3>Maximum Stack Usage =        416 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1018,8 +1018,8 @@ Global Symbols
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;INS_Task
 </UL>
 
-<P><STRONG><a name="[d2]"></a>Gimbal_Motor_Data_Update</STRONG> (Thumb, 640 bytes, Stack size 48 bytes, gimbal_task.o(.text.Gimbal_Motor_Data_Update))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = Gimbal_Motor_Data_Update &rArr; __aeabi_dmul
+<P><STRONG><a name="[d2]"></a>Gimbal_Motor_Data_Update</STRONG> (Thumb, 576 bytes, Stack size 40 bytes, gimbal_task.o(.text.Gimbal_Motor_Data_Update))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = Gimbal_Motor_Data_Update &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -1029,8 +1029,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Task
 </UL>
 
-<P><STRONG><a name="[d5]"></a>Gimbal_Motor_Init</STRONG> (Thumb, 644 bytes, Stack size 64 bytes, gimbal_task.o(.text.Gimbal_Motor_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
+<P><STRONG><a name="[d5]"></a>Gimbal_Motor_Init</STRONG> (Thumb, 640 bytes, Stack size 56 bytes, gimbal_task.o(.text.Gimbal_Motor_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64 + Unknown Stack Size
 <LI>Call Chain = Gimbal_Motor_Init &rArr; PID_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_init
@@ -1067,8 +1067,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step_Gimbal_FSM
 </UL>
 
-<P><STRONG><a name="[7f]"></a>Gimbal_Task</STRONG> (Thumb, 904 bytes, Stack size 40 bytes, gimbal_task.o(.text.Gimbal_Task))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
+<P><STRONG><a name="[7f]"></a>Gimbal_Task</STRONG> (Thumb, 1476 bytes, Stack size 24 bytes, gimbal_task.o(.text.Gimbal_Task))
+<BR><BR>[Stack]<UL><LI>Max Depth = 224 + Unknown Stack Size
 <LI>Call Chain = Gimbal_Task &rArr; Gimbal_Pitch_Calculate &rArr; __hardfp_cos &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Vofa_Send_Data8
@@ -1082,6 +1082,10 @@ Global Symbols
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_cmd_LK_Motor
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_cmd_LK_init
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_CMD_BASE
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.rodata..L__const.MX_FREERTOS_Init.os_thread_def_Gimbal_TASK)
 </UL>
@@ -2368,7 +2372,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Task
 </UL>
 
-<P><STRONG><a name="[81]"></a>Switch_Task</STRONG> (Thumb, 1298 bytes, Stack size 32 bytes, switch_task.o(.text.Switch_Task))
+<P><STRONG><a name="[81]"></a>Switch_Task</STRONG> (Thumb, 1304 bytes, Stack size 32 bytes, switch_task.o(.text.Switch_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 392 + Unknown Stack Size
 <LI>Call Chain = Switch_Task &rArr; Step_Chassis_FSM &rArr; Nuc_Control_Chassis &rArr; chassis_vector_set &rArr; chassis_solve &rArr; CAN_CMD_BASE &rArr; HAL_CAN_AddTxMessage
 </UL>
@@ -4072,6 +4076,7 @@ Global Symbols
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nuc_Control_Chassis
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_vector_set
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Send_referee_Init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Task
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Motor_Data_Update
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_AdvYaw_Motor_Operator
 </UL>
@@ -4087,6 +4092,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step_Gimbal_FSM
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_vector_set
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Send_referee_Init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Task
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Pitch_Calculate
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Motor_Data_Update
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Spin
@@ -4186,6 +4192,7 @@ Global Symbols
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nuc_Control_Chassis
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_vector_set
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Send_referee_Init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Task
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Pitch_Calculate
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Motor_Data_Update
 <LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ewma_filter_update
@@ -4260,6 +4267,7 @@ Global Symbols
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_vector_set
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_solve
 <LI><a href="#[1b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Send_referee_Init
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Task
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Pitch_Calculate
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Motor_Data_Update
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gimbal_Spin

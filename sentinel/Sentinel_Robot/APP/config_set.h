@@ -11,8 +11,8 @@
 #define PITCH_ANGLE_ZERO 34579
 //四连杆解算相关零点
 #define PITCH_ENC_MIN         6850
-#define PITCH_ANGLE_MIN       -20.0f
-#define PITCH_ANGLE_MAX       20.0f
+#define PITCH_ANGLE_MIN       -30.0f
+#define PITCH_ANGLE_MAX       -10.0f
 #define PITCH_ENC_AT_MAX      65535-58200
 // 计算得出的常量
 #define PITCH_ECD_TOTAL       14185
@@ -120,17 +120,17 @@
 #define ADVANCED_YAW_MOTOR_ANGLE_AUTO_AIM_PID_MAX_OUT 320.0f//320
 #define ADVANCED_YAW_MOTOR_ANGLE_AUTO_AIM_PID_MAX_IOUT 200.0f
 
-//pitch yaw_aim_speed
-#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_KP 2.5f
-#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_KI 0.06f
-#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_KD 50.0f
+//pitch _aim_speed
+#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_KP 4.25f//2.5f
+#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_KI 0.016f//0.06f
+#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_KD 0.12f//50.0f
 #define PITCH_MOTOR_SPEED_AUTO_AIM_PID_MAX_OUT 2500.0f
-#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_MAX_IOUT 100.0f
+#define PITCH_MOTOR_SPEED_AUTO_AIM_PID_MAX_IOUT 130.0f//100.0f
 
-//pitch yaw_aim_angle
-#define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_KP 5.2f   
-#define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_KI 0.0f
-#define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_KD 20.0f    
+//pitch _aim_angle
+#define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_KP 4.0//5.2f   
+#define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_KI 0.0f//0.0f
+#define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_KD 0.011f//20.0f    
 #define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_MAX_OUT 2500.0f
 #define PITCH_MOTOR_ANGLE_AUTO_AIM_PID_MAX_IOUT 0.0f
 /****************************************状态枚举********************************************/

@@ -130,6 +130,73 @@ void Gimbal_Spin(fp32 Pitch_max,fp32 Pitch_min,fp32*gimbal_spin_speed,uint8_t mo
 	}
 }  
 
+void CHANGE_PID_FIXED(gimbal_motor_t *adv_yaw,gimbal_motor_t *pitch)//自适应PID速度环
+{
+	if(pitch->INS_angle<-15.0f)
+	{
+		adv_yaw->speed_pid.Kp=300.0f;
+		adv_yaw->speed_pid.Ki=0.8f;
+		adv_yaw->speed_pid.Kd=30.0f;
+				
+		adv_yaw->angle_pid.Kp=-0.2069f*(pitch->INS_angle)+4.897f;
+		
+	}
+	else if(pitch->INS_angle<=-5.0f&&pitch->INS_angle>=-15.0f)
+	{
+		adv_yaw->speed_pid.Kp=10.0f*(pitch->INS_angle)+450.0f;
+		adv_yaw->speed_pid.Ki=0.8f;
+		adv_yaw->speed_pid.Kd=1.0f*(pitch->INS_angle)+45.0f;
+		
+		adv_yaw->angle_pid.Kp=-0.446f*(pitch->INS_angle)+1.31f;
+	}
+	else if(pitch->INS_angle<5.0f&&pitch->INS_angle>-5.0f)
+	{
+		adv_yaw->speed_pid.Kp=-23.0f*(pitch->INS_angle)+285.0f;
+		adv_yaw->speed_pid.Ki=0.8f;
+		adv_yaw->speed_pid.Kp=-2.5f*(pitch->INS_angle)+27.5f;
+		
+		adv_yaw->angle_pid.Kp=-0.134f*(pitch->INS_angle)+2.87f;
+	}
+	else if(pitch->INS_angle<=15.0f&&pitch->INS_angle>=5.0f)
+	{
+		adv_yaw->speed_pid.Kp=-2.0f*(pitch->INS_angle)+180.0f;
+		adv_yaw->speed_pid.Ki=0.2f;
+		adv_yaw->speed_pid.Kd=15.0f;
+		
+		adv_yaw->angle_pid.Kp=0.2f*(pitch->INS_angle)+1.2f;
+	}
+	else 
+	{
+		adv_yaw->speed_pid.Kp=150.0f;
+		adv_yaw->speed_pid.Ki=0.2f;
+		adv_yaw->speed_pid.Kd=15.0f;
+		
+		adv_yaw->angle_pid.Kp=4.1f;
+	}
+	adv_yaw->angle_pid.Ki=0.0f;	
+	adv_yaw->angle_pid.Kd=0.12f;
+}	
+	
+//	adv_yaw->angle_pid.Kp=0.0089f*(pitch->INS_angle)*(pitch->INS_angle)-0.0958f*(pitch->INS_angle)+3.2088f;
+//	adv_yaw->angle_pid.Ki=0;
+//	adv_yaw->angle_pid.Kd=-0.0009f*(pitch->INS_angle)*(pitch->INS_angle)-0.0081f*(pitch->INS_angle)+0.3915f;
+//	if(adv_yaw->angle_pid.Kd<=0.5)
+//	{
+//		adv_yaw->angle_pid.Kd=0.5f;
+//	}
+//	adv_yaw->speed_pid.Kp=-0.2773f*(pitch->INS_angle)*(pitch->INS_angle)-6.8986f*(pitch->INS_angle)+290.18f;
+//	if(adv_yaw->speed_pid.Kp<=150.0f)
+//	{
+//		adv_yaw->speed_pid.Kp=150.0f;
+//	}
+//	adv_yaw->speed_pid.Ki=0.6f;
+//	adv_yaw->speed_pid.Kd=-0.026f*(pitch->INS_angle)*(pitch->INS_angle)-0.6955f*(pitch->INS_angle)+28.23f;
+//	if(adv_yaw->speed_pid.Kd<=8.0f)
+//	{
+//		adv_yaw->speed_pid.Kd=8.0f;
+//	}
+//}
+
 /* 云台电机初始化	*/
 void Gimbal_Motor_Init(void)
 {
@@ -245,6 +312,9 @@ fp32 pitch_angle_solve(uint16_t ecd)
 }
 
 //云台电机数据更新
+
+float check=0.0f;
+
 void Gimbal_Motor_Data_Update(void)
 {
 	// yaw ----- 陀螺仪角速度 角度 编码器 电流
@@ -254,22 +324,32 @@ void Gimbal_Motor_Data_Update(void)
 	gimbal_motor[BASE_YAW_5010].BASE_INS_angle_Pitch		=		-INS_angle_deg[1];
 	gimbal_motor[BASE_YAW_5010].ENC_angle		=		motor_measure_gimbal[BASE_YAW].ecd;
 	gimbal_motor[BASE_YAW_5010].give_current	=		motor_measure_gimbal[BASE_YAW].given_current;
-	
 		
-	gimbal_motor[ADVANCED_YAW_6020].ENC_angle   = LIMIT_TO_SET((ADVANCED_GIMBAL_ANGLE_ZERO - motor_measure_gimbal[ADVANCED_YAW].ecd)/((fp32)GIMBAL_MOTOR_ADVANCED_ECD_RANGE)*2*180,180);
-    gimbal_motor[ADVANCED_YAW_6020].INS_speed	= 0.3*adv_yaw_speed+0.7*gimbal_motor[ADVANCED_YAW_6020].INS_speed;
-   	gimbal_motor[ADVANCED_YAW_6020].INS_angle	= adv_yaw;
-
-	
 	/* 修改低通滤波，可抑制pitch轴抖  */
 	gimbal_motor[PITCH_6015].INS_speed			=		adv_pitch_speed;
 	gimbal_motor[PITCH_6015].give_current		=		motor_measure_gimbal[PITCH].given_current;
 	gimbal_motor[PITCH_6015].ENC_angle = LIMIT_TO_SET((PITCH_ANGLE_ZERO - motor_measure_gimbal[PITCH].ecd)/((fp32)GIMBAL_MOTOR_PITCH_ECD_RANGE)*2*180,180);
 	/* 平行四连杆结合电机编码器解算pitch轴角度 */
 	 gimbal_motor[PITCH_6015].INS_angle         =  adv_pitch;
+	if(gimbal_control.MODE == ADVANCED_YAW_MODE)
+	{
+		CHANGE_PID_FIXED(&gimbal_motor[ADVANCED_YAW_6020],&gimbal_motor[PITCH_6015]);
+	}
+	
+	gimbal_motor[ADVANCED_YAW_6020].ENC_angle   = LIMIT_TO_SET((ADVANCED_GIMBAL_ANGLE_ZERO - motor_measure_gimbal[ADVANCED_YAW].ecd)/((fp32)GIMBAL_MOTOR_ADVANCED_ECD_RANGE)*2*180,180);
+	if(adv_pitch<=0)
+	{
+		gimbal_motor[ADVANCED_YAW_6020].INS_speed	= adv_yaw_speed;
+	}
+	else
+	{
+		gimbal_motor[ADVANCED_YAW_6020].INS_speed	= -adv_yaw_speed;
+	}
+   	gimbal_motor[ADVANCED_YAW_6020].INS_angle	= adv_yaw;
 	  
 	/*底盘跟头/偏差角*/
 	gimbal_control.angle_error_rad = (LIMIT_TO_SET((CHASSIS_FOLLOW_BASE_GIMBAL_ANGLE_ZERO-motor_measure_gimbal[BASE_YAW].ecd)/((fp32)GIMBAL_MOTOR_BASE_ECD_RANGE)*2*PI,PI))*0.5+gimbal_control.angle_error_rad*0.5;
+//	check=gimbal_motor[ADVANCED_YAW_6020].INS_speed*cosf(gimbal_motor[PITCH_6015].INS_angle)+gimbal_motor[PITCH_6015].INS_speed*sinf(gimbal_motor[PITCH_6015].INS_angle);
 }
 
 /**
@@ -317,7 +397,7 @@ static void Gimbal_AdvYaw_Motor_Operator(gimbal_motor_t *motor)
     {			
         //角度环计算
         PID_aim_calc(&motor->angle_pid, motor->INS_angle_err, 0);
-        fp32 target_speed = k1*-motor->angle_pid.out + k2*-motor->INS_speed_feedforward ; 
+        fp32 target_speed =-motor->angle_pid.out + -motor->INS_speed_feedforward ; 
               float set_target_percent = 1.0f;
         
         if(fabs(motor->INS_angle_err) > 15.0f){
@@ -325,18 +405,26 @@ static void Gimbal_AdvYaw_Motor_Operator(gimbal_motor_t *motor)
         }else{
             set_target_percent = (15.0f - fabs(motor->INS_angle_err)) / 15.0f;
         }
-       
+		if(fabs(motor->INS_angle_err) < 0.1f)
+		{
+			set_target_percent=0;
+		}
        // 速度环计算
+		
         PID_calc(&motor->speed_pid, motor->INS_speed, target_speed*set_target_percent);
         if(fabs(target_speed)>0.5)
-            fric_feedforward=(target_speed>0)? -400:400;
+            fric_feedforward=(target_speed>0)? -350:350;
         else
             fric_feedforward=0;
         motor->set_current =motor->speed_pid.out;
     }
     
 }
-int gravity_feedforward=160;
+
+
+float gravity_feedforward=160.0f;
+float friction_feedfoward=0;
+float real_friction_feedforword=0;
 
 static void Gimbal_Pitch_Motor_Operator(gimbal_motor_t *motor) 
 {
@@ -349,13 +437,18 @@ static void Gimbal_Pitch_Motor_Operator(gimbal_motor_t *motor)
     if (motor->control_mode == SPEED) 
     {
        PID_calc(&motor->speed_pid, motor->INS_speed, motor->INS_speed_set);
-        gravity_feedforward=-240*cos((2*-fabs(motor->INS_angle)+49)*0.0174533); //可疑补偿
-//		gravity_feedforward=0.0047f*(motor->INS_angle)*(motor->INS_angle)*(motor->INS_angle)*(motor->INS_angle)+0.1*(motor->INS_angle)*(motor->INS_angle)*(motor->INS_angle)+0.4343*(motor->INS_angle)*(motor->INS_angle)-3.8974*(motor->INS_angle)-218.41;
-//		if(gravity_feedforward>=-180.0f)
-//		{
-//			gravity_feedforward=-180.0f;
-//		}
-        motor->set_current =-motor->speed_pid.out+gravity_feedforward;
+//        gravity_feedforward=-240*cos((2*-fabs(motor->INS_angle)+49)*0.0174533); //可疑补偿
+		friction_feedfoward=-0.0608f*(motor->INS_angle)*(motor->INS_angle)-2.1584f*(motor->INS_angle)+64.71f;
+		gravity_feedforward=0.0675f*(motor->INS_angle)*(motor->INS_angle)+0.0162f*(motor->INS_angle)-191.7f;
+		if(real_friction_feedforword>70.0f)
+		{
+			real_friction_feedforword=70.0f;
+		}
+		else if(real_friction_feedforword<-70.0f)
+		{
+			real_friction_feedforword=-70.0f;
+		}
+        motor->set_current =-motor->speed_pid.out+gravity_feedforward+real_friction_feedforword*0.4f;
     } 
     else if (motor->control_mode == ANGLE) 
     {
@@ -364,16 +457,48 @@ static void Gimbal_Pitch_Motor_Operator(gimbal_motor_t *motor)
         fp32 target_speed = -k1*motor->angle_pid.out - k2*motor->INS_speed_feedforward ;
         // 速度环计算
         PID_calc(&motor->speed_pid, motor->INS_speed, target_speed);
-       gravity_feedforward=-240*cos((2*-fabs(motor->INS_angle)+49)*0.0174533); //可疑补偿
-//		gravity_feedforward=0.0047f*(motor->INS_angle)*(motor->INS_angle)*(motor->INS_angle)*(motor->INS_angle)+0.1*(motor->INS_angle)*(motor->INS_angle)*(motor->INS_angle)+0.4343*(motor->INS_angle)*(motor->INS_angle)-3.8974*(motor->INS_angle)-218.41;
-//		if(gravity_feedforward>=-180.0f)
-//		{
-//			gravity_feedforward=-180.0f;
-//		}
+//      gravity_feedforward=-240*cos((2*-fabs(motor->INS_angle)+49)*0.0174533); //可疑补偿
+		friction_feedfoward=-0.0181f*(motor->INS_angle)*(motor->INS_angle)+0.7598f*(motor->INS_angle)+73.686f;
+		gravity_feedforward=-0.0629f*(motor->INS_angle)*(motor->INS_angle)-0.3043f*(motor->INS_angle)-200.74f;
+		real_friction_feedforword=(target_speed>0)? -friction_feedfoward: friction_feedfoward;
+		if(fabsf(target_speed)>1.8f)
+		{
+			if(real_friction_feedforword>100.0f)
+			{
+				real_friction_feedforword=100.0f;
+			}
+			else if(real_friction_feedforword<-100.0f)
+			{
+				real_friction_feedforword=-100.0f;
+			}
+			
+		}
+		else
+		{
+			if(real_friction_feedforword>25.0f)
+			{
+				real_friction_feedforword=25.0f;
+			}
+			else if(real_friction_feedforword<-25.0f)
+			{
+				real_friction_feedforword=-25.0f;
+			}
+		}
+		if(fabsf(motor->INS_angle_err)<0.2f)
+		{
+			real_friction_feedforword=0.0f;
+			if(fabsf(motor->INS_angle_err)<0.12f)
+			{
+				motor->speed_pid.out=motor->speed_pid.out*0.9f;
+			}
+		}
         motor->set_current =-motor->speed_pid.out+gravity_feedforward;
     }
     
 }
+
+
+
 
 void Gimbal_Yaw_Calculate(gimbal_motor_t *base_yaw,gimbal_motor_t *adv_yaw)
 {
@@ -404,6 +529,7 @@ void Gimbal_Yaw_Calculate(gimbal_motor_t *base_yaw,gimbal_motor_t *adv_yaw)
     /* --- 模式 2: 自瞄/小轴主控模式 (ADVANCED_YAW_MODE) --- */
     else if (gimbal_control.MODE == ADVANCED_YAW_MODE)
     {
+		//CHANGE_PID_FIXED(gimbal_motor_t *adv_yaw,gimbal_motor_t *pitch);
          base_yaw->control_mode=ANGLE;//停止
         if(adv_yaw->INS_speed_set<0.5f&&adv_yaw->INS_speed_set>-0.5f&&adv_yaw->control_mode==SPEED)
         {
@@ -568,7 +694,7 @@ static void Gimbal_Send_Current(int16_t yaw_base, int16_t yaw_adv, int16_t pitch
                  0);    // ID 4
 }
 
-
+int16_t current=0;
 void Gimbal_Task(void const * argument)
 {
     /* 1. 硬件/参数初始化 */
@@ -600,9 +726,10 @@ void Gimbal_Task(void const * argument)
             // 正常输出模式
             Gimbal_Send_Current(
                 gimbal_motor[BASE_YAW_5010].set_current,
-//                gimbal_motor[ADVANCED_YAW_6020].set_current,
-			0,
+              gimbal_motor[ADVANCED_YAW_6020].set_current,
+//			0,
              gimbal_motor[PITCH_6015].set_current
+//			current
 //			0
             );
         }
@@ -633,9 +760,9 @@ void Gimbal_Task(void const * argument)
         //Vofa_Send_Data4(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set);
         //Vofa_Send_Data4(gimbal_motor[BASE_YAW_5010].speed_pid.fdb, gimbal_motor[BASE_YAW_5010].speed_pid.set,gimbal_motor[BASE_YAW_5010].INS_angle,gimbal_motor[BASE_YAW_5010].INS_angle_set);
 //				Vofa_Send_Data4(gimbal_motor[ADVANCED_YAW_6020].INS_speed , gimbal_motor[ADVANCED_YAW_6020].INS_speed_set , gimbal_motor[ADVANCED_YAW_6020].INS_angle , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set);
-				Vofa_Send_Data8(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set,gimbal_motor[PITCH_6015].set_current,gimbal_motor[PITCH_6015].speed_pid.out,gimbal_motor[PITCH_6015].angle_pid.out,gimbal_motor[PITCH_6015].INS_angle);
+//				Vofa_Send_Data8(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set,gimbal_motor[PITCH_6015].set_current,gimbal_motor[PITCH_6015].speed_pid.out,gimbal_motor[PITCH_6015].angle_pid.out,gimbal_motor[PITCH_6015].INS_angle);
 //		Vofa_Send_Data8(gimbal_motor[BASE_YAW_5010].INS_speed  , gimbal_motor[BASE_YAW_5010].speed_pid.set , gimbal_motor[BASE_YAW_5010].INS_angle_err , gimbal_motor[BASE_YAW_5010].INS_angle_set,gimbal_motor[BASE_YAW_5010].set_current,gimbal_motor[BASE_YAW_5010].speed_pid.out,gimbal_motor[BASE_YAW_5010].angle_pid.out,gimbal_motor[BASE_YAW_5010].give_current);
-//		Vofa_Send_Data8(gimbal_motor[ADVANCED_YAW_6020].INS_speed  , gimbal_motor[ADVANCED_YAW_6020].speed_pid.set , gimbal_motor[ADVANCED_YAW_6020].INS_angle_err , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set,gimbal_motor[ADVANCED_YAW_6020].set_current,gimbal_motor[ADVANCED_YAW_6020].speed_pid.out,gimbal_motor[ADVANCED_YAW_6020].angle_pid.out,gimbal_motor[ADVANCED_YAW_6020].INS_angle);
+		Vofa_Send_Data8(gimbal_motor[ADVANCED_YAW_6020].INS_speed  , gimbal_motor[ADVANCED_YAW_6020].speed_pid.set , gimbal_motor[ADVANCED_YAW_6020].INS_angle_err , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set,gimbal_motor[ADVANCED_YAW_6020].set_current,gimbal_motor[ADVANCED_YAW_6020].speed_pid.out,gimbal_motor[ADVANCED_YAW_6020].angle_pid.out,gimbal_motor[ADVANCED_YAW_6020].INS_angle);
 				vTaskDelay(1);
     }
 }

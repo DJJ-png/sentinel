@@ -60,7 +60,7 @@ void chassis_solve()
         if(fabs(ang_err)<0.01) ang_err=0;
 		PID_calc(&chassis_control.chassis_psi,ang_err,0);
 //		DEADBAND(chassis_control.chassis_psi.out,50);
-        if(fabs(chassis_control.chassis_psi.out)<50)
+        if(fabs(chassis_control.chassis_psi.out)<20)
 			chassis_control.chassis_psi.out=0;
 		wz = chassis_control.chassis_psi.out;
         			
@@ -141,8 +141,8 @@ void Gimbal_Follow_Chassis()
 {
 		gimbal_vector_set(0,rc_ctrl.rc.ch[1]*Sw_Pc,0,0,SPEED,SPEED,GIMBAL_TO_CHASSIS_MODE);
 }
-fp32 yaw_test=10.0f;
-fp32 pitch_test=0.0;
+fp32 yaw_test=-60.0f;
+fp32 pitch_test=-10.0f;
 float yaw_speed=0.0;
 uint16_t debug_cnt=0;
 fp32 debug_yaw_max=6.5f;
@@ -453,7 +453,7 @@ static void Robot_Protect_FSM()
 }
 void Switch_Task(void const * argument) 
 {
-    float chassis_psi_pid[3]={1500,30,500};
+    float chassis_psi_pid[3]={500,30,500};
     PID_init(&chassis_control.chassis_psi,0,chassis_psi_pid,1000,0);
     while(1) 
     {

@@ -139,7 +139,7 @@ void MX_FREERTOS_Init(void) {
   SWITCH_TaskHandle = osThreadCreate(osThread(SWITCH_Task), NULL);
 
   /* definition and creation of Gimbal_TASK */
-  osThreadDef(Gimbal_TASK, Gimbal_Task, osPriorityIdle, 0, 128);
+  osThreadDef(Gimbal_TASK, Gimbal_Task, osPriorityIdle, 0, 256);
   Gimbal_TASKHandle = osThreadCreate(osThread(Gimbal_TASK), NULL);
 
   /* definition and creation of INS_TASK */

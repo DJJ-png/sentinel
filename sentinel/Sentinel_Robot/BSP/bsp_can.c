@@ -228,8 +228,8 @@ void CAN_cmd_LK_init(CAN_HandleTypeDef* hcan,uint8_t uid)
 /* LK电机单电机发送 */
 void CAN_cmd_LK_Motor(CAN_HandleTypeDef* hcan,uint8_t uid, int16_t current)
 {
-	if(current > 1300) current = 1300;
-	else if(current < -1300) current = -1300;
+//	if(current > 1300) current = 1300;
+//	else if(current < -1300) current = -1300;
 	
 	uint32_t send_mail_box;
 	CAN_TxHeaderTypeDef  chassis_tx_message = {0};

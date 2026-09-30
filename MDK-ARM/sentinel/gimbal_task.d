@@ -83,4 +83,12 @@ sentinel/gimbal_task.o: ..\Sentinel_Robot\Tasks\Gimbal_Task.c \
   ..\Sentinel_Robot\APP\config_set.h \
   ..\Sentinel_Robot\algorithm\AHRS_middleware.h \
   ..\Sentinel_Robot\APP\remote_control.h ..\Sentinel_Robot\BSP\bsp_rc.h \
-  ..\Sentinel_Robot\BSP\bsp_math.h
+  ..\Sentinel_Robot\BSP\bsp_math.h \
+  ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Sentinel_Robot\BSP\bsp_usart.h ..\Sentinel_Robot\APP\referee.h \
+  ..\Sentinel_Robot\APP\protocol.h ..\Sentinel_Robot\support\fifo.h

@@ -217,6 +217,7 @@ uint8_t NUC_Data_Unpack()
 			case  0x0506 : memcpy(&nuc_control.list,NUC_DATA,sizeof(nuc_control.list)); 	p_unpack=p_wait;nuc_work[2]=1;nuc_off_wait[2]=5000;break;
 			case  0x0301 : memcpy(&Sentry_Decision_0x0120,NUC_DATA,sizeof(Sentry_Decision_0x0120)); 	p_unpack=p_wait;nuc_work[3]=1;nuc_off_wait[3]=5000;break;
 			case  0x0308 : memcpy(&custom_info_0x0308,NUC_DATA,sizeof(custom_info_0x0308)); 	p_unpack=p_wait;nuc_work[4]=1;nuc_off_wait[4]=5000;break; 
+			case  0x0507 : memcpy(&nuc_control.aimcontrol,NUC_DATA,sizeof(nuc_control.aimcontrol)); 	break;
 			default ://nuc消息转发给裁判系统
 				// memcpy(data_send,p_unpack,5+2+lenth+2);
 //			HAL_UART_Transmit_DMA(&huart6,data_send , 5+2+lenth+2);         

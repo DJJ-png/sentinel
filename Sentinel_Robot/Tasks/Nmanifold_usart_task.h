@@ -240,12 +240,12 @@ typedef struct __attribute__((packed))
 		uint8_t mode;//0：导航控底盘1：导航控云台
 		uint8_t spin;//0：不小陀螺 1：小陀螺
 		uint8_t patrol;//0：云台不巡逻 1：云台巡逻 nuc_control.action.patrol
-		uint8_t robot_aim;//0:不自瞄 1:自瞄 nuc_control.action.robot_aim 2:导航自瞄 3：小符 4：大符
+//		uint8_t robot_aim;//0:不自瞄 1:自瞄 nuc_control.action.robot_aim 2:导航自瞄 3：小符 4：大符
 		uint8_t chasing;//0:不在追击状态 1：追击状态（边自瞄边导航）
 	}action;
 	 struct __attribute__((packed)) //0507
 	{
-		uint8_t aim_target;
+		uint8_t robot_aim;//0:不自瞄 1:自瞄 nuc_control.action.robot_aim 2:导航自瞄 3：小符 4：大符
 		float yaw_nuc_gimbal;
 		float pitch_nuc_gimbal;
 	}aimcontrol;

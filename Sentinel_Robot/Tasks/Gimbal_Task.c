@@ -14,6 +14,7 @@
 #include "remote_control.h"
 #include "bsp_math.h"
 #include "bsp_can.h"
+#include "Nmanifold_usart_task.h"
 #define SPIN_PITCH    66
 #define SPIN_YAW      90
 
@@ -46,6 +47,9 @@ uint8_t aim_cnt;
 extern fp32 yaw_test;
 extern float adv_yaw,adv_pitch;
 extern float adv_yaw_speed,adv_pitch_speed;
+extern float nuc_aim_yaw;
+extern float nuc_aim_pitch;
+extern nuc_control_t nuc_control;
 fp32 k1=1,k2=1;
 
 uint16_t aaa=0;
@@ -132,40 +136,40 @@ void Gimbal_Spin(fp32 Pitch_max,fp32 Pitch_min,fp32*gimbal_spin_speed,uint8_t mo
 
 float kp_angle=0.5f;//4.4
 float kp_speed=-100.0f;//-120.0
-void CHANGE_PID_FIXED(gimbal_motor_t *adv_yaw,gimbal_motor_t *pitch)//×ÔÊÊÓ¦PIDËÙ¶È»·
+void CHANGE_PID_FIXED(gimbal_motor_t *adv_yaw,float INS_angle)//×ÔÊÊÓ¦PIDËÙ¶È»·
 {
-	if(pitch->INS_angle<-15.0f)
+	if(INS_angle<-15.0f)
 	{
 		adv_yaw->speed_pid.Kp=300.0f;
 		adv_yaw->speed_pid.Ki=0.8f;
 		adv_yaw->speed_pid.Kd=30.0f;
 				
-		adv_yaw->angle_pid.Kp=-0.2069f*(pitch->INS_angle)+4.897f;
+		adv_yaw->angle_pid.Kp=-0.2069f*(INS_angle)+4.897f;
 		
 	}
-	else if(pitch->INS_angle<=-5.0f&&pitch->INS_angle>=-15.0f)
+	else if(INS_angle<=-5.0f&&INS_angle>=-15.0f)
 	{
-		adv_yaw->speed_pid.Kp=10.0f*(pitch->INS_angle)+450.0f;
+		adv_yaw->speed_pid.Kp=10.0f*(INS_angle)+450.0f;
 		adv_yaw->speed_pid.Ki=0.8f;
-		adv_yaw->speed_pid.Kd=1.0f*(pitch->INS_angle)+45.0f;
+		adv_yaw->speed_pid.Kd=1.0f*(INS_angle)+45.0f;
 		
-		adv_yaw->angle_pid.Kp=-0.446f*(pitch->INS_angle)+1.31f;
+		adv_yaw->angle_pid.Kp=-0.446f*(INS_angle)+1.31f;
 	}
-	else if(pitch->INS_angle<5.0f&&pitch->INS_angle>-5.0f)
+	else if(INS_angle<5.0f&&INS_angle>-5.0f)
 	{
-		adv_yaw->speed_pid.Kp=-23.0f*(pitch->INS_angle)+285.0f;
+		adv_yaw->speed_pid.Kp=-23.0f*(INS_angle)+285.0f;
 		adv_yaw->speed_pid.Ki=0.8f;
-		adv_yaw->speed_pid.Kd=-2.5f*(pitch->INS_angle)+27.5f;
+		adv_yaw->speed_pid.Kd=-2.5f*(INS_angle)+27.5f;
 		
-		adv_yaw->angle_pid.Kp=-0.134f*(pitch->INS_angle)+2.87f;
+		adv_yaw->angle_pid.Kp=-0.134f*(INS_angle)+2.87f;
 	}
-	else if(pitch->INS_angle<=15.0f&&pitch->INS_angle>=5.0f)
+	else if(INS_angle<=15.0f&&INS_angle>=5.0f)
 	{
-		adv_yaw->speed_pid.Kp=-2.0f*(pitch->INS_angle)+180.0f;
+		adv_yaw->speed_pid.Kp=-2.0f*(INS_angle)+180.0f;
 		adv_yaw->speed_pid.Ki=0.2f;
 		adv_yaw->speed_pid.Kd=15.0f;
 		
-		adv_yaw->angle_pid.Kp=0.2f*(pitch->INS_angle)+1.2f;
+		adv_yaw->angle_pid.Kp=0.2f*(INS_angle)+1.2f;
 	}
 	else 
 	{
@@ -178,6 +182,12 @@ void CHANGE_PID_FIXED(gimbal_motor_t *adv_yaw,gimbal_motor_t *pitch)//×ÔÊÊÓ¦PIDË
 	adv_yaw->angle_pid.Ki=0.0f;	
 	adv_yaw->angle_pid.Kd=30.0f;
 	if(gimbal_control.MODE == ADVANCED_YAW_MODE)//×ÔÃé²¹³¥
+	{
+		adv_yaw->angle_pid.Kp+=kp_angle;
+		adv_yaw->speed_pid.Kp+=kp_speed;
+		adv_yaw->speed_pid.Kd+=10.0f;
+	}
+	if(gimbal_control.MODE == BASE_YAW)//×ÔÃé²¹³¥
 	{
 		adv_yaw->angle_pid.Kp+=kp_angle;
 		adv_yaw->speed_pid.Kp+=kp_speed;
@@ -340,7 +350,7 @@ void Gimbal_Motor_Data_Update(void)
 	/* Æ½ÐÐËÄÁ¬¸Ë½áºÏµç»ú±àÂëÆ÷½âËãpitchÖá½Ç¶È */
 	 gimbal_motor[PITCH_6015].INS_angle         =  adv_pitch;
 	
-//	CHANGE_PID_FIXED(&gimbal_motor[ADVANCED_YAW_6020],&gimbal_motor[PITCH_6015]);
+	CHANGE_PID_FIXED(&gimbal_motor[ADVANCED_YAW_6020],gimbal_motor[PITCH_6015].INS_angle);
 	
 	
 	gimbal_motor[ADVANCED_YAW_6020].ENC_angle   = LIMIT_TO_SET((ADVANCED_GIMBAL_ANGLE_ZERO - motor_measure_gimbal[ADVANCED_YAW].ecd)/((fp32)GIMBAL_MOTOR_ADVANCED_ECD_RANGE)*2*180,180);
@@ -499,7 +509,7 @@ static void Gimbal_Pitch_Motor_Operator(gimbal_motor_t *motor)
 				motor->speed_pid.out=motor->speed_pid.out*0.9f;
 			}
 		}
-        motor->set_current =-motor->speed_pid.out+gravity_feedforward;
+        motor->set_current =-motor->speed_pid.out+gravity_feedforward+0.0f;
     }
     
 }
@@ -678,7 +688,16 @@ void Gimbal_solve()
 			Aim_Gimbal_Pid_Init();
 		}
 	}
+	if (aim_control.set_angle_flag!=aim_control.last_set_angle_flag)
+	{
+		if(aim_control.set_angle_flag==1)
+		{
+			nuc_aim_pitch=LIMIT_TO_SET(gimbal_motor[PITCH_6015].INS_angle+nuc_control.aimcontrol.pitch_nuc_gimbal,180);
+			nuc_aim_yaw=LIMIT_TO_SET(gimbal_motor[BASE_YAW_5010].INS_angle+nuc_control.aimcontrol.yaw_nuc_gimbal,180);
+		}
+	}
 	aim_control.last_aim_PID=aim_control.aim_PID;	
+	aim_control.last_set_angle_flag=aim_control.set_angle_flag;
 	//base	
 	Gimbal_Pitch_Calculate(&gimbal_motor[PITCH_6015]);
 	
@@ -767,9 +786,9 @@ void Gimbal_Task(void const * argument)
         //Vofa_Send_Data4(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set);
         //Vofa_Send_Data4(gimbal_motor[BASE_YAW_5010].speed_pid.fdb, gimbal_motor[BASE_YAW_5010].speed_pid.set,gimbal_motor[BASE_YAW_5010].INS_angle,gimbal_motor[BASE_YAW_5010].INS_angle_set);
 //				Vofa_Send_Data4(gimbal_motor[ADVANCED_YAW_6020].INS_speed , gimbal_motor[ADVANCED_YAW_6020].INS_speed_set , gimbal_motor[ADVANCED_YAW_6020].INS_angle , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set);
-//				Vofa_Send_Data8(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set,gimbal_motor[PITCH_6015].set_current,gimbal_motor[PITCH_6015].speed_pid.out,gimbal_motor[PITCH_6015].angle_pid.out,gimbal_motor[PITCH_6015].INS_angle);
+				Vofa_Send_Data8(gimbal_motor[PITCH_6015].INS_speed  , gimbal_motor[PITCH_6015].speed_pid.set , gimbal_motor[PITCH_6015].INS_angle_err , gimbal_motor[PITCH_6015].INS_angle_set,gimbal_motor[PITCH_6015].set_current,gimbal_motor[PITCH_6015].speed_pid.out,gimbal_motor[PITCH_6015].angle_pid.out,gimbal_motor[PITCH_6015].INS_angle);
 //		Vofa_Send_Data8(gimbal_motor[BASE_YAW_5010].INS_speed  , gimbal_motor[BASE_YAW_5010].speed_pid.set , gimbal_motor[BASE_YAW_5010].INS_angle_err , gimbal_motor[BASE_YAW_5010].INS_angle_set,gimbal_motor[BASE_YAW_5010].set_current,gimbal_motor[BASE_YAW_5010].speed_pid.out,gimbal_motor[BASE_YAW_5010].angle_pid.out,gimbal_motor[BASE_YAW_5010].give_current);
-		Vofa_Send_Data8(gimbal_motor[ADVANCED_YAW_6020].INS_speed  , gimbal_motor[ADVANCED_YAW_6020].speed_pid.set , gimbal_motor[ADVANCED_YAW_6020].INS_angle_err , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set,gimbal_motor[ADVANCED_YAW_6020].set_current,gimbal_motor[ADVANCED_YAW_6020].speed_pid.out,gimbal_motor[ADVANCED_YAW_6020].angle_pid.out,gimbal_motor[ADVANCED_YAW_6020].INS_angle);
+//		Vofa_Send_Data8(gimbal_motor[ADVANCED_YAW_6020].INS_speed  , gimbal_motor[ADVANCED_YAW_6020].speed_pid.set , gimbal_motor[ADVANCED_YAW_6020].INS_angle_err , gimbal_motor[ADVANCED_YAW_6020].INS_angle_set,gimbal_motor[ADVANCED_YAW_6020].set_current,gimbal_motor[ADVANCED_YAW_6020].speed_pid.out,gimbal_motor[ADVANCED_YAW_6020].angle_pid.out,gimbal_motor[ADVANCED_YAW_6020].INS_angle);
 				vTaskDelay(1);
     }
 }

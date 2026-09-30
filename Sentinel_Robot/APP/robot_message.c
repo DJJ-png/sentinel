@@ -42,13 +42,13 @@ void data_update(uint8_t cmd_id)
 						//测试打符用的，这行代码，在导航没开的情况下。
 						 //nuc_control.action.robot_aim = 2;
 				
-						if(Robot_Status.robot_id==107 && nuc_control.action.robot_aim != 2)
+						if(Robot_Status.robot_id==107 && nuc_control.aimcontrol.robot_aim != 2)
 							nuc_transmit_data.robot_gimbal_data_send.mode	=		0;// 自瞄红
-						else if(Robot_Status.robot_id == 7 && nuc_control.action.robot_aim != 2)  
+						else if(Robot_Status.robot_id == 7 && nuc_control.aimcontrol.robot_aim != 2)  
 							nuc_transmit_data.robot_gimbal_data_send.mode	=		1;// 自瞄蓝
-						else if(Robot_Status.robot_id==107 && nuc_control.action.robot_aim == 2)
+						else if(Robot_Status.robot_id==107 && nuc_control.aimcontrol.robot_aim == 2)
 							nuc_transmit_data.robot_gimbal_data_send.mode	=		3;// 小符蓝
-						else if(Robot_Status.robot_id == 7 && nuc_control.action.robot_aim == 2)  
+						else if(Robot_Status.robot_id == 7 && nuc_control.aimcontrol.robot_aim == 2)  
 							nuc_transmit_data.robot_gimbal_data_send.mode	=		2;// 小符红
             /*  Update the value of variables here END*/
             break;

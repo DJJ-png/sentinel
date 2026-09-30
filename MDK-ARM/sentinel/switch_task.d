@@ -47,10 +47,7 @@ sentinel/switch_task.o: ..\Sentinel_Robot\Tasks\Switch_Task.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
   ..\Sentinel_Robot\APP\My_Def.h ..\Sentinel_Robot\APP\remote_control.h \
   ..\Sentinel_Robot\BSP\bsp_rc.h ..\Core\Inc\tim.h \
-  ..\Sentinel_Robot\Tasks\Shoot_Task.h \
-  ..\Sentinel_Robot\APP\config_set.h ..\Sentinel_Robot\APP\Filter.h \
-  ..\Sentinel_Robot\Tasks\Gimbal_Task.h ..\Sentinel_Robot\BSP\bsp_can.h \
-  ..\Core\Inc\can.h ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h \
+  ..\Sentinel_Robot\Tasks\Nmanifold_usart_task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
@@ -81,7 +78,10 @@ sentinel/switch_task.o: ..\Sentinel_Robot\Tasks\Switch_Task.c \
   D:\Keil5_ARM\ARM\CMSIS-DSP\1.16.2\Include\dsp\quaternion_math_functions.h \
   D:\Keil5_ARM\ARM\CMSIS-DSP\1.16.2\Include\dsp\window_functions.h \
   ..\Sentinel_Robot\APP\referee.h ..\Sentinel_Robot\APP\protocol.h \
-  ..\Sentinel_Robot\support\fifo.h ..\Sentinel_Robot\APP\Vofa_send.h \
+  ..\Sentinel_Robot\support\fifo.h ..\Sentinel_Robot\Tasks\Shoot_Task.h \
+  ..\Sentinel_Robot\APP\config_set.h ..\Sentinel_Robot\APP\Filter.h \
+  ..\Sentinel_Robot\Tasks\Gimbal_Task.h ..\Sentinel_Robot\BSP\bsp_can.h \
+  ..\Core\Inc\can.h ..\Sentinel_Robot\APP\Vofa_send.h \
   ..\Sentinel_Robot\APP\robot_message.h ..\Sentinel_Robot\BSP\bsp_usb.h \
   ..\USB_DEVICE\App\usb_device.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \

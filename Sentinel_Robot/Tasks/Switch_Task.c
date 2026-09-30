@@ -2,6 +2,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "My_Def.h"
+#include "Nmanifold_usart_task.h"
 
 #include "Shoot_Task.h"
 #include "Gimbal_Task.h"
@@ -141,7 +142,7 @@ void Gimbal_Follow_Chassis()
 {
 		gimbal_vector_set(0,rc_ctrl.rc.ch[1]*Sw_Pc,0,0,SPEED,SPEED,GIMBAL_TO_CHASSIS_MODE);
 }
-fp32 yaw_test=-60.0f;
+fp32 yaw_test=0.0f;
 fp32 pitch_test=-10.0f;
 float yaw_speed=0.0;
 uint16_t debug_cnt=0;
@@ -178,15 +179,28 @@ void Aim_Control_Gimbal()
         0,0,
 //        nuc_receive_data.aim_data_received.top_ampl, 
 //       nuc_receive_data.aim_data_received.top_freq,   
-       yaw_test,
-//       nuc_receive_data.aim_data_received.yaw,
-        pitch_test,
-//       nuc_receive_data.aim_data_received.pitch,  
+//       yaw_test,
+       nuc_receive_data.aim_data_received.yaw,
+//        pitch_test,
+       nuc_receive_data.aim_data_received.pitch,  
         ANGLE, ANGLE,                                 
         ADVANCED_YAW_MODE
     );
 }
 
+float nuc_aim_yaw=0;
+float nuc_aim_pitch=0;
+
+void NUC_Control_Gimbal()
+{
+	gimbal_vector_set(
+	0,0,
+	nuc_aim_yaw,
+	nuc_aim_pitch,
+	ANGLE,ANGLE,
+	BASE_YAW_MODE
+	);
+}
 
 void Nuc_Control_Chassis(){/*导航底盘控制*/
     fp32 rotor=Rotor_speed;
@@ -234,59 +248,79 @@ void Update_System_Event(void) {
     switch (gimbal_state) {
         case GIMBAL_RELAX:
             aim_control.aim_PID=0;
-            if      (Switch_Left == RC_SW_MID)      gimbal_state = GIMBAL_AUTO_AIM;//GIMBAL_RC_CTRL;//v//GIMBAL_RC_CTRL;//拨杆中间默认
-            else if (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_NUC_CTRL;
+			aim_control.set_angle_flag=0;
+            if      (Switch_Left == RC_SW_MID)      gimbal_state = GIMBAL_RC_CTRL;//v//GIMBAL_RC_CTRL;//拨杆中间默认
+            else if (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_NUC_CTRL;//GIMBAL_RELAX;//GIMBAL_NUC_CTRL;
             break;
 
         case GIMBAL_RC_CTRL:
             aim_control.aim_PID=0;
+			aim_control.set_angle_flag=0;
             if      (Switch_Left == RC_SW_UP)       gimbal_state = GIMBAL_NUC_CTRL;//GIMBAL_RELAX;//GIMBAL_NUC_CTRL;
             else if (RollWheel < -10)               gimbal_state = GIMBAL_AUTO_AIM; // 手动切自瞄调试 
             break;
 
         case GIMBAL_AUTO_AIM:
             aim_control.aim_PID=1;
+			aim_control.set_angle_flag=0;
             // 退出条件：目标丢失且保活计时耗尽，或者拨杆切换
-//            if      (Switch_Left == RC_SW_MID && RollWheel >= -10) 
-//                gimbal_state = GIMBAL_RC_CTRL;//拨杆切换
-//            else if ((nuc_receive_data.aim_data_received.is_fire == 0 && aim_control.aim_keep == 0)||nuc_control.action.robot_aim==0) {
-//                // 目标丢失后的回退路径
-//                if((Switch_Left == RC_SW_MID && RollWheel <= -10)||nuc_receive_data.aim_data_received.is_fire==1)
-//                    gimbal_state =GIMBAL_AUTO_AIM;
-//                else
-//                    gimbal_state = (Switch_Left == RC_SW_UP) ? GIMBAL_PATROL : GIMBAL_RC_CTRL;
-//            }
+            if      (Switch_Left == RC_SW_MID && RollWheel >= -10) 
+                gimbal_state = GIMBAL_RC_CTRL;//拨杆切换
+            else if ((nuc_receive_data.aim_data_received.is_fire == 0 && aim_control.aim_keep == 0)||nuc_control.aimcontrol.robot_aim==0) {
+                // 目标丢失后的回退路径
+                if((Switch_Left == RC_SW_MID && RollWheel <= -10)||nuc_receive_data.aim_data_received.is_fire==1)
+                    gimbal_state =GIMBAL_AUTO_AIM;
+                else
+                    gimbal_state = (Switch_Left == RC_SW_UP) ? GIMBAL_PATROL : GIMBAL_RC_CTRL;
+            }
+			else if(nuc_control.aimcontrol.robot_aim==2)                                       gimbal_state=GIMBAL_PERCEPTION_ACT;
             break;
 
         case GIMBAL_PATROL:
             aim_control.aim_PID=0;
-            if      (gimbal_control.counterattack_flag != 0)                                      gimbal_state = GIMBAL_COUNTERATTACK;
-            else if (nuc_receive_data.aim_data_received.is_fire&&nuc_control.action.robot_aim!=0) gimbal_state = GIMBAL_AUTO_AIM;
+			aim_control.set_angle_flag=0;
+			if(nuc_control.aimcontrol.robot_aim==2)                                       gimbal_state=GIMBAL_PERCEPTION_ACT;
+            else if      (gimbal_control.counterattack_flag != 0)                                     gimbal_state = GIMBAL_COUNTERATTACK;
+            else if (nuc_receive_data.aim_data_received.is_fire&&nuc_control.aimcontrol.robot_aim==1) gimbal_state = GIMBAL_AUTO_AIM;
             else if (nuc_control.action.patrol == 0)                                              gimbal_state = GIMBAL_NUC_CTRL;
             else if (Switch_Left == RC_SW_MID)                                                    gimbal_state = GIMBAL_RC_CTRL;
             break;
 
         case GIMBAL_COUNTERATTACK:
             aim_control.aim_PID=0;
+			aim_control.set_angle_flag=0;
             // 反击结束回归巡逻或自瞄
             if (gimbal_control.counterattack_flag == 0) {
-                gimbal_state = (nuc_receive_data.aim_data_received.is_fire && nuc_control.action.robot_aim!=0) ? GIMBAL_AUTO_AIM : GIMBAL_PATROL;
+				if(nuc_control.aimcontrol.robot_aim==2)                                       gimbal_state=GIMBAL_PERCEPTION_ACT;
+                else{ gimbal_state = (nuc_receive_data.aim_data_received.is_fire && nuc_control.aimcontrol.robot_aim==1) ? GIMBAL_AUTO_AIM : GIMBAL_PATROL;}
             }
             break;
 
         case GIMBAL_NUC_CTRL:
             aim_control.aim_PID=0;
-            if      (Switch_Left == RC_SW_MID)                                                    gimbal_state = GIMBAL_RC_CTRL;
+			aim_control.set_angle_flag=0;
+             if      (Switch_Left == RC_SW_MID)                                                    gimbal_state = GIMBAL_RC_CTRL;
+			else if(nuc_control.aimcontrol.robot_aim==2)                                       gimbal_state=GIMBAL_PERCEPTION_ACT;
             else if (nuc_control.action.patrol != 0)                                              gimbal_state = GIMBAL_PATROL;
-            else if (nuc_receive_data.aim_data_received.is_fire&&nuc_control.action.robot_aim!=0) gimbal_state = GIMBAL_AUTO_AIM;
+            else if (nuc_receive_data.aim_data_received.is_fire&&nuc_control.aimcontrol.robot_aim==1) gimbal_state = GIMBAL_AUTO_AIM;
+			
             break;
+		case GIMBAL_PERCEPTION_ACT:
+			aim_control.aim_PID=1;
+			aim_control.set_angle_flag=1;		
+			if(nuc_receive_data.aim_data_received.is_fire&&nuc_control.aimcontrol.robot_aim==1)    gimbal_state=GIMBAL_AUTO_AIM;
+			else if (nuc_control.aimcontrol.robot_aim!=2&&nuc_control.action.patrol != 0)          gimbal_state = GIMBAL_PATROL;
+			else if(nuc_control.aimcontrol.robot_aim==0)                                           gimbal_state=GIMBAL_NUC_CTRL;
+			else if(Switch_Left == RC_SW_MID)                                                      gimbal_state=GIMBAL_RC_CTRL;
+			break;
+			
     }
 
     /* --- 2. 底盘状态转移处理 (Chassis State Transition) --- */
     switch (chassis_state) {
         case CHASSIS_RELAX:
             if      (Switch_Left == RC_SW_MID)     chassis_state = CHASSIS_RC_CTRL;
-            else if (Switch_Left == RC_SW_UP)      chassis_state =  CHASSIS_NUC_CTRL;//CHASSIS_RELAX;//CHASSIS_NUC_CTRL;
+            else if (Switch_Left == RC_SW_UP)      chassis_state = CHASSIS_NUC_CTRL;//CHASSIS_RELAX;//CHASSIS_NUC_CTRL;
             break;
 
         case CHASSIS_RC_CTRL:
@@ -334,6 +368,9 @@ void Step_Gimbal_FSM(void) {
                 // 默认跟随底盘
                 Gimbal_Follow_Chassis();
             }
+			break;
+		case GIMBAL_PERCEPTION_ACT:
+			NUC_Control_Gimbal();
             break;
     }
 }

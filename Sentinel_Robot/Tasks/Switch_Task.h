@@ -9,6 +9,8 @@ typedef struct
 		int16_t aim_keep;
 		fp32 aim_keep_angle[2];
 		uint8_t aim_PID;
+		uint8_t set_angle_flag;//NUC_setangle标志位
+		uint8_t last_set_angle_flag;
         uint8_t last_aim_PID;
 }aim_control_t;
 typedef struct
@@ -35,7 +37,8 @@ typedef enum {
     GIMBAL_AUTO_AIM,     // 视觉自瞄
     GIMBAL_PATROL,       // 自动巡逻扫描
     GIMBAL_COUNTERATTACK, // 受击反击逻辑
-    GIMBAL_NUC_CTRL        //NUC控云台（比赛中不巡逻不自瞄的模式）
+    GIMBAL_NUC_CTRL,        //NUC控云台（比赛中不巡逻不自瞄的模式）
+	GIMBAL_PERCEPTION_ACT
 } Gimbal_State_e;
 
 /**
